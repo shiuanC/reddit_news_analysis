@@ -1,0 +1,70 @@
+# Introduction
+
+```{python}
+#| echo: false
+#| warning: false 
+
+### Importing require libraries 
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import IPython
+import ipyplot
+```
+
+## Background 
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+```
+
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+#Plotly graph objects graph
+
+
+
+```
+
+
+<a id = "about_team"> </a>
+
+## About the Team 
+
+```{python}
+#| echo: false
+#| warning: false
+
+import ipywidgets as widgets
+import IPython.display as display
+from IPython.display import HTML
+## Read images from file (because this is binary, maybe you can find how to use ByteIO) but this is more easy
+img1 = open('../data/plots/Photos/Lucienne.jpg', 'rb').read()
+img2 = open('../data/plots/Photos/Sonali.jpg', 'rb').read()
+img3 = open('../data/plots/Photos/Peijin.jpg', 'rb').read()
+## Create image widgets. You can use layout of ipywidgets only with widgets.
+## Set image variable, image format and dimension.
+wi1 = widgets.Image(value=img1, format='jpg', width=200, height=200)
+wi2 = widgets.Image(value=img2, format='jpg', width=200, height=200)
+wi3 = widgets.Image(value=img3, format='jpg', width=200, height=200)
+## Side by side thanks to HBox widgets
+sidebyside = widgets.HBox([wi1, wi2, wi3])
+## Finally, show.
+display.display(sidebyside)
+HTML('<style> .widget-text { width: auto; } </style>')
+
+
+```
+
+<p><a href = "https://www.linkedin.com/in/lucienne-lavanya-julian-898923150/" target = _blank>Lucienne L. Julian</a> &emsp;&emsp;&emsp;&ensp; <a href = "https://www.linkedin.com/in/sonali-subbu-rathinam-74b878229/" target = _blank>Sonali Subbu Rathinam</a> &emsp;&emsp;<a href = "https://www.linkedin.com/in/peijin-li-pl724georgetown/" target = _blank>Peijin Li</a> 

@@ -1,0 +1,209 @@
+# Exploratory Data Analysis 
+
+```{python}
+#| echo: false
+#| warning: false 
+
+### Importing require libraries 
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import datetime
+
+```
+ 
+## Preprocessing and Data Dictionary 
+
+We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get <b>170,144</b> submissions and <b>18,548,934</b> comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below: 
+
+In the <b> Submissions </b> dataset :  
+<ul> 
+    <li> <b>author</b> : The user who created the post. </li>
+    <li> <b>created_utc</b> : The time the submission or comment was posted. Was used in the time series analysis section of our project. </li>
+    <li> <b>domain</b> : The news site posted in the submission. </li> 
+    <li> <b>id </b>: The unique identifier of each post. </li> 
+    <li> <b>num_comments</b> : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved. </li> 
+    <li> <b>url </b>: The url associated with the post. Most of the submissions contain this url to the news article. </li> 
+    <li> <b>score </b>: The Karma score awarded to each post </li> 
+</ul>
+
+In the <b> Comments </b> dataset :  
+<ul> 
+    <li> <b>author</b> : The user who posted the comment. </li>
+    <li> <b>created_utc </b>: The time the submission or comment was posted. Was used in the time series analysis section of our project. </li>
+    <li> <b>body</b> : The text in the comment. </li> 
+    <li><b> id </b>: The unique identifier of each comment. </li> 
+    <li> <b>link_id</b> : The id of the submission under which the comment exists. </li> 
+    <li> <b>controversiality</b> : Whether a comment was classified as 'controversial'. </li> 
+    <li><b> gilded </b>: Whether the comments have been gilded or awarded. </li> 
+    <li><b> distinguished </b>: Whether the comments have been distinguished as moderator. </li> 
+    <li><b> score</b> : The Karma score awarded to each post </li> 
+</ul>   
+
+During this process, several dummy variables were created to aid in our analysis. A <i>foreign key</i> like variable called <b>submission_id</b> was also created in the comments dataset, that linked any comment to the submission it was made under.  
+
+<a id = "user_activity"> </a>
+
+## Analyzing User Activity
+In this section, we dig a little deeper into how users act on this subreddit. Currently this subreddit currently has 31.5 subscribers. Upon evaluation however, we found that only around 27000 users created submissions and around 1.2 million users commented in the past year. Out of these numbers, only a small proportion of users actively posted as evidenced by figure 2.1 below. 
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+```
+
+
+Figure 2.1 assesses the percentage of users posting monthly among total distinct users in the respective datasets. It is observed that a higher proportion of users commented on posts as compared to making a post themselves. In both cases however, less than half of distinct users were active monthly. 
+
+The top 10 posters and commenters were also found and users with the most controversial comments were evaluated. This was compared against the users' total gilded and distinguished comments as shown below in table 2.1.
+
+<b> Table 2.1 Comparison of Users With Most Number of Controversial Comments </b> 
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+```
+
+Efforts were made to identify if high <i>controversiality</i> led to higher number of <i>gilded</i> or <i>distinguished</i> but that was not the case. 
+
+
+<a id = "time_series"> </a>
+
+## Time Series Analysis
+
+The next step to understanding the trends within the datasets was to plot multiple time series graph. Much like figure 1.2, a daily submission and comments frequency graph was also plotted as shown below. 
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+```
+
+
+There are some points of interest evident in the plot above. The first is the occurance of temporal gaps in the data which could be attributed to the data collection process of the push-shift reddit dataset. Second, there is a peak in Submissions and Comments in late February, and upon marking the start date of the Russia-Ukraine Conflict on the chart, it is apparent that this high volume of submissions and comments could have stemmed from the ongoing war.  
+
+Exporing further into this, the datasets were filtered to retain only observations regarding the conflict. After visualizing monthly frequencies of occurrences, it was found that the patterns observed in figure 2.3 were almost identical to the ones present in figure 1.2. This corroborates our earlier findings about increased activity in the subreddit during different phases of the Russia-Ukraine conflict. 
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+```
+
+
+Karma scores often determine user activity in any subreddit. In order to identify the overall popularity of submissions, their scores quantiles per month were visualized. Scores are the difference between the number of upvotes and number of downvotes that a submission receives. From the median line in the visualization, it can be interpreted that most submissions have a score between 10-30. Since the 25th percentile remains 0 for all the months, it can be inferred that there are submissions (although few) with an overall negative score. The scores from the 75th percentile line reveal that there are submissions with very high overall scores as well. Additionally, these high overall scores per month do not follow any similar trend to the median data, indicating that there may be a handful of submissions that contribute to a very high overall score in a particular month. 
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+
+```
+
+Finally, to further capture trends in submission posts, the monthly frequencies of five authors with the highest number of submissions in this time-period were visualized. From the graph, it can be inferred that some of the authors’ changes over time resemble the overall submission frequency plot. However, two other authors had submissions only during some months in the year. Infact, <i>hieronymusanonymous’s</i> submission frequencies were only during the second half of the year, indicating that there might be authors who did not post much about the Russia-Ukraine conflict. 
+
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+
+
+```
+
+
+<a id = "news_story"> </a>
+
+## Most Shared News Stories
+
+From the preceding analysis, a sharp peak was observed in the submissions and comments frequencies which we propose is due the ongoing Russia_Ukraine conflict. The following analysis looks at the most highly scored news stories, the news sites that occur most in the submissions dataset, the presence of a live thread, and whether this would reveal anything on the surge of news articles shared on this subreddit.
+
+Upon analysis, it was found that the top 10 news stories were generally to do with Russia's war on Ukraine. This provided us key insight to look more closely at the data pertaining to war efforts. The top news sites were also evaluated and an aggregation table was generated as shown below.
+
+<b> Table 2.2 : Top 20 News Sources in the Subreddit </b> 
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+
+```
+
+It was observed from the table above, that the most popular news sites on the subreddit over the past year were generally from western countries. This could potentially explain the high consumption of news related to the war within the subreddit despite the presence of Russian media sources as well. 
+
+Live thread submissions were found and it was determined that all the live thread submissions pertained to the war. This provided an opportunity to evaluate the comments of the live thread against regular submissions that also dealt with the Conflict as shown in the table below.
+
+<b> Table 2.3 : Comparison of Live Thread Comments and Regular Comments on War </b> 
+
+```{python}
+#| echo: false
+#| warning: false 
+
+
+```
+
+The table above captures the percentage of comments that were controversial, gilded and distinguished for the live thread and for other submissions dealing with the war. It was observed that more controversiality was present in regular submissions as compared to live threads, possible due to larger number of normal posts.
+
+
+<a id = "word_cloud"> </a>
+
+## Most Common Words
+
+Progressing with our analysis, we also looked at which were the most commonly used words or phrases in the comments of the top 3 news stories. To evaluate this we generated word clouds as shown below.
+
+<h3> Figure 2.6 : Word Cloud Of Comments From Top 3 News Stories </h3> 
+
+```{python}
+#| echo: false
+#| warning: false
+
+import ipywidgets as widgets
+import IPython.display as display
+from IPython.display import HTML
+## Read images from file 
+
+
+```
+
+These word clouds revealed that the Russia-Ukraine Conflict , and political leaders of these countries were the most repeated words. We also found terms relating to Queen Elizabeth II’s demise and the British royal family to be quite repetitive. 
+
+
+<a id = "cosine"> </a>
+
+## Comparison with Other Sources 
+
+As a final task, we sought to compare the information present in the subreddit’s submissions about the events pertaining to Russia and Ukraine, with the events data from Armed Conflict Location & Event Data Project (ACLED). ACLED collects real-time data on locations, dates, actors, fatalities and types of all reported political violence and protest events around the world, from various international and regional news sources. The ACLED data for Ukraine and Russia were aggregated to obtain daily counts of event types in the following categories:
+<ul>
+<li><b>Armed Clashes</b></li>
+<li><b>Shelling/Artillery/Missile Attacks</b></li>
+<li><b>Remote Explosives/Landmines/IED</b></li>
+<li><b>Disrupted Weapons Use</b></li>
+</ul>
+The submissions titles were analyzed using regex to find terms related to aforementioned event types to obtain daily counts for these events. The cosine similarity between ACLED counts and counts obtained from submissions for each event type were found as shown below in table 2.4. Our results indicate that reddit data is not quite similar to ACLED data. One possible reason for low similarity might be that our data has been filtered to English, and ACLED uses its own translation methodology and produces regional level news related to the conflict as well.  
+
+<b> Table 2.4 : Cosine Similarity Scores for ACLED and Submissions Dataset on Different War Events </b> 
+
+```{python}
+#| echo: false
+#| warning: false
+
+
+
+```

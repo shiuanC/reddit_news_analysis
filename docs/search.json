@@ -1,0 +1,195 @@
+[
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get 170,144 submissions and 18,548,934 comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below:\nIn the  Submissions  dataset :\n\n\n\nauthor : The user who created the post.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\ndomain : The news site posted in the submission.\n\n\nid : The unique identifier of each post.\n\n\nnum_comments : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved.\n\n\nurl : The url associated with the post. Most of the submissions contain this url to the news article.\n\n\nscore : The Karma score awarded to each post\n\n\nIn the  Comments  dataset :\n\n\n\nauthor : The user who posted the comment.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\nbody : The text in the comment.\n\n\n id : The unique identifier of each comment.\n\n\nlink_id : The id of the submission under which the comment exists.\n\n\ncontroversiality : Whether a comment was classified as ‘controversial’.\n\n\n gilded : Whether the comments have been gilded or awarded.\n\n\n distinguished : Whether the comments have been distinguished as moderator.\n\n\n score : The Karma score awarded to each post\n\n\nDuring this process, several dummy variables were created to aid in our analysis. A foreign key like variable called submission_id was also created in the comments dataset, that linked any comment to the submission it was made under.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "ml.html",
+    "href": "ml.html",
+    "title": "ML",
+    "section": "",
+    "text": "ML"
+  },
+  {
+    "objectID": "nlp.html",
+    "href": "nlp.html",
+    "title": "NLP",
+    "section": "",
+    "text": "NLP"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Website {{< var topic.name >}}",
+    "section": "",
+    "text": "Summary"
+  },
+  {
+    "objectID": "eda.html#why-do-we-use-it",
+    "href": "eda.html#why-do-we-use-it",
+    "title": "What is Lorem Ipsum?",
+    "section": "",
+    "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\n\nlibrary(gt)\ngt(mtcars)\n\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\n\n21.0\n6\n160.0\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\n21.0\n6\n160.0\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\n22.8\n4\n108.0\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1\n\n\n21.4\n6\n258.0\n110\n3.08\n3.215\n19.44\n1\n0\n3\n1\n\n\n18.7\n8\n360.0\n175\n3.15\n3.440\n17.02\n0\n0\n3\n2\n\n\n18.1\n6\n225.0\n105\n2.76\n3.460\n20.22\n1\n0\n3\n1\n\n\n14.3\n8\n360.0\n245\n3.21\n3.570\n15.84\n0\n0\n3\n4\n\n\n24.4\n4\n146.7\n62\n3.69\n3.190\n20.00\n1\n0\n4\n2\n\n\n22.8\n4\n140.8\n95\n3.92\n3.150\n22.90\n1\n0\n4\n2\n\n\n19.2\n6\n167.6\n123\n3.92\n3.440\n18.30\n1\n0\n4\n4\n\n\n17.8\n6\n167.6\n123\n3.92\n3.440\n18.90\n1\n0\n4\n4\n\n\n16.4\n8\n275.8\n180\n3.07\n4.070\n17.40\n0\n0\n3\n3\n\n\n17.3\n8\n275.8\n180\n3.07\n3.730\n17.60\n0\n0\n3\n3\n\n\n15.2\n8\n275.8\n180\n3.07\n3.780\n18.00\n0\n0\n3\n3\n\n\n10.4\n8\n472.0\n205\n2.93\n5.250\n17.98\n0\n0\n3\n4\n\n\n10.4\n8\n460.0\n215\n3.00\n5.424\n17.82\n0\n0\n3\n4\n\n\n14.7\n8\n440.0\n230\n3.23\n5.345\n17.42\n0\n0\n3\n4\n\n\n32.4\n4\n78.7\n66\n4.08\n2.200\n19.47\n1\n1\n4\n1\n\n\n30.4\n4\n75.7\n52\n4.93\n1.615\n18.52\n1\n1\n4\n2\n\n\n33.9\n4\n71.1\n65\n4.22\n1.835\n19.90\n1\n1\n4\n1\n\n\n21.5\n4\n120.1\n97\n3.70\n2.465\n20.01\n1\n0\n3\n1\n\n\n15.5\n8\n318.0\n150\n2.76\n3.520\n16.87\n0\n0\n3\n2\n\n\n15.2\n8\n304.0\n150\n3.15\n3.435\n17.30\n0\n0\n3\n2\n\n\n13.3\n8\n350.0\n245\n3.73\n3.840\n15.41\n0\n0\n3\n4\n\n\n19.2\n8\n400.0\n175\n3.08\n3.845\n17.05\n0\n0\n3\n2\n\n\n27.3\n4\n79.0\n66\n4.08\n1.935\n18.90\n1\n1\n4\n1\n\n\n26.0\n4\n120.3\n91\n4.43\n2.140\n16.70\n0\n1\n5\n2\n\n\n30.4\n4\n95.1\n113\n3.77\n1.513\n16.90\n1\n1\n5\n2\n\n\n15.8\n8\n351.0\n264\n4.22\n3.170\n14.50\n0\n1\n5\n4\n\n\n19.7\n6\n145.0\n175\n3.62\n2.770\n15.50\n0\n1\n5\n6\n\n\n15.0\n8\n301.0\n335\n3.54\n3.570\n14.60\n0\n1\n5\n8\n\n\n21.4\n4\n121.0\n109\n4.11\n2.780\n18.60\n1\n1\n4\n2"
+  },
+  {
+    "objectID": "appendix.html",
+    "href": "appendix.html",
+    "title": "Appendix",
+    "section": "",
+    "text": "Appendix",
+    "crumbs": [
+      "V. Results",
+      "Appendix"
+    ]
+  },
+  {
+    "objectID": "goals.html",
+    "href": "goals.html",
+    "title": "Business Goals",
+    "section": "",
+    "text": "Business Goal -1 : First EDA Q\n\n Technical proposal:  Technical ans 1\n\n\n \n\n Business Goal - 2 : 2 EDA Q \n\nTechnical Proposal : In order to perform time series analysis, the timestamp of the observation’s creation will be used. We will then visualize and analyze the frequency of posting on each date value.\n\n\n \n\n Business Goal - 3 : 3 EDA Q \n\nTechnical proposal : The most popular submissions can be derived from the score variable. The most shared news sites can be found by aggregating on the domain column and examining the number of posts, comments, posts in the top 100, and the average scores. Live threads can be obtained using regex on the title column by applying an appropriate search term.\n\n\n \n\nBusiness Goal - 4 : We plan to examine the most repetitive words in the comments under the top 5 news stories in the subreddit. \n\nTechnical Proposal : By sorting on the “score” column from the dataset, the most popular subreddits can be found. Then word clouds can be created to explore the most frequent words in the comments of the each of the top five submissions. These visualizations give a take-away of the popular topics in the subreddit.\n\n\n \n\nBusiness Goal - 5 : Given the prominence of the Russia-Ukraine Conflict, we wish to see if the r/worldnews subreddit captured all events it. \n\nTechnical Proposal:  In order to compare posts regarding the Russia-Ukraine conflict, the ACLED (Armed Conflict Location and Event Data Project) data is proposed to be used. Using terms relevant for war-related events, we can create dummy variables for each news posting and find daily counts of event type. Then, both the datasets will be merged on the event date, and their counts will be compared using apt proximity measures.\n\n\n \n\n\n\n\nBusiness Goal - 6 : We wish to see what the main topics in the submissions of the subreddit are. \n\nTechnical Proposal: In order to identify the major topics under submissions related to the Russia-Ukraine Conflict, topic modeling with LDA will be performed. Particularly, the LDA method for topic modeling will be used as its results are based on conditional probability estimates.\n\n\n \n\nBusiness Goal - 7 : We will examine what the key entities in the submissions are and what categories they can be classified to? \n\nTechnical Proposal : Named Entity recognition will be performed using pre-trained models available in johnsnow labs. We shall identify standard categories in the text data such as person’s name, geographic locations, and organizations.\n\n\n \n\nBusiness Goal - 8 : From previous analysis it was determined that the live threads were tied to the Russia-Ukraine Conflict. Given such a high stakes topic, we are curious to see how the user base reacted to it. To do so we plan on determining the comment sentiments. \n\nTechnical Proposal : For conducting sentiment analysis, we will use pretrained models from johnsnow labs. We will attempt several models to see comparative results, so as to verify our findings.\n\n\n \n\n\n\n\nBusiness Goal - 9 : Building on the pre-trained model results, we wish to develop a lexicon based sentiment model using our data. This will allow us to apply sentiment labels to our data and apply supervised learning models enabling better model evaluation. \n\nTechnical Proposal : After labelling the dataset using vader sentiment lexicon, it is possible to train supervised models using the sentiment labels as the target variable. A portion of the data will be used in sentiment analysis to obtain the required labels and the remaining data can be labelled by the trained supervised learning models.\n\n\n \n\nBusiness Goal - 10 : We plan on generating a model that will predict controversiality based on the text data. \n\nTechnical Proposal : The text data will undergo tfidf weighting. After this, the text will be used as an input to predict what the controversiality is.\n\n\n \n\n\n\n\nBusiness Goal - 11 : Karma scores can often influence any user’s actions on a particular subreddit. We wish to see if individual user Karma scores can be predicted by the variables in our dataset?\n\nTechnical Proposal: Using the scores in the comments dataset as our target variable, we plan to construct a number of predictors from the dataset such as number of submissions or comments posted, number of gilded comments etc to predict the score value.",
+    "crumbs": [
+      "I. Overview",
+      "Business Goals"
+    ]
+  },
+  {
+    "objectID": "goals.html#exploratory-data-analysis-goals",
+    "href": "goals.html#exploratory-data-analysis-goals",
+    "title": "Business Goals",
+    "section": "",
+    "text": "Business Goal -1 : First EDA Q\n\n Technical proposal:  Technical ans 1\n\n\n \n\n Business Goal - 2 : 2 EDA Q \n\nTechnical Proposal : In order to perform time series analysis, the timestamp of the observation’s creation will be used. We will then visualize and analyze the frequency of posting on each date value.\n\n\n \n\n Business Goal - 3 : 3 EDA Q \n\nTechnical proposal : The most popular submissions can be derived from the score variable. The most shared news sites can be found by aggregating on the domain column and examining the number of posts, comments, posts in the top 100, and the average scores. Live threads can be obtained using regex on the title column by applying an appropriate search term.\n\n\n \n\nBusiness Goal - 4 : We plan to examine the most repetitive words in the comments under the top 5 news stories in the subreddit. \n\nTechnical Proposal : By sorting on the “score” column from the dataset, the most popular subreddits can be found. Then word clouds can be created to explore the most frequent words in the comments of the each of the top five submissions. These visualizations give a take-away of the popular topics in the subreddit.\n\n\n \n\nBusiness Goal - 5 : Given the prominence of the Russia-Ukraine Conflict, we wish to see if the r/worldnews subreddit captured all events it. \n\nTechnical Proposal:  In order to compare posts regarding the Russia-Ukraine conflict, the ACLED (Armed Conflict Location and Event Data Project) data is proposed to be used. Using terms relevant for war-related events, we can create dummy variables for each news posting and find daily counts of event type. Then, both the datasets will be merged on the event date, and their counts will be compared using apt proximity measures.",
+    "crumbs": [
+      "I. Overview",
+      "Business Goals"
+    ]
+  },
+  {
+    "objectID": "goals.html#natural-language-processing-goals",
+    "href": "goals.html#natural-language-processing-goals",
+    "title": "Business Goals",
+    "section": "",
+    "text": "Business Goal - 6 : We wish to see what the main topics in the submissions of the subreddit are. \n\nTechnical Proposal: In order to identify the major topics under submissions related to the Russia-Ukraine Conflict, topic modeling with LDA will be performed. Particularly, the LDA method for topic modeling will be used as its results are based on conditional probability estimates.\n\n\n \n\nBusiness Goal - 7 : We will examine what the key entities in the submissions are and what categories they can be classified to? \n\nTechnical Proposal : Named Entity recognition will be performed using pre-trained models available in johnsnow labs. We shall identify standard categories in the text data such as person’s name, geographic locations, and organizations.\n\n\n \n\nBusiness Goal - 8 : From previous analysis it was determined that the live threads were tied to the Russia-Ukraine Conflict. Given such a high stakes topic, we are curious to see how the user base reacted to it. To do so we plan on determining the comment sentiments. \n\nTechnical Proposal : For conducting sentiment analysis, we will use pretrained models from johnsnow labs. We will attempt several models to see comparative results, so as to verify our findings.",
+    "crumbs": [
+      "I. Overview",
+      "Business Goals"
+    ]
+  },
+  {
+    "objectID": "goals.html#machine-learning-goals",
+    "href": "goals.html#machine-learning-goals",
+    "title": "Business Goals",
+    "section": "",
+    "text": "Business Goal - 9 : Building on the pre-trained model results, we wish to develop a lexicon based sentiment model using our data. This will allow us to apply sentiment labels to our data and apply supervised learning models enabling better model evaluation. \n\nTechnical Proposal : After labelling the dataset using vader sentiment lexicon, it is possible to train supervised models using the sentiment labels as the target variable. A portion of the data will be used in sentiment analysis to obtain the required labels and the remaining data can be labelled by the trained supervised learning models.\n\n\n \n\nBusiness Goal - 10 : We plan on generating a model that will predict controversiality based on the text data. \n\nTechnical Proposal : The text data will undergo tfidf weighting. After this, the text will be used as an input to predict what the controversiality is.",
+    "crumbs": [
+      "I. Overview",
+      "Business Goals"
+    ]
+  },
+  {
+    "objectID": "goals.html#future-goals",
+    "href": "goals.html#future-goals",
+    "title": "Business Goals",
+    "section": "",
+    "text": "Business Goal - 11 : Karma scores can often influence any user’s actions on a particular subreddit. We wish to see if individual user Karma scores can be predicted by the variables in our dataset?\n\nTechnical Proposal: Using the scores in the comments dataset as our target variable, we plan to construct a number of predictors from the dataset such as number of submissions or comments posted, number of gilded comments etc to predict the score value.",
+    "crumbs": [
+      "I. Overview",
+      "Business Goals"
+    ]
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "Conclusion",
+    "section": "",
+    "text": "This project aimed to analyze the comments and posts on the r/worldnews subreddit through natural language processing (NLP) and machine learning (ML) techniques. In our Exploratory Data Analysis (EDA), we identified what news sites were primarily shared on the subreddit, via aggregated submission counts; began seeing what stories were most popular, based on karma scores; found that the discussion threads were heavily tied to the Russia-Ukraine Conflict; and examined the distribution of comments and submissions over time. We noted that several of the shared sites were American in origin, but also saw that many of the popular sources came from several European countries, including Russia. Other social media sites were also a popular submission choice, especially YouTube. Using the ACLED data, we were also able to determine that while the conflict was receiving a large share of attention, not all of the events of the conflict were being shared equally. Additionally, the time series analysis saw that there were multiple gaps in the dataset for certain time periods.\n Table 5.1 : Most Shared News Sites \nIn the NLP stage of our analysis, we chose to look closer at the topics and entities that the submissions were about, as well as examine the sentiment of both the comments and submissions. In our topic modelling we found that using the whole data resulted in groups with substantial amounts of overlap regarding the conflict. We then constrained the data to time periods that saw high amounts of search interest in Google Trends, creating two subsets which included posts and comments that occurred up to two weeks after the designated event’s date. The resulting subsetted data produced clearer topic groups, with specific events being highlighted, although the cluster of groups which were hard to differentiate remained. For the sentiment analysis at this stage, we used pretrained models from JohnSnowLabs to examine both the sentiment of the comments in the threads as well as comments and submission titles related to the Russia-Ukraine Conflict. Of the three different models used, Twitter and IMDB had identical results while the Vivek model registered a larger portion of the comments and submissions as neutral, but all three models indicated negative sentiment as the plurality of sentiments, if not the majority. The live threads’ results indicated strong sentiments, both positive and negative across the comments, a pattern which seemed to hold in the comments of submissions. The article titles, however, demonstrate much greater negativity according to the IMDB and Twitter models, while the Vivek model read it as again having more neutrality.\n Table 5.2 : Pre-Trained Models Sentiment Results on Comments and Submissions \nLastly, we have successfully designed and implemented predictive ML models to predict controversiality markers and the sentiment of comments and submissions. The controversiality model took in a TF-IDF weighted vector of the comments and was able to achieve a high level of predictive strength, although that seemed to be a result, in large part, due to the class imbalance. We believe that the deleted and removed comments were likely controversial, and so the remaining controversial ones were not being predicted as well as we would hope. For the sentiment model we decided to use Vader-Sentiment lexicon to label our data rather than relying exclusively on pretrained models. The dataset we used to classify sentiment appeared to label more similarly to the Vivek model, with the plurality being negative but showing a larger proportion of neutral material. Several ML algorithms were then used to train the labelled dataset and we ultimately saw great success with test error at slightly above 8%.\n Figure 5.1 : ROC Curves for Different Predictive Models Used in Predicting Controversiality \nMoving forward, we feel that we can further improve our models via the use of over and under sampling techniques to deal with the class imbalance. Additionally, we believe that we can improve on a predictive model for karma scores that we attempted, although at present its accuracy can be described only as pitiful.",
+    "crumbs": [
+      "V. Results",
+      "Conclusion"
+    ]
+  },
+  {
+    "objectID": "summary.html#about-the-team",
+    "href": "summary.html#about-the-team",
+    "title": "Introduction",
+    "section": "About the Team",
+    "text": "About the Team\n\n\n\n\n\n\n\n\n\nLucienne L. Julian      Sonali Subbu Rathinam   Peijin Li",
+    "crumbs": [
+      "I. Overview",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "eda.html#preprocessing-and-data-dictionary",
+    "href": "eda.html#preprocessing-and-data-dictionary",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get 170,144 submissions and 18,548,934 comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below:\nIn the  Submissions  dataset :\n\n\n\nauthor : The user who created the post.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\ndomain : The news site posted in the submission.\n\n\nid : The unique identifier of each post.\n\n\nnum_comments : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved.\n\n\nurl : The url associated with the post. Most of the submissions contain this url to the news article.\n\n\nscore : The Karma score awarded to each post\n\n\nIn the  Comments  dataset :\n\n\n\nauthor : The user who posted the comment.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\nbody : The text in the comment.\n\n\n id : The unique identifier of each comment.\n\n\nlink_id : The id of the submission under which the comment exists.\n\n\ncontroversiality : Whether a comment was classified as ‘controversial’.\n\n\n gilded : Whether the comments have been gilded or awarded.\n\n\n distinguished : Whether the comments have been distinguished as moderator.\n\n\n score : The Karma score awarded to each post\n\n\nDuring this process, several dummy variables were created to aid in our analysis. A foreign key like variable called submission_id was also created in the comments dataset, that linked any comment to the submission it was made under.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "eda.html#analyzing-user-activity",
+    "href": "eda.html#analyzing-user-activity",
+    "title": "Exploratory Data Analysis",
+    "section": "Analyzing User Activity",
+    "text": "Analyzing User Activity\nIn this section, we dig a little deeper into how users act on this subreddit. Currently this subreddit currently has 31.5 subscribers. Upon evaluation however, we found that only around 27000 users created submissions and around 1.2 million users commented in the past year. Out of these numbers, only a small proportion of users actively posted as evidenced by figure 2.1 below.\nFigure 2.1 assesses the percentage of users posting monthly among total distinct users in the respective datasets. It is observed that a higher proportion of users commented on posts as compared to making a post themselves. In both cases however, less than half of distinct users were active monthly.\nThe top 10 posters and commenters were also found and users with the most controversial comments were evaluated. This was compared against the users’ total gilded and distinguished comments as shown below in table 2.1.\n Table 2.1 Comparison of Users With Most Number of Controversial Comments \nEfforts were made to identify if high controversiality led to higher number of gilded or distinguished but that was not the case.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "eda.html#time-series-analysis",
+    "href": "eda.html#time-series-analysis",
+    "title": "Exploratory Data Analysis",
+    "section": "Time Series Analysis",
+    "text": "Time Series Analysis\nThe next step to understanding the trends within the datasets was to plot multiple time series graph. Much like figure 1.2, a daily submission and comments frequency graph was also plotted as shown below.\nThere are some points of interest evident in the plot above. The first is the occurance of temporal gaps in the data which could be attributed to the data collection process of the push-shift reddit dataset. Second, there is a peak in Submissions and Comments in late February, and upon marking the start date of the Russia-Ukraine Conflict on the chart, it is apparent that this high volume of submissions and comments could have stemmed from the ongoing war.\nExporing further into this, the datasets were filtered to retain only observations regarding the conflict. After visualizing monthly frequencies of occurrences, it was found that the patterns observed in figure 2.3 were almost identical to the ones present in figure 1.2. This corroborates our earlier findings about increased activity in the subreddit during different phases of the Russia-Ukraine conflict.\nKarma scores often determine user activity in any subreddit. In order to identify the overall popularity of submissions, their scores quantiles per month were visualized. Scores are the difference between the number of upvotes and number of downvotes that a submission receives. From the median line in the visualization, it can be interpreted that most submissions have a score between 10-30. Since the 25th percentile remains 0 for all the months, it can be inferred that there are submissions (although few) with an overall negative score. The scores from the 75th percentile line reveal that there are submissions with very high overall scores as well. Additionally, these high overall scores per month do not follow any similar trend to the median data, indicating that there may be a handful of submissions that contribute to a very high overall score in a particular month.\nFinally, to further capture trends in submission posts, the monthly frequencies of five authors with the highest number of submissions in this time-period were visualized. From the graph, it can be inferred that some of the authors’ changes over time resemble the overall submission frequency plot. However, two other authors had submissions only during some months in the year. Infact, hieronymusanonymous’s submission frequencies were only during the second half of the year, indicating that there might be authors who did not post much about the Russia-Ukraine conflict.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "eda.html#most-shared-news-stories",
+    "href": "eda.html#most-shared-news-stories",
+    "title": "Exploratory Data Analysis",
+    "section": "Most Shared News Stories",
+    "text": "Most Shared News Stories\nFrom the preceding analysis, a sharp peak was observed in the submissions and comments frequencies which we propose is due the ongoing Russia_Ukraine conflict. The following analysis looks at the most highly scored news stories, the news sites that occur most in the submissions dataset, the presence of a live thread, and whether this would reveal anything on the surge of news articles shared on this subreddit.\nUpon analysis, it was found that the top 10 news stories were generally to do with Russia’s war on Ukraine. This provided us key insight to look more closely at the data pertaining to war efforts. The top news sites were also evaluated and an aggregation table was generated as shown below.\n Table 2.2 : Top 20 News Sources in the Subreddit \nIt was observed from the table above, that the most popular news sites on the subreddit over the past year were generally from western countries. This could potentially explain the high consumption of news related to the war within the subreddit despite the presence of Russian media sources as well.\nLive thread submissions were found and it was determined that all the live thread submissions pertained to the war. This provided an opportunity to evaluate the comments of the live thread against regular submissions that also dealt with the Conflict as shown in the table below.\n Table 2.3 : Comparison of Live Thread Comments and Regular Comments on War \nThe table above captures the percentage of comments that were controversial, gilded and distinguished for the live thread and for other submissions dealing with the war. It was observed that more controversiality was present in regular submissions as compared to live threads, possible due to larger number of normal posts.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "eda.html#most-common-words",
+    "href": "eda.html#most-common-words",
+    "title": "Exploratory Data Analysis",
+    "section": "Most Common Words",
+    "text": "Most Common Words\nProgressing with our analysis, we also looked at which were the most commonly used words or phrases in the comments of the top 3 news stories. To evaluate this we generated word clouds as shown below.\n\nFigure 2.6 : Word Cloud Of Comments From Top 3 News Stories\n\nThese word clouds revealed that the Russia-Ukraine Conflict , and political leaders of these countries were the most repeated words. We also found terms relating to Queen Elizabeth II’s demise and the British royal family to be quite repetitive.",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "eda.html#comparison-with-other-sources",
+    "href": "eda.html#comparison-with-other-sources",
+    "title": "Exploratory Data Analysis",
+    "section": "Comparison with Other Sources",
+    "text": "Comparison with Other Sources\nAs a final task, we sought to compare the information present in the subreddit’s submissions about the events pertaining to Russia and Ukraine, with the events data from Armed Conflict Location & Event Data Project (ACLED). ACLED collects real-time data on locations, dates, actors, fatalities and types of all reported political violence and protest events around the world, from various international and regional news sources. The ACLED data for Ukraine and Russia were aggregated to obtain daily counts of event types in the following categories:\n\n\nArmed Clashes\n\n\nShelling/Artillery/Missile Attacks\n\n\nRemote Explosives/Landmines/IED\n\n\nDisrupted Weapons Use\n\n\nThe submissions titles were analyzed using regex to find terms related to aforementioned event types to obtain daily counts for these events. The cosine similarity between ACLED counts and counts obtained from submissions for each event type were found as shown below in table 2.4. Our results indicate that reddit data is not quite similar to ACLED data. One possible reason for low similarity might be that our data has been filtered to English, and ACLED uses its own translation methodology and produces regional level news related to the conflict as well.\n Table 2.4 : Cosine Similarity Scores for ACLED and Submissions Dataset on Different War Events",
+    "crumbs": [
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
+    ]
+  }
+]
