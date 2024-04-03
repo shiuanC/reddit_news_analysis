@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Website Lorem Ipsum</title>
+<title>Reddit News Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,11 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -68,70 +69,248 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Website Lorem Ipsum</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./eda.html"> 
-<span class="menu-text">EDA</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./nlp.html" aria-current="page"> 
-<span class="menu-text">NLP</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml.html"> 
-<span class="menu-text">ML</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./summary.html"> 
-<span class="menu-text">Summary</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Reddit News Analysis
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reddit News Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">I. Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Goals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Exploratory Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Webpage Contents</h2>
    
   <ul>
-  <li><a href="#nlp" id="toc-nlp" class="nav-link active" data-scroll-target="#nlp">NLP</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#text-pre-processing" id="toc-text-pre-processing" class="nav-link" data-scroll-target="#text-pre-processing">Text Pre-Processing</a></li>
+  <li><a href="#key-topics-in-submissions" id="toc-key-topics-in-submissions" class="nav-link" data-scroll-target="#key-topics-in-submissions">Key Topics in Submissions</a></li>
+  <li><a href="#identifying-key-entities-in-the-datasets" id="toc-identifying-key-entities-in-the-datasets" class="nav-link" data-scroll-target="#identifying-key-entities-in-the-datasets">Identifying Key Entities in the Datasets</a></li>
+  <li><a href="#assessing-sentiments-on-war-related-comments-and-submissions" id="toc-assessing-sentiments-on-war-related-comments-and-submissions" class="nav-link" data-scroll-target="#assessing-sentiments-on-war-related-comments-and-submissions">Assessing Sentiments on War Related Comments and Submissions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Natural Language Processing Analysis</h1>
+</div>
 
 
 
-<section id="nlp" class="level1">
-<h1>NLP</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+In this round of analysis we worked with three <b> Natural Language Processing (NLP) </b> techniques namely
+<ul>
+<li>
+Topic Modeling
+</li>
+<li>
+Named Entity Recognition (NER)
+</li>
+<li>
+Sentiment Analysis
+</li>
+</ul>
+<p>Our results from both Topic Modeling and NER indicate widespread consumption of news on the ongoing Russia-Ukraine Conflict. In both cases we saw that the topics our model saw and the entities being referenced most often were either directly involved or adjacent to said conflict. We did see that when subsetting the data around events of the conflict, the topics our models produce had less overlap. Lastly, our Sentiment Analysis on submissions and comments related to the conflict suggested that submissions tended to be more negative while comments had an equal distribution of both negative and positive sentiments. The models appeared to demonstrate low neutrality in both submissions and comments.</p>
+</section>
+<section id="text-pre-processing" class="level2">
+<h2 class="anchored" data-anchor-id="text-pre-processing">Text Pre-Processing</h2>
+<p>We started off our analysis by assessing the number of words in the <i>title</i> and <i>body</i> columns of our datasets. They are represented in the two graphs below.</p>
+<p>Both these graphs in figures 1 and 2 are right skewed, reflecting that a major amount of both titles and comments are below 50 words.</p>
+Next, we moved on to preprocessing. In order to do the natural language processing (NLP) tasks, the corpuses of comments and submissions needed to face several steps of processing as listed below:<br>
+<ol>
+<li>
+Remove stop words
+</li>
+<li>
+Remove other languages
+</li>
+<li>
+Remove special characters
+</li>
+<li>
+Convert text to lower case
+</li>
+<li>
+Lemmatize words
+</li>
+</ol>
+<p>The above listed preprocessing steps were applied to text portions of our submissions and comments datasets, on the columns <i>title</i> and <i>body</i> respectively. We used the <a href="https://sparknlp.org/">johnsnowlabs</a> package to conduct our preprocessing and implemented our preprocessing task through a pipeline. systematically converted to document file types and then tokenized. This transformed the data into a <i><b>bag of words</b></i> form and was used to accomplish the business goals below.</p>
+<p>After the preprocessing, we assessed the 15 most commonly occurring words in both the submissions and comments dataset as displayed in table 1.</p>
+<p><b> Table 3.1 : Most Common Words in the Submissions Datasets </b></p>
+<p><b> Table 3.2 : Most Common Words in the Comments Datasets </b></p>
+<p>It is evident from both tables 3.1 and 3.2 that the Russia-Ukraine Conflict dominates both in the submissions and comments datasets. This result agrees with our EDA analysis. Even when constructing a Word Cloud with the Submissions dataset, we found similar trends as displayed in figure 3.3 below.</p>
+<h3 class="anchored">
+Figure 3.3 : Word Cloud of Submissions Dataset
+</h3>
+<p><br></p>
+<p><br> Digging in further, we also evaluated the most important words using the <b>Term Frequency - Inverse Document Frequency (TF-IDF) </b> methodology and obtained the following results.</p>
+<p><b> Table 3.3 : Most Important Words in the Datasets </b></p>
+<p>The TF-IDF doesn’t reflect the dominance of war related submissions and comments obtained above. This will be further explored through our following analysis of dominant topics in the data.</p>
+<p><a id="topic_modeling"> </a></p>
+</section>
+<section id="key-topics-in-submissions" class="level2">
+<h2 class="anchored" data-anchor-id="key-topics-in-submissions">Key Topics in Submissions</h2>
+We employed topic modeling through <b>Latent Dirchlet Allocation (LDA)</b> on the cleaned titles of our submissions dataset and obtained 7 topic groups, which saw most of the groups dealing with the Russia-Ukraine Conflict, addressing its different facets. The topics were:
+<ul>
+<li>
+<b>Topic 1:</b> deals with the Russia-Ukraine Conflict and nuclear weapons, power plants
+</li>
+<li>
+<b>Topic 2:</b> deals with the Russia-Ukraine Conflict and the media/news coverage on the political leaders
+</li>
+<li>
+<b>Topic 3:</b> deals with the Russia-Ukraine Conflict and oil imports, the EU, laws, and regulation
+</li>
+<li>
+<b>Topic 4:</b> deals with the Russia-Ukraine Conflict as well as Twitter and Elon Musk
+</li>
+<li>
+<b>Topic 5:</b> news related to covid, China, and Korea
+</li>
+<li>
+<b>Topic 6:</b> deals with the Russia-Ukraine Conflict and neighbouring countries
+</li>
+<li>
+<b>Topic 7:</b> the Russia-Ukraine Conflict and the Qatar World Cup
+</li>
+</ul>
+<p>As stated, several of these topics related to the Russia-Ukraine Conflict directly. This high centralization of topic matter seemed to affect topics 4 and 7 which appeared to combine disparate subjects. The LDA topic visualization is displayed below.</p>
+<h3 class="anchored">
+Figure 3.4 : LDA Topic Visualization for Submissions Datset
+</h3>
+Further viewing the , utilizing google trends data we were able to determine events in the conflict which most affected internet traffic. Using this we sought to examine how such key events affected the subreddit’s submissions, ie news coverage. The first event selected was the start of the war, which we used to create a subset of the data that encompassed the first two weeks of the Russia-Ukraine Conflict and was modeled with only a topic count of 5. Its results saw the following topics:
+<ul>
+<li>
+<b>Topics 1, 2, 3, 5</b> all relating to the Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)
+</li>
+<li>
+<b>Topic 4</b> provided an interesting insight - it includes news related to Indian students in Ukraine, as well as Starlink and Elon Musk.
+</li>
+</ul>
+<p>To provide context, topic 4 highlighted the early involvement of Musk in providing his satellite services to the country and the Nazi Azov battalion accosting foreign students attempting to flee.</p>
+<h3 class="anchored">
+Figure 3.5 : LDA Topic Visualization for Submissions Datset During the Start of the War
+</h3>
+<br> The second event we used from the trends coverage, was when Russia began withdrawing. After applying LDA once more, we saw the topic modelling results indicated:
+<ul>
+<li>
+<b>Topics 1, 2, 3, 4</b> all relating to Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)
+</li>
+<li>
+<b>Topic 5</b> : news related to North Korea firing a ballistic missile over Japan.
+</li>
+</ul>
+<p>As was stated, North Korea had fired a ballistic missile over Japan in the same time period and had been rapidly increasing the rate of testing. This appears to suggest that the smaller subsets of data might be more useful in capturing specific stories without overlapping the conflict with other topics.</p>
+<h3 class="anchored">
+Figure 3.6 : LDA Topic Visualization for Submissions Datset When Russian Troops Started Receding
+</h3>
+<p><a id="ner"> </a></p>
+</section>
+<section id="identifying-key-entities-in-the-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="identifying-key-entities-in-the-datasets">Identifying Key Entities in the Datasets</h2>
+<p>The top 12 entities for person, location and organization are displayed in table 3. We used <a href="https://www.johnsnowlabs.com/named-entity-recognition-ner-with-bert-in-spark-nlp/">BERT </a> pretrained <b> Named Entity Recognition (NER) </b> models to accomplish this. Initially, when feeding the pre trained model with our pre-processed data, we found that Russia and Ukraine didn’t feature as one of the top entities. Upon re-running the model pipeline with unprocessed data, the results were more familiar.</p>
+<p>Given the density of topics demonstrated by the previous section’s analysis, the focus of the entities on the conflict should not come as a surprise. Using NER, we saw that just as the topics were heavily saturated with the Russia-Ukraine Conflict, the results for most frequently mentioned entities demonstrated this as well.</p>
+<p>In table 3.4, we can clearly see the prevalence of Putin, Biden, and Zelensky; but these persons are not the only noteworthy results. We also can see British political figures, Boris Johnson and Liz Truss, taking a prominent role in the results. Considering the domain table from our EDA, British news coverage made up some of the most popular sources for posts. This could be the reason for the British political figures being highlighted by the NER model.</p>
+<p>When examining the locations results, we saw Ukraine and Russia occur with much greater frequency than the other states, followed by the United States, which appeared twice, and China to a lesser extent.</p>
+<p>Lastly our organization based model appeared to return the most mixed results. The top three results were organizations that could easily indicate stories related to the Russia-Ukraine Conflict, but after this the results become less than ideal. Ukrainian cities, Russia, Covid, and Elon Musk were included in the results. This could be seen as a short coming of the models, but also testifies to the prevalence of the conflict in the subreddits submissions. It should also be noted that different n-grams and misspellings resulted in less refined results, and, as stated, the organization results were rather mixed. Table 3.4 displays the entities in the <b>decreasing order of occurence</b>.</p>
+<p><b> Table 3.4 : Top Entities in Submissions </b></p>
+<p><a id="sentiment"> </a></p>
+</section>
+<section id="assessing-sentiments-on-war-related-comments-and-submissions" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-sentiments-on-war-related-comments-and-submissions">Assessing Sentiments on War Related Comments and Submissions</h2>
+<p>Based on our previous analysis in the EDA, it has been determined that the live threads in our subreddit were predisposed towards the Russia-Ukraine Conflict. The dominance of said conflict in the submissions was further supported by topic modeling results. We expected that such a topic would lead itself towards strong sentiments and were affirmed in that expectation through employing pre-trained sentiment models as shown in table 3.5 below.</p>
+<p><b> Table 3.5 : Sentiment Analysis Results From Live Thread Comments </b></p>
+<p>Although the Vivek analyzer categorized more comments as neutral, overall users appeared to have stronger sentiments, generally of a negative sort. This negative pattern was demonstrated to an equal extent by both the IMDB and Twitter models, without significant difference.</p>
+<p>Further sentiment analysis was done on submissions related to the Russia-Ukraine Conflict and their related comments, excluding the above analyzed live threads. The models appear to have similar trends, but it should be noted that that for the Twitter and IMDB models the submission titles, those of the articles being shared, were significantly more negative than the comments. Overall the title results for each model indicated 25.22% more overall negative sentiment than the related comment sentiment results, all of which can be seen in table 3.6 below.</p>
+<p><b> Table 3.6 : Sentiment Analysis of War-Related Submissions and Comments </b></p>
+<p>The stark difference in results between the Vivek Model and the Twitter and IMDB models is more apparent here. We assumed that titles would have demonstrated more neutral sentiment, as the Vivek model demonstrated; but assuming that the results IMDB and Twitter models are more reliable, marketing tactics may be the culprit for the perceived negativity. Given how article titles have increasingly become the method of user interaction in social media, drawing attention with inflammatory language can be a tactic for increasing user interest. This perceived negativity might also be explained by the dominance of Western Media outlets in this subreddit, that was seen in the EDA analysis.</p>
+<p>We attempted a lexicon based approach, but due to logistical issues we instead went forward with pretrained models <i> sentimentdl_use_twitter</i>, <i>sentimentdl_use_imdb</i> and <i> VivekSentimentAnalyzer </i>. In the future, we believe that training our own sentiment analyzer could improve the results.</p>
 
 
 </section>
@@ -550,13 +729,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Content {{&lt; fa brands creative-commons &gt;}} 2023 by [Project Team 1] <br> All content licensed under a {{&lt; fa brands creative-commons &gt;}} {{&lt; fa brands creative-commons-by &gt;}} {{&lt; fa brands creative-commons-nc &gt;}} <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Content {{&lt; fa brands creative-commons &gt;}} 2023 by Team 6 <br> All content licensed under a {{&lt; fa brands creative-commons &gt;}} {{&lt; fa brands creative-commons-by &gt;}} {{&lt; fa brands creative-commons-nc &gt;}} <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with {{&lt; fa brands r-project &gt;}} and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/anly503/lab-2.1">View the source at {{&lt; fa brands github &gt;}} GitHub</a></p>
+<p>Made with <a href="https://code.visualstudio.com/">VSCode</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-ppol567-project/ppol-567-final-project-team-6.git">View the Code source at GitHub</a></p>
 </div>
   </div>
 </footer>

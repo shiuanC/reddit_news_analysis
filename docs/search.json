@@ -1,53 +1,17 @@
 [
   {
-    "objectID": "eda.html",
-    "href": "eda.html",
-    "title": "Exploratory Data Analysis",
-    "section": "",
-    "text": "We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get 170,144 submissions and 18,548,934 comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below:\nIn the  Submissions  dataset :\n\n\n\nauthor : The user who created the post.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\ndomain : The news site posted in the submission.\n\n\nid : The unique identifier of each post.\n\n\nnum_comments : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved.\n\n\nurl : The url associated with the post. Most of the submissions contain this url to the news article.\n\n\nscore : The Karma score awarded to each post\n\n\nIn the  Comments  dataset :\n\n\n\nauthor : The user who posted the comment.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\nbody : The text in the comment.\n\n\n id : The unique identifier of each comment.\n\n\nlink_id : The id of the submission under which the comment exists.\n\n\ncontroversiality : Whether a comment was classified as ‘controversial’.\n\n\n gilded : Whether the comments have been gilded or awarded.\n\n\n distinguished : Whether the comments have been distinguished as moderator.\n\n\n score : The Karma score awarded to each post\n\n\nDuring this process, several dummy variables were created to aid in our analysis. A foreign key like variable called submission_id was also created in the comments dataset, that linked any comment to the submission it was made under.",
-    "crumbs": [
-      "Exploratory Data Analysis",
-      "Exploratory Data Analysis"
-    ]
-  },
-  {
-    "objectID": "ml.html",
-    "href": "ml.html",
-    "title": "ML",
-    "section": "",
-    "text": "ML"
-  },
-  {
-    "objectID": "nlp.html",
-    "href": "nlp.html",
-    "title": "NLP",
-    "section": "",
-    "text": "NLP"
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "Website {{< var topic.name >}}",
-    "section": "",
-    "text": "Summary"
-  },
-  {
-    "objectID": "eda.html#why-do-we-use-it",
-    "href": "eda.html#why-do-we-use-it",
-    "title": "What is Lorem Ipsum?",
-    "section": "",
-    "text": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\n\nlibrary(gt)\ngt(mtcars)\n\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\n\n21.0\n6\n160.0\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\n21.0\n6\n160.0\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\n22.8\n4\n108.0\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1\n\n\n21.4\n6\n258.0\n110\n3.08\n3.215\n19.44\n1\n0\n3\n1\n\n\n18.7\n8\n360.0\n175\n3.15\n3.440\n17.02\n0\n0\n3\n2\n\n\n18.1\n6\n225.0\n105\n2.76\n3.460\n20.22\n1\n0\n3\n1\n\n\n14.3\n8\n360.0\n245\n3.21\n3.570\n15.84\n0\n0\n3\n4\n\n\n24.4\n4\n146.7\n62\n3.69\n3.190\n20.00\n1\n0\n4\n2\n\n\n22.8\n4\n140.8\n95\n3.92\n3.150\n22.90\n1\n0\n4\n2\n\n\n19.2\n6\n167.6\n123\n3.92\n3.440\n18.30\n1\n0\n4\n4\n\n\n17.8\n6\n167.6\n123\n3.92\n3.440\n18.90\n1\n0\n4\n4\n\n\n16.4\n8\n275.8\n180\n3.07\n4.070\n17.40\n0\n0\n3\n3\n\n\n17.3\n8\n275.8\n180\n3.07\n3.730\n17.60\n0\n0\n3\n3\n\n\n15.2\n8\n275.8\n180\n3.07\n3.780\n18.00\n0\n0\n3\n3\n\n\n10.4\n8\n472.0\n205\n2.93\n5.250\n17.98\n0\n0\n3\n4\n\n\n10.4\n8\n460.0\n215\n3.00\n5.424\n17.82\n0\n0\n3\n4\n\n\n14.7\n8\n440.0\n230\n3.23\n5.345\n17.42\n0\n0\n3\n4\n\n\n32.4\n4\n78.7\n66\n4.08\n2.200\n19.47\n1\n1\n4\n1\n\n\n30.4\n4\n75.7\n52\n4.93\n1.615\n18.52\n1\n1\n4\n2\n\n\n33.9\n4\n71.1\n65\n4.22\n1.835\n19.90\n1\n1\n4\n1\n\n\n21.5\n4\n120.1\n97\n3.70\n2.465\n20.01\n1\n0\n3\n1\n\n\n15.5\n8\n318.0\n150\n2.76\n3.520\n16.87\n0\n0\n3\n2\n\n\n15.2\n8\n304.0\n150\n3.15\n3.435\n17.30\n0\n0\n3\n2\n\n\n13.3\n8\n350.0\n245\n3.73\n3.840\n15.41\n0\n0\n3\n4\n\n\n19.2\n8\n400.0\n175\n3.08\n3.845\n17.05\n0\n0\n3\n2\n\n\n27.3\n4\n79.0\n66\n4.08\n1.935\n18.90\n1\n1\n4\n1\n\n\n26.0\n4\n120.3\n91\n4.43\n2.140\n16.70\n0\n1\n5\n2\n\n\n30.4\n4\n95.1\n113\n3.77\n1.513\n16.90\n1\n1\n5\n2\n\n\n15.8\n8\n351.0\n264\n4.22\n3.170\n14.50\n0\n1\n5\n4\n\n\n19.7\n6\n145.0\n175\n3.62\n2.770\n15.50\n0\n1\n5\n6\n\n\n15.0\n8\n301.0\n335\n3.54\n3.570\n14.60\n0\n1\n5\n8\n\n\n21.4\n4\n121.0\n109\n4.11\n2.780\n18.60\n1\n1\n4\n2"
-  },
-  {
     "objectID": "appendix.html",
     "href": "appendix.html",
     "title": "Appendix",
     "section": "",
-    "text": "Appendix",
-    "crumbs": [
-      "V. Results",
-      "Appendix"
-    ]
+    "text": "Appendix"
+  },
+  {
+    "objectID": "summary.html#about-the-team",
+    "href": "summary.html#about-the-team",
+    "title": "Introduction",
+    "section": "About the Team",
+    "text": "About the Team\n\nLucienne L. Julian      Sonali Subbu Rathinam   Peijin Li"
   },
   {
     "objectID": "goals.html",
@@ -105,25 +69,14 @@
     ]
   },
   {
-    "objectID": "results.html",
-    "href": "results.html",
-    "title": "Conclusion",
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Data Analysis",
     "section": "",
-    "text": "This project aimed to analyze the comments and posts on the r/worldnews subreddit through natural language processing (NLP) and machine learning (ML) techniques. In our Exploratory Data Analysis (EDA), we identified what news sites were primarily shared on the subreddit, via aggregated submission counts; began seeing what stories were most popular, based on karma scores; found that the discussion threads were heavily tied to the Russia-Ukraine Conflict; and examined the distribution of comments and submissions over time. We noted that several of the shared sites were American in origin, but also saw that many of the popular sources came from several European countries, including Russia. Other social media sites were also a popular submission choice, especially YouTube. Using the ACLED data, we were also able to determine that while the conflict was receiving a large share of attention, not all of the events of the conflict were being shared equally. Additionally, the time series analysis saw that there were multiple gaps in the dataset for certain time periods.\n Table 5.1 : Most Shared News Sites \nIn the NLP stage of our analysis, we chose to look closer at the topics and entities that the submissions were about, as well as examine the sentiment of both the comments and submissions. In our topic modelling we found that using the whole data resulted in groups with substantial amounts of overlap regarding the conflict. We then constrained the data to time periods that saw high amounts of search interest in Google Trends, creating two subsets which included posts and comments that occurred up to two weeks after the designated event’s date. The resulting subsetted data produced clearer topic groups, with specific events being highlighted, although the cluster of groups which were hard to differentiate remained. For the sentiment analysis at this stage, we used pretrained models from JohnSnowLabs to examine both the sentiment of the comments in the threads as well as comments and submission titles related to the Russia-Ukraine Conflict. Of the three different models used, Twitter and IMDB had identical results while the Vivek model registered a larger portion of the comments and submissions as neutral, but all three models indicated negative sentiment as the plurality of sentiments, if not the majority. The live threads’ results indicated strong sentiments, both positive and negative across the comments, a pattern which seemed to hold in the comments of submissions. The article titles, however, demonstrate much greater negativity according to the IMDB and Twitter models, while the Vivek model read it as again having more neutrality.\n Table 5.2 : Pre-Trained Models Sentiment Results on Comments and Submissions \nLastly, we have successfully designed and implemented predictive ML models to predict controversiality markers and the sentiment of comments and submissions. The controversiality model took in a TF-IDF weighted vector of the comments and was able to achieve a high level of predictive strength, although that seemed to be a result, in large part, due to the class imbalance. We believe that the deleted and removed comments were likely controversial, and so the remaining controversial ones were not being predicted as well as we would hope. For the sentiment model we decided to use Vader-Sentiment lexicon to label our data rather than relying exclusively on pretrained models. The dataset we used to classify sentiment appeared to label more similarly to the Vivek model, with the plurality being negative but showing a larger proportion of neutral material. Several ML algorithms were then used to train the labelled dataset and we ultimately saw great success with test error at slightly above 8%.\n Figure 5.1 : ROC Curves for Different Predictive Models Used in Predicting Controversiality \nMoving forward, we feel that we can further improve our models via the use of over and under sampling techniques to deal with the class imbalance. Additionally, we believe that we can improve on a predictive model for karma scores that we attempted, although at present its accuracy can be described only as pitiful.",
+    "text": "We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get 170,144 submissions and 18,548,934 comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below:\nIn the  Submissions  dataset :\n\n\n\nauthor : The user who created the post.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\ndomain : The news site posted in the submission.\n\n\nid : The unique identifier of each post.\n\n\nnum_comments : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved.\n\n\nurl : The url associated with the post. Most of the submissions contain this url to the news article.\n\n\nscore : The Karma score awarded to each post\n\n\nIn the  Comments  dataset :\n\n\n\nauthor : The user who posted the comment.\n\n\ncreated_utc : The time the submission or comment was posted. Was used in the time series analysis section of our project.\n\n\nbody : The text in the comment.\n\n\n id : The unique identifier of each comment.\n\n\nlink_id : The id of the submission under which the comment exists.\n\n\ncontroversiality : Whether a comment was classified as ‘controversial’.\n\n\n gilded : Whether the comments have been gilded or awarded.\n\n\n distinguished : Whether the comments have been distinguished as moderator.\n\n\n score : The Karma score awarded to each post\n\n\nDuring this process, several dummy variables were created to aid in our analysis. A foreign key like variable called submission_id was also created in the comments dataset, that linked any comment to the submission it was made under.",
     "crumbs": [
-      "V. Results",
-      "Conclusion"
-    ]
-  },
-  {
-    "objectID": "summary.html#about-the-team",
-    "href": "summary.html#about-the-team",
-    "title": "Introduction",
-    "section": "About the Team",
-    "text": "About the Team\n\n\n\n\n\n\n\n\n\nLucienne L. Julian      Sonali Subbu Rathinam   Peijin Li",
-    "crumbs": [
-      "I. Overview",
-      "Introduction"
+      "Exploratory Data Analysis",
+      "Exploratory Data Analysis"
     ]
   },
   {
@@ -191,5 +144,89 @@
       "Exploratory Data Analysis",
       "Exploratory Data Analysis"
     ]
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "Conclusion",
+    "section": "",
+    "text": "This project aimed to analyze the comments and posts on the r/worldnews subreddit through natural language processing (NLP) and machine learning (ML) techniques. In our Exploratory Data Analysis (EDA), we identified what news sites were primarily shared on the subreddit, via aggregated submission counts; began seeing what stories were most popular, based on karma scores; found that the discussion threads were heavily tied to the Russia-Ukraine Conflict; and examined the distribution of comments and submissions over time. We noted that several of the shared sites were American in origin, but also saw that many of the popular sources came from several European countries, including Russia. Other social media sites were also a popular submission choice, especially YouTube. Using the ACLED data, we were also able to determine that while the conflict was receiving a large share of attention, not all of the events of the conflict were being shared equally. Additionally, the time series analysis saw that there were multiple gaps in the dataset for certain time periods.\n Table 5.1 : Most Shared News Sites \nIn the NLP stage of our analysis, we chose to look closer at the topics and entities that the submissions were about, as well as examine the sentiment of both the comments and submissions. In our topic modelling we found that using the whole data resulted in groups with substantial amounts of overlap regarding the conflict. We then constrained the data to time periods that saw high amounts of search interest in Google Trends, creating two subsets which included posts and comments that occurred up to two weeks after the designated event’s date. The resulting subsetted data produced clearer topic groups, with specific events being highlighted, although the cluster of groups which were hard to differentiate remained. For the sentiment analysis at this stage, we used pretrained models from JohnSnowLabs to examine both the sentiment of the comments in the threads as well as comments and submission titles related to the Russia-Ukraine Conflict. Of the three different models used, Twitter and IMDB had identical results while the Vivek model registered a larger portion of the comments and submissions as neutral, but all three models indicated negative sentiment as the plurality of sentiments, if not the majority. The live threads’ results indicated strong sentiments, both positive and negative across the comments, a pattern which seemed to hold in the comments of submissions. The article titles, however, demonstrate much greater negativity according to the IMDB and Twitter models, while the Vivek model read it as again having more neutrality.\n Table 5.2 : Pre-Trained Models Sentiment Results on Comments and Submissions \nLastly, we have successfully designed and implemented predictive ML models to predict controversiality markers and the sentiment of comments and submissions. The controversiality model took in a TF-IDF weighted vector of the comments and was able to achieve a high level of predictive strength, although that seemed to be a result, in large part, due to the class imbalance. We believe that the deleted and removed comments were likely controversial, and so the remaining controversial ones were not being predicted as well as we would hope. For the sentiment model we decided to use Vader-Sentiment lexicon to label our data rather than relying exclusively on pretrained models. The dataset we used to classify sentiment appeared to label more similarly to the Vivek model, with the plurality being negative but showing a larger proportion of neutral material. Several ML algorithms were then used to train the labelled dataset and we ultimately saw great success with test error at slightly above 8%.\n Figure 5.1 : ROC Curves for Different Predictive Models Used in Predicting Controversiality \nMoving forward, we feel that we can further improve our models via the use of over and under sampling techniques to deal with the class imbalance. Additionally, we believe that we can improve on a predictive model for karma scores that we attempted, although at present its accuracy can be described only as pitiful."
+  },
+  {
+    "objectID": "nlp.html",
+    "href": "nlp.html",
+    "title": "Natural Language Processing Analysis",
+    "section": "",
+    "text": "In this round of analysis we worked with three  Natural Language Processing (NLP)  techniques namely\n\n\nTopic Modeling\n\n\nNamed Entity Recognition (NER)\n\n\nSentiment Analysis\n\n\nOur results from both Topic Modeling and NER indicate widespread consumption of news on the ongoing Russia-Ukraine Conflict. In both cases we saw that the topics our model saw and the entities being referenced most often were either directly involved or adjacent to said conflict. We did see that when subsetting the data around events of the conflict, the topics our models produce had less overlap. Lastly, our Sentiment Analysis on submissions and comments related to the conflict suggested that submissions tended to be more negative while comments had an equal distribution of both negative and positive sentiments. The models appeared to demonstrate low neutrality in both submissions and comments."
+  },
+  {
+    "objectID": "nlp.html#executive-summary",
+    "href": "nlp.html#executive-summary",
+    "title": "Natural Language Processing Analysis",
+    "section": "",
+    "text": "In this round of analysis we worked with three  Natural Language Processing (NLP)  techniques namely\n\n\nTopic Modeling\n\n\nNamed Entity Recognition (NER)\n\n\nSentiment Analysis\n\n\nOur results from both Topic Modeling and NER indicate widespread consumption of news on the ongoing Russia-Ukraine Conflict. In both cases we saw that the topics our model saw and the entities being referenced most often were either directly involved or adjacent to said conflict. We did see that when subsetting the data around events of the conflict, the topics our models produce had less overlap. Lastly, our Sentiment Analysis on submissions and comments related to the conflict suggested that submissions tended to be more negative while comments had an equal distribution of both negative and positive sentiments. The models appeared to demonstrate low neutrality in both submissions and comments."
+  },
+  {
+    "objectID": "nlp.html#text-pre-processing",
+    "href": "nlp.html#text-pre-processing",
+    "title": "Natural Language Processing Analysis",
+    "section": "Text Pre-Processing",
+    "text": "Text Pre-Processing\nWe started off our analysis by assessing the number of words in the title and body columns of our datasets. They are represented in the two graphs below.\nBoth these graphs in figures 1 and 2 are right skewed, reflecting that a major amount of both titles and comments are below 50 words.\nNext, we moved on to preprocessing. In order to do the natural language processing (NLP) tasks, the corpuses of comments and submissions needed to face several steps of processing as listed below:\n\n\nRemove stop words\n\n\nRemove other languages\n\n\nRemove special characters\n\n\nConvert text to lower case\n\n\nLemmatize words\n\n\nThe above listed preprocessing steps were applied to text portions of our submissions and comments datasets, on the columns title and body respectively. We used the johnsnowlabs package to conduct our preprocessing and implemented our preprocessing task through a pipeline. systematically converted to document file types and then tokenized. This transformed the data into a bag of words form and was used to accomplish the business goals below.\nAfter the preprocessing, we assessed the 15 most commonly occurring words in both the submissions and comments dataset as displayed in table 1.\n Table 3.1 : Most Common Words in the Submissions Datasets \n Table 3.2 : Most Common Words in the Comments Datasets \nIt is evident from both tables 3.1 and 3.2 that the Russia-Ukraine Conflict dominates both in the submissions and comments datasets. This result agrees with our EDA analysis. Even when constructing a Word Cloud with the Submissions dataset, we found similar trends as displayed in figure 3.3 below.\n\nFigure 3.3 : Word Cloud of Submissions Dataset\n\n\n Digging in further, we also evaluated the most important words using the Term Frequency - Inverse Document Frequency (TF-IDF)  methodology and obtained the following results.\n Table 3.3 : Most Important Words in the Datasets \nThe TF-IDF doesn’t reflect the dominance of war related submissions and comments obtained above. This will be further explored through our following analysis of dominant topics in the data."
+  },
+  {
+    "objectID": "nlp.html#key-topics-in-submissions",
+    "href": "nlp.html#key-topics-in-submissions",
+    "title": "Natural Language Processing Analysis",
+    "section": "Key Topics in Submissions",
+    "text": "Key Topics in Submissions\nWe employed topic modeling through Latent Dirchlet Allocation (LDA) on the cleaned titles of our submissions dataset and obtained 7 topic groups, which saw most of the groups dealing with the Russia-Ukraine Conflict, addressing its different facets. The topics were:\n\n\nTopic 1: deals with the Russia-Ukraine Conflict and nuclear weapons, power plants\n\n\nTopic 2: deals with the Russia-Ukraine Conflict and the media/news coverage on the political leaders\n\n\nTopic 3: deals with the Russia-Ukraine Conflict and oil imports, the EU, laws, and regulation\n\n\nTopic 4: deals with the Russia-Ukraine Conflict as well as Twitter and Elon Musk\n\n\nTopic 5: news related to covid, China, and Korea\n\n\nTopic 6: deals with the Russia-Ukraine Conflict and neighbouring countries\n\n\nTopic 7: the Russia-Ukraine Conflict and the Qatar World Cup\n\n\nAs stated, several of these topics related to the Russia-Ukraine Conflict directly. This high centralization of topic matter seemed to affect topics 4 and 7 which appeared to combine disparate subjects. The LDA topic visualization is displayed below.\n\nFigure 3.4 : LDA Topic Visualization for Submissions Datset\n\nFurther viewing the , utilizing google trends data we were able to determine events in the conflict which most affected internet traffic. Using this we sought to examine how such key events affected the subreddit’s submissions, ie news coverage. The first event selected was the start of the war, which we used to create a subset of the data that encompassed the first two weeks of the Russia-Ukraine Conflict and was modeled with only a topic count of 5. Its results saw the following topics:\n\n\nTopics 1, 2, 3, 5 all relating to the Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)\n\n\nTopic 4 provided an interesting insight - it includes news related to Indian students in Ukraine, as well as Starlink and Elon Musk.\n\n\nTo provide context, topic 4 highlighted the early involvement of Musk in providing his satellite services to the country and the Nazi Azov battalion accosting foreign students attempting to flee.\n\nFigure 3.5 : LDA Topic Visualization for Submissions Datset During the Start of the War\n\n The second event we used from the trends coverage, was when Russia began withdrawing. After applying LDA once more, we saw the topic modelling results indicated:\n\n\nTopics 1, 2, 3, 4 all relating to Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)\n\n\nTopic 5 : news related to North Korea firing a ballistic missile over Japan.\n\n\nAs was stated, North Korea had fired a ballistic missile over Japan in the same time period and had been rapidly increasing the rate of testing. This appears to suggest that the smaller subsets of data might be more useful in capturing specific stories without overlapping the conflict with other topics.\n\nFigure 3.6 : LDA Topic Visualization for Submissions Datset When Russian Troops Started Receding"
+  },
+  {
+    "objectID": "nlp.html#identifying-key-entities-in-the-datasets",
+    "href": "nlp.html#identifying-key-entities-in-the-datasets",
+    "title": "Natural Language Processing Analysis",
+    "section": "Identifying Key Entities in the Datasets",
+    "text": "Identifying Key Entities in the Datasets\nThe top 12 entities for person, location and organization are displayed in table 3. We used BERT  pretrained  Named Entity Recognition (NER)  models to accomplish this. Initially, when feeding the pre trained model with our pre-processed data, we found that Russia and Ukraine didn’t feature as one of the top entities. Upon re-running the model pipeline with unprocessed data, the results were more familiar.\nGiven the density of topics demonstrated by the previous section’s analysis, the focus of the entities on the conflict should not come as a surprise. Using NER, we saw that just as the topics were heavily saturated with the Russia-Ukraine Conflict, the results for most frequently mentioned entities demonstrated this as well.\nIn table 3.4, we can clearly see the prevalence of Putin, Biden, and Zelensky; but these persons are not the only noteworthy results. We also can see British political figures, Boris Johnson and Liz Truss, taking a prominent role in the results. Considering the domain table from our EDA, British news coverage made up some of the most popular sources for posts. This could be the reason for the British political figures being highlighted by the NER model.\nWhen examining the locations results, we saw Ukraine and Russia occur with much greater frequency than the other states, followed by the United States, which appeared twice, and China to a lesser extent.\nLastly our organization based model appeared to return the most mixed results. The top three results were organizations that could easily indicate stories related to the Russia-Ukraine Conflict, but after this the results become less than ideal. Ukrainian cities, Russia, Covid, and Elon Musk were included in the results. This could be seen as a short coming of the models, but also testifies to the prevalence of the conflict in the subreddits submissions. It should also be noted that different n-grams and misspellings resulted in less refined results, and, as stated, the organization results were rather mixed. Table 3.4 displays the entities in the decreasing order of occurence.\n Table 3.4 : Top Entities in Submissions"
+  },
+  {
+    "objectID": "nlp.html#assessing-sentiments-on-war-related-comments-and-submissions",
+    "href": "nlp.html#assessing-sentiments-on-war-related-comments-and-submissions",
+    "title": "Natural Language Processing Analysis",
+    "section": "Assessing Sentiments on War Related Comments and Submissions",
+    "text": "Assessing Sentiments on War Related Comments and Submissions\nBased on our previous analysis in the EDA, it has been determined that the live threads in our subreddit were predisposed towards the Russia-Ukraine Conflict. The dominance of said conflict in the submissions was further supported by topic modeling results. We expected that such a topic would lead itself towards strong sentiments and were affirmed in that expectation through employing pre-trained sentiment models as shown in table 3.5 below.\n Table 3.5 : Sentiment Analysis Results From Live Thread Comments \nAlthough the Vivek analyzer categorized more comments as neutral, overall users appeared to have stronger sentiments, generally of a negative sort. This negative pattern was demonstrated to an equal extent by both the IMDB and Twitter models, without significant difference.\nFurther sentiment analysis was done on submissions related to the Russia-Ukraine Conflict and their related comments, excluding the above analyzed live threads. The models appear to have similar trends, but it should be noted that that for the Twitter and IMDB models the submission titles, those of the articles being shared, were significantly more negative than the comments. Overall the title results for each model indicated 25.22% more overall negative sentiment than the related comment sentiment results, all of which can be seen in table 3.6 below.\n Table 3.6 : Sentiment Analysis of War-Related Submissions and Comments \nThe stark difference in results between the Vivek Model and the Twitter and IMDB models is more apparent here. We assumed that titles would have demonstrated more neutral sentiment, as the Vivek model demonstrated; but assuming that the results IMDB and Twitter models are more reliable, marketing tactics may be the culprit for the perceived negativity. Given how article titles have increasingly become the method of user interaction in social media, drawing attention with inflammatory language can be a tactic for increasing user interest. This perceived negativity might also be explained by the dominance of Western Media outlets in this subreddit, that was seen in the EDA analysis.\nWe attempted a lexicon based approach, but due to logistical issues we instead went forward with pretrained models  sentimentdl_use_twitter, sentimentdl_use_imdb and  VivekSentimentAnalyzer . In the future, we believe that training our own sentiment analyzer could improve the results."
+  },
+  {
+    "objectID": "ml.html",
+    "href": "ml.html",
+    "title": "Machine Learning Analysis",
+    "section": "",
+    "text": "For our Machine Learning (ML) Analysis we accomplished two separate tasks, one predicting comment sentiment and the second predicting comment controversy. We saw that an SVM model using cross validation was best at predicting comment sentiment, leading in all grading metrics we checked. This sentiment prediction model was saved following the results, with its training. For the models predicting comment controversy, we saw high overall accuracy, but that seemed to have been a result of class imbalance. We describe where the large imbalance between controversial and noncontroversial comments may have come from, and how it may have affected our results. \nAdditionally we attempted to implement a model outside of our business goals to see whether we would be able to predict karma scores. While we saw promising results for the first two, our karma scores models faced several issues and had what we considered ‘pitiful’ results, due to its low accuracy. We have chosen instead to include it in the further analysis section below."
+  },
+  {
+    "objectID": "ml.html#executive-summary",
+    "href": "ml.html#executive-summary",
+    "title": "Machine Learning Analysis",
+    "section": "",
+    "text": "For our Machine Learning (ML) Analysis we accomplished two separate tasks, one predicting comment sentiment and the second predicting comment controversy. We saw that an SVM model using cross validation was best at predicting comment sentiment, leading in all grading metrics we checked. This sentiment prediction model was saved following the results, with its training. For the models predicting comment controversy, we saw high overall accuracy, but that seemed to have been a result of class imbalance. We describe where the large imbalance between controversial and noncontroversial comments may have come from, and how it may have affected our results. \nAdditionally we attempted to implement a model outside of our business goals to see whether we would be able to predict karma scores. While we saw promising results for the first two, our karma scores models faced several issues and had what we considered ‘pitiful’ results, due to its low accuracy. We have chosen instead to include it in the further analysis section below."
+  },
+  {
+    "objectID": "ml.html#supervised-sentiment-learning",
+    "href": "ml.html#supervised-sentiment-learning",
+    "title": "Machine Learning Analysis",
+    "section": "Supervised Sentiment Learning",
+    "text": "Supervised Sentiment Learning\nFor training a sentiment classifier, we needed sentiment labels on part of our dataset. To generate these labels, we used the vaderSentiment python package and tweaked the cluster bootstrap script to install the packages on the driver nodes. A portion of the comments dataset (20%) was labelled using this Vader-Sentiment lexicon. These comments were then used to train a sentiment classifier using supervised learning models namely Logistic Regression, Multinomial Naive Bayes and Support Vector Machines (SVM). After applying 5-fold cross-validation and tuning hyperparameters, we obtained evaluation metrics for the three models as displayed below in table 1.\n Table 4.1 : Evaluation Metrics for Supervised Sentiment Models \nFrom table 4.1, it is evident that Support Vector Machines performed the best. This model was then saved and used to label the remaining 80% of the comments dataset. Figure 1 portrays the distribution of sentiments across the comments dataset.\nThis model classifies more comments as neutral as compared to the pre-trained models deployed in the Natural Language Processing analysis section. This is reflected in figure 2 where the sentiment distribution of live thread comments is presented.\nVader-Sentiment lexicon is optimized to work with tweets. Despite this, we observe no similarity with the pre-trained twitter model and the Vader-Sentiment model."
+  },
+  {
+    "objectID": "ml.html#predicting-controversiality",
+    "href": "ml.html#predicting-controversiality",
+    "title": "Machine Learning Analysis",
+    "section": "Predicting Controversiality",
+    "text": "Predicting Controversiality\nTo accomplish this goal, we converted the text data to TF-IDF weighted vectors of the terms and used them as the input for a variety of models. Testing Logistic Regression, LinearSVC, and NaiveBayes models we sought to predict the controversiality in our comments, the results of which are listed below.\n Figure 4.3 : ROC Curves for Different Models \nAlthough the ROC curves would indicate that logistic regression was the best performing model, that may be a result of the class imbalance in controversiality. During our preprocessing steps we removed comments that were listed as ‘removed’ or ‘deleted’. We suspect that such comments removal likely affected the predictive capacity of our data set, compounding on the already existing class balance issues.\n Table 4.2 : Evaluation Metrics for Controversiality Prediction Models \nIn this table we see that both Logistic Regression and Linear SVC have seemingly perfect recall scores, a result of them almost entirely ignoring comments with controversiality  labeled as 1. This appears to confirm our supposition that the underlying class imbalance in our dataset has led to biased models. We believe that this could be further improved in future analysis through the institution of oversampling or undersampling methods or training models such as Complement Naive Bayes that account for class imbalances."
+  },
+  {
+    "objectID": "ml.html#further-analysis-predicting-karma-scores",
+    "href": "ml.html#further-analysis-predicting-karma-scores",
+    "title": "Machine Learning Analysis",
+    "section": "Further Analysis (Predicting Karma Scores)",
+    "text": "Further Analysis (Predicting Karma Scores)\nWe also aimed at constructing a regression model to predict the score column in our comments dataset. For this purpose, we used a multitude of predictors such as sentiment_label (obtained from previously trained sentiment classifier), gilded, and distinguished to name a few. Our initial implementation of Linear Regression and Decision Tree models produced sub-optimal (R-squared value of 7%) results. We plan to further work on this task by tuning hyperparameters, assessing scaling requirements and incorporating additional predictors to obtain a well-performing regression model."
   }
 ]

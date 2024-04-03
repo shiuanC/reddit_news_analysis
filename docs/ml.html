@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Website Lorem Ipsum</title>
+<title>Reddit News Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,11 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -68,70 +69,145 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Website Lorem Ipsum</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./eda.html"> 
-<span class="menu-text">EDA</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./nlp.html"> 
-<span class="menu-text">NLP</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./ml.html" aria-current="page"> 
-<span class="menu-text">ML</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./summary.html"> 
-<span class="menu-text">Summary</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Reddit News Analysis
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Reddit News Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">I. Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Business Goals</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Exploratory Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Webpage Contents</h2>
    
   <ul>
-  <li><a href="#ml" id="toc-ml" class="nav-link active" data-scroll-target="#ml">ML</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#supervised-sentiment-learning" id="toc-supervised-sentiment-learning" class="nav-link" data-scroll-target="#supervised-sentiment-learning">Supervised Sentiment Learning</a></li>
+  <li><a href="#predicting-controversiality" id="toc-predicting-controversiality" class="nav-link" data-scroll-target="#predicting-controversiality">Predicting Controversiality</a></li>
+  <li><a href="#further-analysis-predicting-karma-scores" id="toc-further-analysis-predicting-karma-scores" class="nav-link" data-scroll-target="#further-analysis-predicting-karma-scores">Further Analysis (Predicting Karma Scores)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Machine Learning Analysis</h1>
+</div>
 
 
 
-<section id="ml" class="level1">
-<h1>ML</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<p>For our Machine Learning (ML) Analysis we accomplished two separate tasks, one predicting comment sentiment and the second predicting comment controversy. We saw that an SVM model using cross validation was best at predicting comment sentiment, leading in all grading metrics we checked. This sentiment prediction model was saved following the results, with its training. For the models predicting comment controversy, we saw high overall accuracy, but that seemed to have been a result of class imbalance. We describe where the large imbalance between controversial and noncontroversial comments may have come from, and how it may have affected our results. <br></p>
+<p>Additionally we attempted to implement a model outside of our business goals to see whether we would be able to predict karma scores. While we saw promising results for the first two, our karma scores models faced several issues and had what we considered ‘pitiful’ results, due to its low accuracy. We have chosen instead to include it in the further analysis section below.</p>
+<p><a id="super_sentiment"> </a></p>
+</section>
+<section id="supervised-sentiment-learning" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-sentiment-learning">Supervised Sentiment Learning</h2>
+<p>For training a sentiment classifier, we needed sentiment labels on part of our dataset. To generate these labels, we used the <a href="https://vadersentiment.readthedocs.io/en/latest/" target="_blank">vaderSentiment</a> python package and tweaked the cluster bootstrap script to install the packages on the driver nodes. A portion of the comments dataset (20%) was labelled using this Vader-Sentiment lexicon. These comments were then used to train a sentiment classifier using supervised learning models namely Logistic Regression, Multinomial Naive Bayes and Support Vector Machines (SVM). After applying 5-fold cross-validation and tuning hyperparameters, we obtained evaluation metrics for the three models as displayed below in table 1.</p>
+<p><b> Table 4.1 : Evaluation Metrics for Supervised Sentiment Models </b></p>
+<p>From table 4.1, it is evident that Support Vector Machines performed the best. This model was then saved and used to label the remaining 80% of the comments dataset. Figure 1 portrays the distribution of sentiments across the comments dataset.</p>
+<p>This model classifies more comments as neutral as compared to the pre-trained models deployed in the Natural Language Processing analysis section. This is reflected in figure 2 where the sentiment distribution of live thread comments is presented.</p>
+<p>Vader-Sentiment lexicon is optimized to work with tweets. Despite this, we observe no similarity with the pre-trained twitter model and the Vader-Sentiment model.</p>
+<p><a id="controversiality"> </a></p>
+</section>
+<section id="predicting-controversiality" class="level2">
+<h2 class="anchored" data-anchor-id="predicting-controversiality">Predicting Controversiality</h2>
+<p>To accomplish this goal, we converted the text data to TF-IDF weighted vectors of the terms and used them as the input for a variety of models. Testing Logistic Regression, LinearSVC, and NaiveBayes models we sought to predict the controversiality in our comments, the results of which are listed below.</p>
+<p><b> Figure 4.3 : ROC Curves for Different Models </b></p>
+<p>Although the ROC curves would indicate that logistic regression was the best performing model, that may be a result of the class imbalance in controversiality. During our preprocessing steps we removed comments that were listed as ‘removed’ or ‘deleted’. We suspect that such comments removal likely affected the predictive capacity of our data set, compounding on the already existing class balance issues.</p>
+<p><b> Table 4.2 : Evaluation Metrics for Controversiality Prediction Models </b></p>
+<p>In this table we see that both Logistic Regression and Linear SVC have seemingly perfect recall scores, a result of them almost entirely ignoring comments with <i>controversiality </i> labeled as 1. This appears to confirm our supposition that the underlying class imbalance in our dataset has led to biased models. We believe that this could be further improved in future analysis through the institution of oversampling or undersampling methods or training models such as Complement Naive Bayes that account for class imbalances.</p>
+<p><a id="future_analysis"> </a></p>
+</section>
+<section id="further-analysis-predicting-karma-scores" class="level2">
+<h2 class="anchored" data-anchor-id="further-analysis-predicting-karma-scores">Further Analysis (Predicting Karma Scores)</h2>
+<p>We also aimed at constructing a regression model to predict the <i>score</i> column in our comments dataset. For this purpose, we used a multitude of predictors such as <i>sentiment_label</i> (obtained from previously trained sentiment classifier), <i>gilded</i>, and <i>distinguished</i> to name a few. Our initial implementation of Linear Regression and Decision Tree models produced sub-optimal (R-squared value of 7%) results. We plan to further work on this task by tuning hyperparameters, assessing scaling requirements and incorporating additional predictors to obtain a well-performing regression model.</p>
 
 
 </section>
@@ -550,13 +626,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Content {{&lt; fa brands creative-commons &gt;}} 2023 by [Project Team 1] <br> All content licensed under a {{&lt; fa brands creative-commons &gt;}} {{&lt; fa brands creative-commons-by &gt;}} {{&lt; fa brands creative-commons-nc &gt;}} <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
+<p>Content {{&lt; fa brands creative-commons &gt;}} 2023 by Team 6 <br> All content licensed under a {{&lt; fa brands creative-commons &gt;}} {{&lt; fa brands creative-commons-by &gt;}} {{&lt; fa brands creative-commons-nc &gt;}} <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Made with {{&lt; fa brands r-project &gt;}} and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/anly503/lab-2.1">View the source at {{&lt; fa brands github &gt;}} GitHub</a></p>
+<p>Made with <a href="https://code.visualstudio.com/">VSCode</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-ppol567-project/ppol-567-final-project-team-6.git">View the Code source at GitHub</a></p>
 </div>
   </div>
 </footer>
