@@ -27,35 +27,11 @@ We started off our analysis by assessing the number of words in the <i>title</i>
 
 ```{python}
 #| echo: false
-template = 'simple_white'
 
-df_1 = pd.read_csv("../data/csv/Word_Distribution_Comments.csv")
-bin_width = 5 
-df_1["Number of Words"] = df_1["bucket"]*bin_width
-df_1 = df_1[df_1["Number of Words"] <= 200] #### Filtering out outliers 
-fig = px.bar(df_1, 
-            x='Number of Words', y='count', 
-            title = "Figure 3.1: Distribution of Length of Body in Comments Dataset", 
-            labels = {"count" : "Frequency"})
-fig.update_layout(template = template)            
-
-fig.show()
 ```
 
 ```{python}
 #| echo: false
-
-df_2 = pd.read_csv("../data/csv/Word_Distribution_Submissions.csv")
-template = 'simple_white'
-bin_width = 10 
-df_1["Number of Words"] = df_1["bucket"]*bin_width
-df_1 = df_1[df_1["Number of Words"] <= 200] #### Filtering out outliers 
-fig = px.bar(df_1, 
-            x='Number of Words', y='count', 
-            title = "Figure 3.2: Distribution of Length of Title in Submissions Dataset", 
-            labels = {"count" : "Frequency"})
-fig.update_layout(template = template) 
-fig.show()
 
 ```
 
@@ -78,14 +54,6 @@ After the preprocessing, we assessed the 15 most commonly occurring words in bot
 ```{python}
 #| echo: false
 
-df_1 = pd.read_csv("../data/csv/top_words_df.csv")
-sub_words = list(df_1["word"])
-sub_total = list(df_1["Total Occurence"].astype("str"))
-
-dict_1 = {"Top Words in Submissions" : sub_words,
-        "Occurence in Submissions" : sub_total}
-df_final = pd.DataFrame(dict_1)
-print(df_final.to_markdown(tablefmt = "fancy_outline", index = False))
 
 
 ```
@@ -95,17 +63,7 @@ print(df_final.to_markdown(tablefmt = "fancy_outline", index = False))
 ```{python}
 #| echo: false
 
-df_2 = pd.read_csv("../data/csv/top_words_com.csv")
-com_words = list(df_2["word"])
-com_total = list(df_2["Total Occurence"].astype("str"))
-
-dict_1 = {"Top Words in Comments" : com_words,
-          "Occurence in Comments" : com_total}
-
-df_final = pd.DataFrame(dict_1)
-print(df_final.to_markdown(tablefmt = "fancy_outline", index = False))
 ```
-
 It is evident from both tables 3.1 and 3.2 that the Russia-Ukraine Conflict dominates both in the submissions and comments datasets. This result agrees with our EDA analysis. Even when constructing a Word Cloud with the Submissions dataset, we found similar trends as displayed in figure 3.3 below. 
 
 <h3> Figure 3.3 : Word Cloud of Submissions Dataset </h3>
@@ -115,7 +73,7 @@ It is evident from both tables 3.1 and 3.2 that the Russia-Ukraine Conflict domi
 #| echo: false
 #| warning: false
 
-IPython.display.Image("../data/plots/submission_wordcloud.png", width = 20, height = 20)
+
 ```
 
 <br> 
@@ -125,16 +83,6 @@ Digging in further, we also evaluated the most important words using the <b>Term
 
 ```{python}
 #| echo: false
-
-df_1 = pd.read_csv("../data/csv/tf_idf_sub.csv")
-df_2 = pd.read_csv("../data/csv/tf_idf_com.csv")
-sub_words = list(df_1["word"])
-com_words = list(df_2["word"])
-dict_1 = {"Top Important Words in Submissions" : sub_words,
-        "Top Important Words in Comments" : com_words}
-
-df_final = pd.DataFrame(dict_1)
-print(df_final.to_markdown(tablefmt = "fancy_outline", index = False))
 
 
 ```
@@ -164,15 +112,6 @@ The LDA topic visualization is displayed below.
 #| echo: false
 #| warning: false 
 
-import pyLDAvis
-from sklearn.decomposition import LatentDirichletAllocation
-import pickle 
-
-with open('../data/pickle/lda_submissions.pkl', 'rb') as file :
-    pickle_lda_params = pickle.load(file)
-
-py_lda_prepared_data = pyLDAvis.prepare(**pickle_lda_params)
-pyLDAvis.display(py_lda_prepared_data)
 ```
 
 Further viewing the , utilizing google trends data we were able to determine events in the conflict which most affected internet traffic. Using this we sought to examine how such key events affected the subreddit's submissions, ie news coverage. The first event selected was the start of the war, which we used to create a subset of the data that encompassed the first two weeks of the Russia-Ukraine Conflict and was modeled with only a topic count of 5. Its results saw the following topics:
@@ -188,11 +127,6 @@ To provide context, topic 4 highlighted the early involvement of Musk in providi
 #| echo: false
 #| warning: false 
 
-with open('../data/pickle/lda_filter1.pkl', 'rb') as file :
-    pickle_lda_params = pickle.load(file)
-
-py_lda_prepared_data = pyLDAvis.prepare(**pickle_lda_params)
-pyLDAvis.display(py_lda_prepared_data)
 
 ```
 
@@ -209,12 +143,6 @@ As was stated, North Korea had fired a ballistic missile over Japan in the same 
 ```{python}
 #| echo: false
 #| warning: false 
-
-with open('../data/pickle/lda_filter2.pkl', 'rb') as file :
-    pickle_lda_params = pickle.load(file)
-
-py_lda_prepared_data = pyLDAvis.prepare(**pickle_lda_params)
-pyLDAvis.display(py_lda_prepared_data)
 
 ```
 
@@ -238,22 +166,6 @@ Lastly our organization based model appeared to return the most mixed results. T
 ```{python}
 #| echo: false
 
-df_1 = pd.read_csv("../data/csv/NER_person.csv") 
-df_2 = pd.read_csv("../data/csv/NER_location.csv")
-df_3 = pd.read_csv("../data/csv/NER_organisation.csv")
-
-s_1 = list(df_1["Person Entity"])
-s_2 = list(df_2["Location Entity"])
-s_3 = list(df_3["Organisation Entity"])
-
-dict_1 = {"Top People" : s_1, 
-        "Top Locations" : s_2, 
-        "Top Organizations" : s_3}
-
-final_df = pd.DataFrame(dict_1)
-
-print(final_df.to_markdown(tablefmt = "fancy_outline", index = False))
-
 ```
 
 
@@ -267,8 +179,7 @@ Based on our previous analysis in the EDA, it has been determined that the live 
 
 ```{python}
 #| echo: false
-df = pd.read_csv("../data/csv/sentiment_results_1.csv")
-print(df.to_markdown(tablefmt = "fancy_outline", index = False))
+
 
 ```
 
@@ -281,8 +192,7 @@ Further sentiment analysis was done on submissions related to the Russia-Ukraine
 
 ```{python}
 #| echo: false
-df = pd.read_csv("../data/csv/sentiment_results_2.csv")
-print(df.to_markdown(tablefmt = "fancy_outline", index = False))
+
 
 ```
 

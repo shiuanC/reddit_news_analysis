@@ -151,11 +151,11 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#preprocessing-and-data-dictionary" id="toc-preprocessing-and-data-dictionary" class="nav-link active" data-scroll-target="#preprocessing-and-data-dictionary">Preprocessing and Data Dictionary</a></li>
+  <li><a href="#analyzing-weekly-activity-trends" id="toc-analyzing-weekly-activity-trends" class="nav-link" data-scroll-target="#analyzing-weekly-activity-trends">Analyzing Weekly Activity Trends</a></li>
+  <li><a href="#analyzing-post-frequency-by-year" id="toc-analyzing-post-frequency-by-year" class="nav-link" data-scroll-target="#analyzing-post-frequency-by-year">Analyzing Post Frequency by Year</a></li>
+  <li><a href="#assessing-percentage-of-comments-with-fake-news-indicators" id="toc-assessing-percentage-of-comments-with-fake-news-indicators" class="nav-link" data-scroll-target="#assessing-percentage-of-comments-with-fake-news-indicators">Assessing Percentage of Comments with Fake News Indicators</a></li>
   <li><a href="#analyzing-user-activity" id="toc-analyzing-user-activity" class="nav-link" data-scroll-target="#analyzing-user-activity">Analyzing User Activity</a></li>
-  <li><a href="#time-series-analysis" id="toc-time-series-analysis" class="nav-link" data-scroll-target="#time-series-analysis">Time Series Analysis</a></li>
-  <li><a href="#most-shared-news-stories" id="toc-most-shared-news-stories" class="nav-link" data-scroll-target="#most-shared-news-stories">Most Shared News Stories</a></li>
-  <li><a href="#most-common-words" id="toc-most-common-words" class="nav-link" data-scroll-target="#most-common-words">Most Common Words</a></li>
-  <li><a href="#comparison-with-other-sources" id="toc-comparison-with-other-sources" class="nav-link" data-scroll-target="#comparison-with-other-sources">Comparison with Other Sources</a></li>
+  <li><a href="#source-analysis" id="toc-source-analysis" class="nav-link" data-scroll-target="#source-analysis">Source Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -241,65 +241,145 @@ In the <b> Comments </b> dataset :<br>
 </li>
 </ul>
 <p>During this process, several dummy variables were created to aid in our analysis. A <i>foreign key</i> like variable called <b>submission_id</b> was also created in the comments dataset, that linked any comment to the submission it was made under.</p>
-<p><a id="user_activity"> </a></p>
+<p><a id="EDA1_DailyEngagement"> </a></p>
+</section>
+<section id="analyzing-weekly-activity-trends" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-weekly-activity-trends">Analyzing Weekly Activity Trends</h2>
+<p>In this section, we delve into understanding the patterns of user engagement on Reddit. We begin by examining the distribution of activity across different days of the week, extracted from the DateTime variable. By grouping the data based on these days, we quantify the frequency of user interactions, both in terms of comments and submissions. The insights derived from this analysis are visually represented through a bar graph in Figure 2.1 and Figure 2.2.</p>
+<div id="876d7515" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Figure 2.1: Number of submissions per day of the week from 2021-2023 </b> <br><br> As shown in Figure 2.1, the trend for submissions exhibits a significant dip during the weekends. This suggests that users are less likely to initiate new threads or topics on Saturday and Sunday.A potential factor contributing to this weekend slump could be the downtime in news cycles, as journalists and news outlets typically slow down on these days.Interestingly, Thursday is the busiest day for submissions, contrary to the intuitive expectation that Monday would start the week with a surge.</p>
+<div id="e20b0810" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Figure 2.2: Number of comments per day of the week from 2021-2023 </b> <br> Figure 2.2 depicts a different dynamic for comments, with activity gradually increasing from Monday, reaching a zenith on Thursday. This progressive increase could indicate users’ growing engagement with content as the week unfolds. Despite both submissions and comments peaking on Thursday, only comments display a steady climb throughout the weekdays. <br><br> When we synthesize the data from submissions and comments, a compelling narrative about user engagement emerges. Thursday stands out as a pinnacle of activity for Reddit, with both submissions and comments reaching their highest levels. This indicates that Thursdays are not just about new content being created but also about the peak in interactions with existing threads. The pattern across the week shows more engagement with ongoing discussions rather than starting new ones, especially as the week progresses.</p>
+<p><a id="EDA2_DifferencePosts"> </a></p>
+</section>
+<section id="analyzing-post-frequency-by-year" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-post-frequency-by-year">Analyzing Post Frequency by Year</h2>
+<p>In this analysis, we investigate the disparity in the number of posts across different years. Utilizing the DateTime variable, we extract the year component to group the data accordingly. The findings are presented in two separate tables: Table 2.1 for submissions and Table 2.2 for comments.</p>
+<div id="edef79de" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒════════╤═════════╕
+│   year │   count │
+╞════════╪═════════╡
+│   2021 │  998335 │
+│   2022 │  732024 │
+│   2023 │  116779 │
+╘════════╧═════════╛</code></pre>
+</div>
+</div>
+<p><b> Table 2.1: Submissions Per Year </b> <br><br></p>
+<div id="8005e9ca" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒════════╤══════════╕
+│   year │    count │
+╞════════╪══════════╡
+│   2022 │ 27272489 │
+│   2021 │ 19060400 │
+│   2023 │  3637011 │
+╘════════╧══════════╛</code></pre>
+</div>
+</div>
+<p><b> Table 2.2: Comments Per Year </b> <br><br> The analysis of post frequency by year reveals intriguing trends. While there is a notable decline in submissions from 2021 to 2023, the number of comments exhibits a contrasting pattern, with a significant increase observed from 2021 to 2022 followed by a decline in 2023. This divergence suggests a potential shift in user behavior towards increased engagement with existing content rather than generating new posts. Further investigation into the underlying factors influencing this trend could provide valuable insights into evolving user preferences and platform dynamics.</p>
+<p><a id="EDA3_FakeNews"> </a></p>
+</section>
+<section id="assessing-percentage-of-comments-with-fake-news-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-percentage-of-comments-with-fake-news-indicators">Assessing Percentage of Comments with Fake News Indicators</h2>
+<p>To evaluate the prevalence of fake news indicators in comments, we employed regex to detect phrases such as “fake news,” “bullshit,” or “propaganda.” Subsequently, a fake news indicator column was created to denote the presence of these phrases in comments. Grouping the data by this indicator column, we tallied the counts and visualized the findings in a chart. Among the total comments analyzed, 407,621 were flagged as containing fake news indicators, while the majority, comprising 49,562,279 comments, were deemed free from such indicators. This signifies that approximately 0.8% of comments were identified as potentially containing fake news elements. Further exploration into the context and implications of these comments could offer valuable insights into the dissemination of misinformation within online communities.</p>
+<div id="67a7a2a8" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Figure 2.3: Comments containing Misinformation Indicators from 2021-2023 </b> <br><br></p>
+<p><a id="EDA4: Active Users"> </a></p>
 </section>
 <section id="analyzing-user-activity" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-user-activity">Analyzing User Activity</h2>
-<p>In this section, we dig a little deeper into how users act on this subreddit. Currently this subreddit currently has 31.5 subscribers. Upon evaluation however, we found that only around 27000 users created submissions and around 1.2 million users commented in the past year. Out of these numbers, only a small proportion of users actively posted as evidenced by figure 2.1 below.</p>
-<p>Figure 2.1 assesses the percentage of users posting monthly among total distinct users in the respective datasets. It is observed that a higher proportion of users commented on posts as compared to making a post themselves. In both cases however, less than half of distinct users were active monthly.</p>
-<p>The top 10 posters and commenters were also found and users with the most controversial comments were evaluated. This was compared against the users’ total gilded and distinguished comments as shown below in table 2.1.</p>
-<p><b> Table 2.1 Comparison of Users With Most Number of Controversial Comments </b></p>
-<p>Efforts were made to identify if high <i>controversiality</i> led to higher number of <i>gilded</i> or <i>distinguished</i> but that was not the case.</p>
-<p><a id="time_series"> </a></p>
+<p>As we delve into the dynamics of user interactions within the news-centric communities on Reddit, we encounter some intriguing patterns. The subreddit under examination boasts 31.5 million subscribers. However, a closer inspection reveals that in the past year, approximately 27,000 unique users have made submissions, and around 1.2 million have commented.</p>
+<div id="0e38743e" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Figure 2.4: Top 10 Users Post Comparison for News and World News Subreddits </b> <br><br> A minute fraction of these users contribute the bulk of the submissions, which is delineated in Figure 2.4. This chart illustrates a comparison of posting frequency among the top 10 users in both the News and World News subreddits. The disparity is stark; the top-ranked user alone is responsible for more than 60,000 submissions in the News subreddit, significantly overshadowing the rest.</p>
+<p><a id="EDA5: News Sources"> </a></p>
 </section>
-<section id="time-series-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="time-series-analysis">Time Series Analysis</h2>
-<p>The next step to understanding the trends within the datasets was to plot multiple time series graph. Much like figure 1.2, a daily submission and comments frequency graph was also plotted as shown below.</p>
-<p>There are some points of interest evident in the plot above. The first is the occurance of temporal gaps in the data which could be attributed to the data collection process of the push-shift reddit dataset. Second, there is a peak in Submissions and Comments in late February, and upon marking the start date of the Russia-Ukraine Conflict on the chart, it is apparent that this high volume of submissions and comments could have stemmed from the ongoing war.</p>
-<p>Exporing further into this, the datasets were filtered to retain only observations regarding the conflict. After visualizing monthly frequencies of occurrences, it was found that the patterns observed in figure 2.3 were almost identical to the ones present in figure 1.2. This corroborates our earlier findings about increased activity in the subreddit during different phases of the Russia-Ukraine conflict.</p>
-<p>Karma scores often determine user activity in any subreddit. In order to identify the overall popularity of submissions, their scores quantiles per month were visualized. Scores are the difference between the number of upvotes and number of downvotes that a submission receives. From the median line in the visualization, it can be interpreted that most submissions have a score between 10-30. Since the 25th percentile remains 0 for all the months, it can be inferred that there are submissions (although few) with an overall negative score. The scores from the 75th percentile line reveal that there are submissions with very high overall scores as well. Additionally, these high overall scores per month do not follow any similar trend to the median data, indicating that there may be a handful of submissions that contribute to a very high overall score in a particular month.</p>
-<p>Finally, to further capture trends in submission posts, the monthly frequencies of five authors with the highest number of submissions in this time-period were visualized. From the graph, it can be inferred that some of the authors’ changes over time resemble the overall submission frequency plot. However, two other authors had submissions only during some months in the year. Infact, <i>hieronymusanonymous’s</i> submission frequencies were only during the second half of the year, indicating that there might be authors who did not post much about the Russia-Ukraine conflict.</p>
-<p><a id="news_story"> </a></p>
-</section>
-<section id="most-shared-news-stories" class="level2">
-<h2 class="anchored" data-anchor-id="most-shared-news-stories">Most Shared News Stories</h2>
-<p>From the preceding analysis, a sharp peak was observed in the submissions and comments frequencies which we propose is due the ongoing Russia_Ukraine conflict. The following analysis looks at the most highly scored news stories, the news sites that occur most in the submissions dataset, the presence of a live thread, and whether this would reveal anything on the surge of news articles shared on this subreddit.</p>
-<p>Upon analysis, it was found that the top 10 news stories were generally to do with Russia’s war on Ukraine. This provided us key insight to look more closely at the data pertaining to war efforts. The top news sites were also evaluated and an aggregation table was generated as shown below.</p>
-<p><b> Table 2.2 : Top 20 News Sources in the Subreddit </b></p>
-<p>It was observed from the table above, that the most popular news sites on the subreddit over the past year were generally from western countries. This could potentially explain the high consumption of news related to the war within the subreddit despite the presence of Russian media sources as well.</p>
-<p>Live thread submissions were found and it was determined that all the live thread submissions pertained to the war. This provided an opportunity to evaluate the comments of the live thread against regular submissions that also dealt with the Conflict as shown in the table below.</p>
-<p><b> Table 2.3 : Comparison of Live Thread Comments and Regular Comments on War </b></p>
-<p>The table above captures the percentage of comments that were controversial, gilded and distinguished for the live thread and for other submissions dealing with the war. It was observed that more controversiality was present in regular submissions as compared to live threads, possible due to larger number of normal posts.</p>
-<p><a id="word_cloud"> </a></p>
-</section>
-<section id="most-common-words" class="level2">
-<h2 class="anchored" data-anchor-id="most-common-words">Most Common Words</h2>
-<p>Progressing with our analysis, we also looked at which were the most commonly used words or phrases in the comments of the top 3 news stories. To evaluate this we generated word clouds as shown below.</p>
-<h3 class="anchored">
-Figure 2.6 : Word Cloud Of Comments From Top 3 News Stories
-</h3>
-<p>These word clouds revealed that the Russia-Ukraine Conflict , and political leaders of these countries were the most repeated words. We also found terms relating to Queen Elizabeth II’s demise and the British royal family to be quite repetitive.</p>
-<p><a id="cosine"> </a></p>
-</section>
-<section id="comparison-with-other-sources" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-with-other-sources">Comparison with Other Sources</h2>
-As a final task, we sought to compare the information present in the subreddit’s submissions about the events pertaining to Russia and Ukraine, with the events data from Armed Conflict Location &amp; Event Data Project (ACLED). ACLED collects real-time data on locations, dates, actors, fatalities and types of all reported political violence and protest events around the world, from various international and regional news sources. The ACLED data for Ukraine and Russia were aggregated to obtain daily counts of event types in the following categories:
-<ul>
-<li>
-<b>Armed Clashes</b>
-</li>
-<li>
-<b>Shelling/Artillery/Missile Attacks</b>
-</li>
-<li>
-<b>Remote Explosives/Landmines/IED</b>
-</li>
-<li>
-<b>Disrupted Weapons Use</b>
-</li>
-</ul>
-<p>The submissions titles were analyzed using regex to find terms related to aforementioned event types to obtain daily counts for these events. The cosine similarity between ACLED counts and counts obtained from submissions for each event type were found as shown below in table 2.4. Our results indicate that reddit data is not quite similar to ACLED data. One possible reason for low similarity might be that our data has been filtered to English, and ACLED uses its own translation methodology and produces regional level news related to the conflict as well.</p>
-<p><b> Table 2.4 : Cosine Similarity Scores for ACLED and Submissions Dataset on Different War Events </b></p>
+<section id="source-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="source-analysis">Source Analysis</h2>
+<p>In this extensive analysis, we aim to understand the influence of various news sources within the Reddit ecosystem. To achieve this, we extract the domain information from each submission’s URL and aggregate the data to evaluate two main metrics: the frequency of posts from each news source and the cumulative karma scores these posts have received.</p>
+<p>This dual-faceted approach enables us to not only see which news sources are most frequently posted but also which ones resonate the most with the Reddit community, as reflected by their karma scores. The results are encapsulated in two distinct tables.</p>
+<div id="ae893317" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Figure 2.5: Top 10 Users Post Comparison for News and World News Subreddits </b> <br><br> To visually represent the frequency of posts by these news sources, we created a word cloud, as shown in the uploaded image. This illustration vividly displays the prominence of certain names, with ‘Reuters’ and ‘BBCWorld’ appearing more prominently, indicating a higher frequency of posts from these sources compared to others like ‘rajacreator’ or ‘tellygupshup’.</p>
+<div id="91cc565b" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒══════════════╤═════════════╤═══════════════╤══════════════╕
+│ source       │   frequency │   karma_score │   score rank │
+╞══════════════╪═════════════╪═══════════════╪══════════════╡
+│ Reuters      │      319453 │        327004 │           43 │
+│ rajacreator  │       68753 │         68753 │           45 │
+│ AP           │       63886 │         67112 │           46 │
+│ bluzz        │       57339 │         57337 │           47 │
+│ reuters      │       39747 │      34230489 │            1 │
+│ youtube      │       38580 │         38472 │           48 │
+│ news         │       34528 │      13992972 │           10 │
+│ BBCWorld     │       33884 │         34733 │           49 │
+│ tellygupshup │       31600 │         31596 │           50 │
+│ popularnews  │       30492 │         30491 │           51 │
+╘══════════════╧═════════════╧═══════════════╧══════════════╛</code></pre>
+</div>
+</div>
+<p><b> Table 2.3: Top 10 Sources by Frequency </b> <br><br></p>
+<p>Table 2.3 lists the top 10 sources by the frequency of posts. Reuters takes the lead in the number of posts, with a significant presence on the platform. However, when we consider the karma scores, the same source shows a dramatic contrast in its two entries, one with a high karma score and another much lower, indicating perhaps a discrepancy in the content’s reception or the presence of multiple accounts associated with the source.</p>
+<div id="40ead039" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒═════════════════╤═════════════╤═══════════════╤══════════════════╕
+│ source          │   frequency │ karma_score   │   frequency rank │
+╞═════════════════╪═════════════╪═══════════════╪══════════════════╡
+│ reuters         │       39747 │ 34,230,489    │                5 │
+│ cnn             │       20535 │ 26,569,966    │               13 │
+│ theguardian     │       24648 │ 24,930,338    │               12 │
+│ apnews          │       20407 │ 23,547,749    │               14 │
+│ nbcnews         │       10907 │ 20,146,178    │               21 │
+│ cnbc            │        7391 │ 16,038,330    │               31 │
+│ businessinsider │        6772 │ 15,497,047    │               33 │
+│ bbc             │       29034 │ 15,373,615    │               11 │
+│ cbsnews         │        5514 │ 14,944,943    │               41 │
+│ news            │       34528 │ 13,992,972    │                7 │
+╘═════════════════╧═════════════╧═══════════════╧══════════════════╛</code></pre>
+</div>
+</div>
+<p><b> Table 2.4: Top 10 Sources by Karma score </b> <br><br> Table 2.4, on the other hand, ranks the top 10 sources by the karma score. This table reveals that while Reuters may not have the highest posting frequency among the top sources, it garners the highest cumulative karma, suggesting a strong engagement from the Reddit community with the content provided by this source. <br><br> These analyses not only highlight the most active news sources but also offer insights into the quality of engagement that different sources inspire among Redditors. Such data is invaluable for understanding the landscape of news consumption and dissemination on one of the world’s largest social platforms.</p>
 
 
 </section>

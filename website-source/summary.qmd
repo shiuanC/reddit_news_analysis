@@ -50,19 +50,19 @@ import ipywidgets as widgets
 import IPython.display as display
 from IPython.display import HTML
 ## Read images from file (because this is binary, maybe you can find how to use ByteIO) but this is more easy
-img1 = open('../data/plots/Photos/Lucienne.jpg', 'rb').read()
-img2 = open('../data/plots/Photos/Sonali.jpg', 'rb').read()
-img3 = open('../data/plots/Photos/Peijin.jpg', 'rb').read()
+# img1 = open('../data/plots/Photos/Lucienne.jpg', 'rb').read()
+# img2 = open('../data/plots/Photos/Sonali.jpg', 'rb').read()
+# img3 = open('../data/plots/Photos/Peijin.jpg', 'rb').read()
 ## Create image widgets. You can use layout of ipywidgets only with widgets.
 ## Set image variable, image format and dimension.
-wi1 = widgets.Image(value=img1, format='jpg', width=200, height=200)
-wi2 = widgets.Image(value=img2, format='jpg', width=200, height=200)
-wi3 = widgets.Image(value=img3, format='jpg', width=200, height=200)
+# wi1 = widgets.Image(value=img1, format='jpg', width=200, height=200)
+# wi2 = widgets.Image(value=img2, format='jpg', width=200, height=200)
+# wi3 = widgets.Image(value=img3, format='jpg', width=200, height=200)
 ## Side by side thanks to HBox widgets
-sidebyside = widgets.HBox([wi1, wi2, wi3])
-## Finally, show.
-display.display(sidebyside)
-HTML('<style> .widget-text { width: auto; } </style>')
+# sidebyside = widgets.HBox([wi1, wi2, wi3])
+# ## Finally, show.
+# display.display(sidebyside)
+# HTML('<style> .widget-text { width: auto; } </style>')
 
 
 ```

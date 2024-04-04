@@ -28,9 +28,7 @@ For training a sentiment classifier, we needed sentiment labels on part of our d
 #| echo: false
 #| warning: false
 
-df_1 = pd.read_csv("../data/csv/sentiment_metrics.csv")
-df_1 = df_1.rename(columns = {"Unnamed: 0" : "Models"})
-print(df_1.to_markdown(tablefmt = "fancy_outline", index = False))
+
 
 ```
 
@@ -41,24 +39,7 @@ From table 4.1, it is evident that Support Vector Machines performed the best. T
 #| echo: false
 #| warning: false
 
-df_2 = pd.read_csv("../data/csv/sentiment_labels_count.csv")
-total = df_2["Number of Comments"].sum()
-df_2["Percentage"] = round(df_2["Number of Comments"]/total*100, 2)
 
-template = 'simple_white'
-
-fig = px.bar(df_2, \
-             x = 'Sentiment_Label', y = 'Percentage', \
-             range_y = [0, 100], \
-             labels = {'Sentiment_Label' : "Sentiment Label", 
-                       'Percentage' : "Percentage of Comments"},
-             title = "Figure 4.1 : Distribution of Sentiments Over the Comments Dataset",
-             template = template            
-             )
-
-fig.update_layout(yaxis_ticksuffix = '%') 
-fig.update_traces(marker_color='#fcbf49')
-fig.show()
 ```
 
 This model classifies more comments as neutral as compared to the pre-trained models deployed in the Natural Language Processing analysis section. This is reflected in figure 2 where the sentiment distribution of live thread comments is presented. 
@@ -67,56 +48,7 @@ This model classifies more comments as neutral as compared to the pre-trained mo
 #| echo: false
 #| warning: false
 
-df_sentiment_1 = pd.read_csv("../data/csv/sentiment_results_1.csv")
 
-### Stripping the % symbols and converting to float 
-df_sentiment_1["negative"] = df_sentiment_1["negative"].str.rstrip('%').astype('float')
-
-df_sentiment_1["positive"] = df_sentiment_1["positive"].str.rstrip('%').astype('float')
-
-df_sentiment_1["neutral"] = df_sentiment_1["neutral"].str.rstrip('%').astype('float')
-
-
-
-df_sentiment_2 = pd.read_csv("../data/csv/sentiment_labels_live_threads.csv")
-
-
-total = df_sentiment_2["Number of Comments"].sum()
-negative = round(int(df_sentiment_2["Number of Comments"].loc[df_sentiment_2["Sentiment_Label"] == "Negative"])/total*100, 2)
-positive = round(int(df_sentiment_2["Number of Comments"].loc[df_sentiment_2["Sentiment_Label"] == "Positive"])/total*100, 2)
-neutral = round(int(df_sentiment_2["Number of Comments"].loc[df_sentiment_2["Sentiment_Label"] == "Neutral"])/total*100, 2)
-
-row_dict = {"Model" : ["Vader-Sentiment with SVC"],
-            "negative" : [negative], 
-            "neutral" : [neutral], 
-            "positive" : [positive]}
-
-df_sentiment_3 = pd.DataFrame(row_dict)
-
-df_list = [df_sentiment_1, df_sentiment_3]
-
-final_df_sentiment = pd.concat(df_list)
-### Renaming columns for proper axis ticks 
-final_df_sentiment = final_df_sentiment.rename(columns = {"neutral" : "Neutral", 
-"positive" : "Positive", 
-"negative" : "Negative"})
-
-final_df_sentiment = pd.melt(final_df_sentiment, id_vars = ["Model"], value_vars = ["Negative", "Neutral", "Positive"], value_name = "Percentage", var_name = "Sentiment_Label")
-
-template = 'simple_white'
-
-### Plotting grouped bar graph 
-fig = px.bar(final_df_sentiment, \
-             x = 'Sentiment_Label', y = 'Percentage', \
-             color = "Model", \
-             barmode = "group", range_y = [0, 100], labels = {'Sentiment_Label' : "Sentiment Label", 
-                       'Percentage' : "Percentage of Comments"},
-             title = "Figure 4.2 : Distribution of Sentiments in Live Thread Comments in Different Models",
-             template = template            
-             )
-
-fig.update_layout(yaxis_ticksuffix = '%') 
-fig.show()
 ```
 
 Vader-Sentiment lexicon is optimized to work with tweets. Despite this, we observe no similarity with the pre-trained twitter model and the Vader-Sentiment model. 
@@ -133,7 +65,7 @@ To accomplish this goal, we converted the text data to TF-IDF weighted vectors o
 #| echo: false
 #| warning: false
 
-IPython.display.Image("../data/plots/ALL-ROC.png")
+
 ```
 
 Although the ROC curves would indicate that logistic regression was the best performing model, that may be a result of the class imbalance in controversiality. During our preprocessing steps we removed comments that were listed as 'removed' or 'deleted'. We suspect that such comments removal likely affected the predictive capacity of our data set, compounding on the already existing class balance issues.
@@ -144,9 +76,9 @@ Although the ROC curves would indicate that logistic regression was the best per
 #| echo: false
 #| warning: false
 
-df_contro = pd.read_csv("../data/csv/Controversiality_metrics.csv")
 
-print(df_contro.to_markdown(tablefmt = "fancy_outline", index = False))
+
+
 
 ```
 
