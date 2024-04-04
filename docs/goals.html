@@ -175,18 +175,18 @@ ul.task-list li input[type="checkbox"] {
 <b> Technical proposal: </b> To find this, we will extract the day from the DateTime variable. We will then group by the new day variable and count the group by data. We will create a bar graph of the counts to visualize the findings. This will be conducted for both comments and submissions.
 </div>
 </div>
-<br> <br>
+<p><br> <br></p>
 <div class="goals_format">
-<b> <a href="./eda.html#EDA2_FakeNews" class="eda_goal_link">Business Goal - 2 :</a></b> Determine which fake news identifier is used the most. <br>
-<div class="tech_format">
-<b>Technical Proposal :</b> First, we will utilize regex to match on different fake news identifiers like bullshit, propaganda, or fake news. Using this, we will create a fake news indicator column that shows if the phrase was present in the comment. Then, we will group by the indicator column and count the groups. We will visualize our findings in a table.
-</div>
-</div>
-<br> <br>
-<div class="goals_format">
-<b> <a href="./eda.html#EDA3_DifferencePosts" class="eda_goal_link">Business Goal - 3 :</a></b> Determine the difference in the number of posts by year.<br>
+<b> <a href="./eda.html#EDA2_DifferencePosts" class="eda_goal_link">Business Goal - 2 :</a></b> Determine the frequency of fake news identifiers.<br>
 <div class="tech_format">
 <b>Technical proposal :</b> We will extract the year from the DateTime variable. Using this, we will group by year and count the grouped data. We will visualize our findings in a table that includes comments and submissions.
+</div>
+</div>
+<br> <br>
+<div class="goals_format">
+<b> <a href="./eda.html#EDA3_FakeNews" class="eda_goal_link">Business Goal - 3 :</a></b> Determine which fake news identifier is used the most. <br>
+<div class="tech_format">
+<b>Technical Proposal :</b> First, we will utilize regex to match on different fake news identifiers like bullshit, propaganda, or fake news. Using this, we will create a fake news indicator column that shows if the phrase was present in the comment. Then, we will group by the indicator column and count the groups. We will visualize our findings in a table.
 </div>
 </div>
 <br> <br>
@@ -208,24 +208,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="natural-language-processing-goals" class="level2">
 <h2 class="anchored" data-anchor-id="natural-language-processing-goals">Natural Language Processing Goals</h2>
 <div class="nlp_goals_format">
-<!--<b><a href = "nlp.qmd#topic_modeling" class = "nlp_goal_link">Business Goal - 6 :</a></b> -->
-<b><a href="" class="nlp_goal_link">Business Goal - 6 :</a></b> Determine the news topics that are interacted with the most. <br> Among all types of news, which category do people concern about the most? Is it related to war, disaster, food crisis or something else? <br>
+<b><a href="" class="nlp_goal_link">Business Goal - 6 :</a></b> Determine the news topics that are interacted with the most. <br><!--<b><a href = "nlp.qmd#topic_modeling" class = "nlp_goal_link">Business Goal - 6 :</a></b> --> Among all types of news, which category do people concern about the most? Is it related to war, disaster, food crisis or something else? <br>
 <div class="nlp_tech_format">
 <b>Technical Proposal:</b> Use topic modeling to create different broad news categories. Group by those categories and analyze the comments.
 </div>
 </div>
 <p><br> <br></p>
 <div class="nlp_goals_format">
-<p><b><a href="" class="nlp_goal_link">Business Goal - 7 :</a></b> <!--<b><a href = "nlp.qmd#ner" class = "nlp_goal_link">Business Goal - 7 :</a></b>  --></p>
-Determine what topics are perceived as fake news. <br>
+<b><a href="" class="nlp_goal_link">Business Goal - 7 :</a></b> <!--<b><a href = "nlp.qmd#ner" class = "nlp_goal_link">Business Goal - 7 :</a></b>  --> Determine what topics are perceived as fake news. <br>
 <div class="nlp_tech_format">
 <p><b>Technical Proposal :</b> Use topic modeling created above. Perform sentiment analysis on the comments. Comments with negative sentiment and containing misinformation identifiers will be misinformation. Topics with more of these comments will be perceived as fake news.</p>
 </div>
 </div>
 <p><br> <br></p>
 <div class="nlp_goals_format">
-<p><b><a href="" class="nlp_goal_link">Business Goal - 8 :</a></b> <!--<b><a href = "nlp.qmd#sentiment" class = "nlp_goal_link">Business Goal - 8 :</a></b> --></p>
-Find this difference in perceived misinformation from 2021 (post-election year) to 2023 (pre-election year). <br>
+<b><a href="" class="nlp_goal_link">Business Goal - 8 :</a></b> <!--<b><a href = "nlp.qmd#sentiment" class = "nlp_goal_link">Business Goal - 8 :</a></b> --> Find this difference in perceived misinformation from 2021 (post-election year) to 2023 (pre-election year). <br>
 <div class="nlp_tech_format">
 <b>Technical Proposal :</b> We will use the combined sentiment analysis and misinformation indicator to identify comments with negative sentiment and contain a misinformation indicator. We will group by this new variable and count the grouped data. Since there are significantly fewer comments in 2023, we will then take the rate of misinformation comments to compare the two.
 </div>
@@ -235,16 +232,14 @@ Find this difference in perceived misinformation from 2021 (post-election year) 
 <section id="machine-learning-goals" class="level2">
 <h2 class="anchored" data-anchor-id="machine-learning-goals">Machine Learning Goals</h2>
 <div class="ml_goals_format">
-<p><b><a href="" class="ml_goal_link">Business Goal - 9 :</a></b> <!--<b><a href = "ml.qmd#super_sentiment" class = "ml_goal_link">Business Goal - 9 :</a></b> --></p>
-Which articles might be perceived as misinformation, or labeled by users as fake news? <br>
+<b><a href="" class="ml_goal_link">Business Goal - 9 :</a></b> <!--<b><a href = "ml.qmd#super_sentiment" class = "ml_goal_link">Business Goal - 9 :</a></b> --> Which articles might be perceived as misinformation, or labeled by users as fake news? <br>
 <div class="ml_tech_format">
 <b>Technical Proposal :</b> We will employ a supervised machine learning model to predict articles that are prone to be perceived as misinformation. Specifically, we’ll utilize techniques such as decision trees to discern which features contribute significantly to the classification process. By analyzing various attributes of article titles, we’ll determine patterns indicating potential fake news. This comprehensive approach will shed light on both the types of titles more likely to be labeled as fake news and the key features crucial for classification accuracy.
 </div>
 </div>
 <p><br> <br></p>
 <div class="ml_goals_format">
-<p><b><a href="./ml.html#controversiality" class="ml_goal_link">Business Goal - 10 :</a></b> <!--<b><a href = "ml.qmd#controversiality" class = "ml_goal_link">Business Goal - 10 :</a></b> --></p>
-Among political topics, is there any correlation? Are certain topics mentioned together more frequently than others?<br>
+<b><a href="./ml.html#controversiality" class="ml_goal_link">Business Goal - 10 :</a></b> <!--<b><a href = "ml.qmd#controversiality" class = "ml_goal_link">Business Goal - 10 :</a></b> --> Among political topics, is there any correlation? Are certain topics mentioned together more frequently than others?<br>
 <div class="ml_tech_format">
 <b>Technical Proposal :</b> We will conduct a network analysis to explore the relationships between different political topics. This analysis will help us understand the connections and interactions among various political themes, providing insights into how they are interconnected or influence each other within the broader political landscape.
 </div>
