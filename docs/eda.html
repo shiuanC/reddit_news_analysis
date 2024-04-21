@@ -140,6 +140,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">III. Natural Language Processing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Natural Language Processing Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -231,7 +248,7 @@ In the <b> Comments </b> dataset :<br>
 <section id="analyzing-weekly-activity-trends" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-weekly-activity-trends">Analyzing Weekly Activity Trends</h2>
 <p>In this section, we delve into understanding the patterns of user engagement on Reddit. We begin by examining the distribution of activity across different days of the week, extracted from the DateTime variable. By grouping the data based on these days, we quantify the frequency of user interactions, both in terms of comments and submissions. The insights derived from this analysis are visually represented through a bar graph in Figure 2.1 and Figure 2.2.</p>
-<div id="0e5c8392" class="cell" data-execution_count="2">
+<div id="af0b7b0c" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <figure class="figure">
@@ -241,7 +258,7 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Figure 2.1: Number of submissions per day of the week from 2021-2023 </b> <br><br> As shown in Figure 2.1, the trend for submissions exhibits a significant dip during the weekends. This suggests that users are less likely to initiate new threads or topics on Saturday and Sunday.A potential factor contributing to this weekend slump could be the downtime in news cycles, as journalists and news outlets typically slow down on these days.Interestingly, Thursday is the busiest day for submissions, contrary to the intuitive expectation that Monday would start the week with a surge.</p>
-<div id="6397d91b" class="cell" data-execution_count="3">
+<div id="001fc307" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <figure class="figure">
@@ -256,27 +273,25 @@ In the <b> Comments </b> dataset :<br>
 <section id="analyzing-post-frequency-by-year" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-post-frequency-by-year">Analyzing Post Frequency by Year</h2>
 <p>In this analysis, we investigate the disparity in the number of posts across different years. Utilizing the DateTime variable, we extract the year component to group the data accordingly. The findings are presented in two separate tables: Table 2.1 for submissions and Table 2.2 for comments.</p>
-<div id="916c235b" class="cell" data-execution_count="4">
+<div id="b27bf9f2" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
-<pre><code>╒════════╤═════════╕
-│   year │   count │
-╞════════╪═════════╡
-│   2021 │  998335 │
-│   2022 │  732024 │
-│   2023 │  116779 │
-╘════════╧═════════╛</code></pre>
+<pre><code>            |   year |              count |
+|-------:|--------:|
+            |   2021 |             998335 |
+            |   2022 |             732024 |
+            |   2023 |             116779 |</code></pre>
 </div>
 </div>
 <p><b> Table 2.1: Submissions Per Year </b> <br><br></p>
-<div id="9c2f3249" class="cell" data-execution_count="5">
+<div id="b3ec3d98" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>╒════════╤══════════╕
-│   year │    count │
-╞════════╪══════════╡
-│   2022 │ 27272489 │
-│   2021 │ 19060400 │
-│   2023 │  3637011 │
-╘════════╧══════════╛</code></pre>
+<pre><code>╒════════╤════════════╕
+│   year │ count      │
+╞════════╪════════════╡
+│   2022 │ 27,272,489 │
+│   2021 │ 19,060,400 │
+│   2023 │ 3,637,011  │
+╘════════╧════════════╛</code></pre>
 </div>
 </div>
 <p><b> Table 2.2: Comments Per Year </b> <br><br> The analysis of post frequency by year reveals intriguing trends. While there is a notable decline in submissions from 2021 to 2023, the number of comments exhibits a contrasting pattern, with a significant increase observed from 2021 to 2022 followed by a decline in 2023. This divergence suggests a potential shift in user behavior towards increased engagement with existing content rather than generating new posts. Further investigation into the underlying factors influencing this trend could provide valuable insights into evolving user preferences and platform dynamics.</p>
@@ -285,7 +300,7 @@ In the <b> Comments </b> dataset :<br>
 <section id="assessing-percentage-of-comments-with-fake-news-indicators" class="level2">
 <h2 class="anchored" data-anchor-id="assessing-percentage-of-comments-with-fake-news-indicators">Assessing Percentage of Comments with Fake News Indicators</h2>
 <p>To evaluate the prevalence of fake news indicators in comments, we employed regex to detect phrases such as “fake news,” “bullshit,” or “propaganda.” Subsequently, a fake news indicator column was created to denote the presence of these phrases in comments. Grouping the data by this indicator column, we tallied the counts and visualized the findings in a chart. Among the total comments analyzed, <b>407,621 </b> were flagged as containing fake news indicators, while the majority, comprising <b>49,562,279</b> comments, were deemed free from such indicators. This signifies that approximately 0.8% of comments were identified as potentially containing fake news elements. Further exploration into the context and implications of these comments could offer valuable insights into the dissemination of misinformation within online communities.</p>
-<div id="57726ce6" class="cell" data-execution_count="6">
+<div id="6622bd81" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <figure class="figure">
@@ -300,7 +315,7 @@ In the <b> Comments </b> dataset :<br>
 <section id="analyzing-user-activity" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-user-activity">Analyzing User Activity</h2>
 <p>As we delve into the dynamics of user interactions within the news-centric communities on Reddit, we encounter some intriguing patterns. The subreddit under examination boasts 31.5 million subscribers. However, a closer inspection reveals that in the past year, approximately 27,000 unique users have made submissions, and around 1.2 million have commented.</p>
-<div id="74f48cbf" class="cell" data-execution_count="7">
+<div id="e92b3aa3" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <figure class="figure">
@@ -310,7 +325,7 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Figure 2.4: Top 10 Users Post Comparison for News and World News Subreddits </b> <br><br></p>
-<div id="9cb96aa4" class="cell" data-execution_count="8">
+<div id="64fecc76" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒══════════════════════╤════════════════════╕
 │ author               │   submission_count │
@@ -329,7 +344,7 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Table 2.4: Top 10 Active User in News Subreddit </b> <br><br></p>
-<div id="e7834374" class="cell" data-execution_count="9">
+<div id="a0fb6417" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒══════════════════╤════════════════════╕
 │ author           │   submission_count │
@@ -354,7 +369,7 @@ In the <b> Comments </b> dataset :<br>
 <h2 class="anchored" data-anchor-id="source-analysis">Source Analysis</h2>
 <p>In this extensive analysis, we aim to understand the influence of various news sources within the Reddit ecosystem. To achieve this, we extract the domain information from each submission’s URL and aggregate the data to evaluate two main metrics: the frequency of posts from each news source and the cumulative karma scores these posts have received.</p>
 <p>This dual-faceted approach enables us to not only see which news sources are most frequently posted but also which ones resonate the most with the Reddit community, as reflected by their karma scores. The results are encapsulated in two distinct tables.</p>
-<div id="a667ffa1" class="cell" data-execution_count="10">
+<div id="5e1fab1e" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 <figure class="figure">
@@ -364,42 +379,38 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Figure 2.: Top 10 Users Post Comparison for News and World News Subreddits </b> <br><br> To visually represent the frequency of posts by these news sources, we created a word cloud, as shown in the uploaded image. This illustration vividly displays the prominence of certain names, with ‘Reuters’ and ‘BBCWorld’ appearing more prominently, indicating a higher frequency of posts from these sources compared to others like ‘rajacreator’ or ‘tellygupshup’.</p>
-<div id="f82275ff" class="cell" data-execution_count="11">
+<div id="00d942ee" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
-<pre><code>╒══════════════╤═════════════╤═══════════════╤══════════════╕
-│ source       │   frequency │   karma_score │   score rank │
-╞══════════════╪═════════════╪═══════════════╪══════════════╡
-│ Reuters      │      319453 │        327004 │           43 │
-│ rajacreator  │       68753 │         68753 │           45 │
-│ AP           │       63886 │         67112 │           46 │
-│ bluzz        │       57339 │         57337 │           47 │
-│ reuters      │       39747 │      34230489 │            1 │
-│ youtube      │       38580 │         38472 │           48 │
-│ news         │       34528 │      13992972 │           10 │
-│ BBCWorld     │       33884 │         34733 │           49 │
-│ tellygupshup │       31600 │         31596 │           50 │
-│ popularnews  │       30492 │         30491 │           51 │
-╘══════════════╧═════════════╧═══════════════╧══════════════╛</code></pre>
+<pre><code>| source       | frequency   | karma_score   |   score rank |
+|--------------|-------------|---------------|--------------|
+| Reuters      | 319,453     | 327,004       |           43 |
+| rajacreator  | 68,753      | 68,753        |           45 |
+| AP           | 63,886      | 67,112        |           46 |
+| bluzz        | 57,339      | 57,337        |           47 |
+| reuters      | 39,747      | 34,230,489    |            1 |
+| youtube      | 38,580      | 38,472        |           48 |
+| news         | 34,528      | 13,992,972    |           10 |
+| BBCWorld     | 33,884      | 34,733        |           49 |
+| tellygupshup | 31,600      | 31,596        |           50 |
+| popularnews  | 30,492      | 30,491        |           51 |</code></pre>
 </div>
 </div>
 <p><b> Table 2.5: Top 10 Sources by Frequency </b> <br><br></p>
 <p>Table 2.5 lists the top 10 sources by the frequency of posts. Reuters takes the lead in the number of posts, with a significant presence on the platform. However, when we consider the karma scores, the same source shows a dramatic contrast in its two entries, one with a high karma score and another much lower, indicating perhaps a discrepancy in the content’s reception or the presence of multiple accounts associated with the source.</p>
-<div id="09efd129" class="cell" data-execution_count="12">
+<div id="71fcf580" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
-<pre><code>╒═════════════════╤═════════════╤═══════════════╤══════════════════╕
-│ source          │   frequency │ karma_score   │   frequency rank │
-╞═════════════════╪═════════════╪═══════════════╪══════════════════╡
-│ reuters         │       39747 │ 34,230,489    │                5 │
-│ cnn             │       20535 │ 26,569,966    │               13 │
-│ theguardian     │       24648 │ 24,930,338    │               12 │
-│ apnews          │       20407 │ 23,547,749    │               14 │
-│ nbcnews         │       10907 │ 20,146,178    │               21 │
-│ cnbc            │        7391 │ 16,038,330    │               31 │
-│ businessinsider │        6772 │ 15,497,047    │               33 │
-│ bbc             │       29034 │ 15,373,615    │               11 │
-│ cbsnews         │        5514 │ 14,944,943    │               41 │
-│ news            │       34528 │ 13,992,972    │                7 │
-╘═════════════════╧═════════════╧═══════════════╧══════════════════╛</code></pre>
+<pre><code>| source          | frequency   | karma_score   |   frequency rank |
+|-----------------|-------------|---------------|------------------|
+| reuters         | 39,747      | 34,230,489    |                5 |
+| cnn             | 20,535      | 26,569,966    |               13 |
+| theguardian     | 24,648      | 24,930,338    |               12 |
+| apnews          | 20,407      | 23,547,749    |               14 |
+| nbcnews         | 10,907      | 20,146,178    |               21 |
+| cnbc            | 7,391       | 16,038,330    |               31 |
+| businessinsider | 6,772       | 15,497,047    |               33 |
+| bbc             | 29,034      | 15,373,615    |               11 |
+| cbsnews         | 5,514       | 14,944,943    |               41 |
+| news            | 34,528      | 13,992,972    |                7 |</code></pre>
 </div>
 </div>
 <p><b> Table 2.6: Top 10 Sources by Karma score </b> <br><br> Table 2.6, on the other hand, ranks the top 10 sources by the karma score. This table reveals that while Reuters may not have the highest posting frequency among the top sources, it garners the highest cumulative karma, suggesting a strong engagement from the Reddit community with the content provided by this source. <br><br> These analyses not only highlight the most active news sources but also offer insights into the quality of engagement that different sources inspire among Redditors. Such data is invaluable for understanding the landscape of news consumption and dissemination on one of the world’s largest social platforms.</p>

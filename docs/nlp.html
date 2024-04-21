@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,6 +67,25 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.12.1.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
 
 
 <link rel="stylesheet" href="style.css">
@@ -81,9 +100,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Reddit News Analysis
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./nlp.html">III. Natural Language Processing</a></li><li class="breadcrumb-item"><a href="./nlp.html">Natural Language Processing Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -142,6 +159,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">III. Natural Language Processing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nlp.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Natural Language Processing Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -152,18 +186,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Webpage Contents</h2>
    
   <ul>
-  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
-  <li><a href="#text-pre-processing" id="toc-text-pre-processing" class="nav-link" data-scroll-target="#text-pre-processing">Text Pre-Processing</a></li>
+  <li><a href="#text-pre-processing" id="toc-text-pre-processing" class="nav-link active" data-scroll-target="#text-pre-processing">Text Pre-Processing</a></li>
   <li><a href="#key-topics-in-submissions" id="toc-key-topics-in-submissions" class="nav-link" data-scroll-target="#key-topics-in-submissions">Key Topics in Submissions</a></li>
-  <li><a href="#identifying-key-entities-in-the-datasets" id="toc-identifying-key-entities-in-the-datasets" class="nav-link" data-scroll-target="#identifying-key-entities-in-the-datasets">Identifying Key Entities in the Datasets</a></li>
-  <li><a href="#assessing-sentiments-on-war-related-comments-and-submissions" id="toc-assessing-sentiments-on-war-related-comments-and-submissions" class="nav-link" data-scroll-target="#assessing-sentiments-on-war-related-comments-and-submissions">Assessing Sentiments on War Related Comments and Submissions</a></li>
+  <li><a href="#assessing-sentiments-on-comments" id="toc-assessing-sentiments-on-comments" class="nav-link" data-scroll-target="#assessing-sentiments-on-comments">Assessing Sentiments on Comments</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./nlp.html">III. Natural Language Processing</a></li><li class="breadcrumb-item"><a href="./nlp.html">Natural Language Processing Analysis</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Natural Language Processing Analysis</h1>
 </div>
@@ -182,135 +214,239 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="executive-summary" class="level2">
-<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
-In this round of analysis we worked with three <b> Natural Language Processing (NLP) </b> techniques namely
-<ul>
-<li>
-Topic Modeling
-</li>
-<li>
-Named Entity Recognition (NER)
-</li>
-<li>
-Sentiment Analysis
-</li>
-</ul>
-<p>Our results from both Topic Modeling and NER indicate widespread consumption of news on the ongoing Russia-Ukraine Conflict. In both cases we saw that the topics our model saw and the entities being referenced most often were either directly involved or adjacent to said conflict. We did see that when subsetting the data around events of the conflict, the topics our models produce had less overlap. Lastly, our Sentiment Analysis on submissions and comments related to the conflict suggested that submissions tended to be more negative while comments had an equal distribution of both negative and positive sentiments. The models appeared to demonstrate low neutrality in both submissions and comments.</p>
-</section>
 <section id="text-pre-processing" class="level2">
 <h2 class="anchored" data-anchor-id="text-pre-processing">Text Pre-Processing</h2>
-<p>We started off our analysis by assessing the number of words in the <i>title</i> and <i>body</i> columns of our datasets. They are represented in the two graphs below.</p>
-<p>Both these graphs in figures 1 and 2 are right skewed, reflecting that a major amount of both titles and comments are below 50 words.</p>
-Next, we moved on to preprocessing. In order to do the natural language processing (NLP) tasks, the corpuses of comments and submissions needed to face several steps of processing as listed below:<br>
-<ol>
-<li>
-Remove stop words
-</li>
-<li>
-Remove other languages
-</li>
-<li>
-Remove special characters
-</li>
-<li>
-Convert text to lower case
-</li>
-<li>
-Lemmatize words
-</li>
+<p>The data preprocessing pipeline involves several steps to prepare text data for topic modeling using LDA (Latent Dirichlet Allocation) and sentiment analysis in PySpark. Here’s a breakdown of the preprocessing steps: Here’s the description of the data preprocessing steps before applying the LDA model:</p>
+<ol type="1">
+<li><strong>Text Cleaning:</strong>
+<ul>
+<li>The comments data is cleaned using a custom cleaning function, likely to remove noise, such as special characters, stopwords, and irrelevant content.</li>
+<li>Additionally, potential typos are addressed by correcting typing errors and adding commonly occurring typos.</li>
+</ul></li>
+<li><strong>Identifying Misinformation:</strong>
+<ul>
+<li>A column named ‘misinfo_class’ is added to the dataset, indicating whether the comment contains misinformation-related keywords such as “fake news,” “bullshit,” “propaganda,” etc.</li>
+</ul></li>
+<li><strong>OtherPreparation:</strong>
+<ul>
+<li><strong>Tokenization</strong>: The titles of the posts are tokenized using the Tokenizer.</li>
+<li><strong>Stopword Removal</strong>: Common English stopwords and additional irrelevant terms are removed using the StopWordsRemover class.</li>
+<li><strong>Count Vectorization</strong>: The filtered tokens are converted into a numerical vector representation using the CountVectorizer class, limiting the vocabulary size to 5000 and considering only terms with a minimum document frequency of 25.</li>
+<li><strong>Inverse Document Frequency (IDF)</strong>: IDF is applied to the count vectorized features to down-weight the importance of frequent terms.</li>
+</ul></li>
 </ol>
-<p>The above listed preprocessing steps were applied to text portions of our submissions and comments datasets, on the columns <i>title</i> and <i>body</i> respectively. We used the <a href="https://sparknlp.org/">johnsnowlabs</a> package to conduct our preprocessing and implemented our preprocessing task through a pipeline. systematically converted to document file types and then tokenized. This transformed the data into a <i><b>bag of words</b></i> form and was used to accomplish the business goals below.</p>
-<p>After the preprocessing, we assessed the 15 most commonly occurring words in both the submissions and comments dataset as displayed in table 1.</p>
-<p><b> Table 3.1 : Most Common Words in the Submissions Datasets </b></p>
-<p><b> Table 3.2 : Most Common Words in the Comments Datasets </b></p>
-<p>It is evident from both tables 3.1 and 3.2 that the Russia-Ukraine Conflict dominates both in the submissions and comments datasets. This result agrees with our EDA analysis. Even when constructing a Word Cloud with the Submissions dataset, we found similar trends as displayed in figure 3.3 below.</p>
-<h3 class="anchored">
-Figure 3.3 : Word Cloud of Submissions Dataset
-</h3>
-<p><br></p>
-<p><br> Digging in further, we also evaluated the most important words using the <b>Term Frequency - Inverse Document Frequency (TF-IDF) </b> methodology and obtained the following results.</p>
-<p><b> Table 3.3 : Most Important Words in the Datasets </b></p>
-<p>The TF-IDF doesn’t reflect the dominance of war related submissions and comments obtained above. This will be further explored through our following analysis of dominant topics in the data.</p>
+<p>These preprocessing steps prepare the data for topic modeling using LDA and the following sentiment analysis, ensuring that the text data is properly cleaned, transformed into a suitable format, and mapped to meaningful topics for analysis.</p>
 <p><a id="topic_modeling"> </a></p>
 </section>
 <section id="key-topics-in-submissions" class="level2">
 <h2 class="anchored" data-anchor-id="key-topics-in-submissions">Key Topics in Submissions</h2>
-We employed topic modeling through <b>Latent Dirchlet Allocation (LDA)</b> on the cleaned titles of our submissions dataset and obtained 7 topic groups, which saw most of the groups dealing with the Russia-Ukraine Conflict, addressing its different facets. The topics were:
+We employed topic modeling through <b>Latent Dirichlet Allocation (LDA)</b> on the cleaned titles of our submissions dataset and obtained 8 topic groups, which covered various aspects of current affairs:
+<ol>
+<li>
+economics/russia&amp;ukraine
 <ul>
 <li>
-<b>Topic 1:</b> deals with the Russia-Ukraine Conflict and nuclear weapons, power plants
-</li>
-<li>
-<b>Topic 2:</b> deals with the Russia-Ukraine Conflict and the media/news coverage on the political leaders
-</li>
-<li>
-<b>Topic 3:</b> deals with the Russia-Ukraine Conflict and oil imports, the EU, laws, and regulation
-</li>
-<li>
-<b>Topic 4:</b> deals with the Russia-Ukraine Conflict as well as Twitter and Elon Musk
-</li>
-<li>
-<b>Topic 5:</b> news related to covid, China, and Korea
-</li>
-<li>
-<b>Topic 6:</b> deals with the Russia-Ukraine Conflict and neighbouring countries
-</li>
-<li>
-<b>Topic 7:</b> the Russia-Ukraine Conflict and the Qatar World Cup
+<b>Top words</b>: age, ukraine, new, height, indian, amp, crypto, russian, worth, wiki
 </li>
 </ul>
-<p>As stated, several of these topics related to the Russia-Ukraine Conflict directly. This high centralization of topic matter seemed to affect topics 4 and 7 which appeared to combine disparate subjects. The LDA topic visualization is displayed below.</p>
-<h3 class="anchored">
-Figure 3.4 : LDA Topic Visualization for Submissions Datset
-</h3>
-Further viewing the , utilizing google trends data we were able to determine events in the conflict which most affected internet traffic. Using this we sought to examine how such key events affected the subreddit’s submissions, ie news coverage. The first event selected was the start of the war, which we used to create a subset of the data that encompassed the first two weeks of the Russia-Ukraine Conflict and was modeled with only a topic count of 5. Its results saw the following topics:
+</li>
+<li>
+presidential news
 <ul>
 <li>
-<b>Topics 1, 2, 3, 5</b> all relating to the Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)
-</li>
-<li>
-<b>Topic 4</b> provided an interesting insight - it includes news related to Indian students in Ukraine, as well as Starlink and Elon Musk.
+<b>Top words</b>: free, crack, u.s., key, biden, download, first, president, new, say
 </li>
 </ul>
-<p>To provide context, topic 4 highlighted the early involvement of Musk in providing his satellite services to the country and the Nazi Azov battalion accosting foreign students attempting to flee.</p>
-<h3 class="anchored">
-Figure 3.5 : LDA Topic Visualization for Submissions Datset During the Start of the War
-</h3>
-<br> The second event we used from the trends coverage, was when Russia began withdrawing. After applying LDA once more, we saw the topic modelling results indicated:
+</li>
+<li>
+supreme court/law
 <ul>
 <li>
-<b>Topics 1, 2, 3, 4</b> all relating to Russia-Ukraine Conflict, with repeated terms (political leaders of both countries, cities in both countries, and weapons - missiles, nuclear, military, troops)
-</li>
-<li>
-<b>Topic 5</b> : news related to North Korea firing a ballistic missile over Japan.
+<b>Top words</b>: court, first, u.s., new, covid-19, covid, supreme, queen, cases
 </li>
 </ul>
-<p>As was stated, North Korea had fired a ballistic missile over Japan in the same time period and had been rapidly increasing the rate of testing. This appears to suggest that the smaller subsets of data might be more useful in capturing specific stories without overlapping the conflict with other topics.</p>
+</li>
+<li>
+global politics
+<ul>
+<li>
+<b>Top words</b>: market, global, eu, china, industry, new, u.s., report, amp
+</li>
+</ul>
+</li>
+<li>
+us politics
+<ul>
+<li>
+<b>Top words</b>: best, u.s., biden, hong, president, review, 2022, trump
+</li>
+</ul>
+</li>
+<li>
+covid/russia&amp;ukraine
+<ul>
+<li>
+<b>Top words</b>: news, covid, covid-19, new, russia, russian, day, ukraine, china
+</li>
+</ul>
+</li>
+<li>
+crime/protest
+<ul>
+<li>
+<b>Top words</b>: police, us, man, arrested, death, protests, trump, officer, years, murder
+</li>
+</ul>
+</li>
+<li>
+tv shows
+<ul>
+<li>
+<b>Top words</b>: episode, splitsvilla, mtv, show, full, getting, june
+</li>
+</ul>
+</li>
+</ol>
 <h3 class="anchored">
-Figure 3.6 : LDA Topic Visualization for Submissions Datset When Russian Troops Started Receding
+Figure 3.1 : LDA Topic Visualization based on Title
 </h3>
+<div id="03404701" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>                            <div id="78f438ca-efab-447b-b917-5bdd41446db3" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("78f438ca-efab-447b-b917-5bdd41446db3")) {                    Plotly.newPlot(                        "78f438ca-efab-447b-b917-5bdd41446db3",                        [{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hovertemplate":"topic=%{label}<br>count=%{value}<extra></extra>","labels":["us politics","economics/russia&ukraine","crime/protest","global politics","presidental news","tv shows","covid/russia&ukraine","supreme court/law"],"legendgroup":"","name":"","showlegend":true,"values":[2761048,5721107,11658072,4542845,5028581,2008234,11446475,6738106],"type":"pie"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"legend":{"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('78f438ca-efab-447b-b917-5bdd41446db3');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>Looking at Figure 3.1, almost half of the submissions relate to COVID-19, Russia/Ukraine, and crime/protest. Surprisingly, US politics is one of the smallest topic categories. This could be because many US news stories were more relevant to other categories like crime/ protest or presidential news.</p>
+<h3 class="anchored">
+Figure 3.2 : Misinformation Counts by Topic
+</h3>
+<div id="e017df29" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>                            <div id="a75b0b96-5880-427c-8287-b4a7fc0d0bec" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a75b0b96-5880-427c-8287-b4a7fc0d0bec")) {                    Plotly.newPlot(                        "a75b0b96-5880-427c-8287-b4a7fc0d0bec",                        [{"alignmentgroup":"True","hovertemplate":"topic=%{x}<br>count=%{y}<extra></extra>","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","offsetgroup":"","orientation":"v","showlegend":false,"textposition":"auto","x":["us politics","economics/russia&ukraine","crime/protest","global politics","presidental news","tv shows","covid/russia&ukraine","supreme court/law"],"xaxis":"x","y":[24261,47848,90683,35838,42871,14998,91546,59082],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"topic"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"tracegroupgap":0},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a75b0b96-5880-427c-8287-b4a7fc0d0bec');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p><br> Looking at Figure 3.2, the two largest misinformation comment counts are COVID/Russia and Ukraine war and crime/protest. Both topics have about 90,000 misinformation comments. These are also the two largest categories, as we can see in Figure 3.4. The Supreme Court and Law topic has about 60,000 comments on misinformation. The TV show topic has the least amount od misinformation comments with almost 15,000.</p>
 <p><a id="ner"> </a></p>
 </section>
-<section id="identifying-key-entities-in-the-datasets" class="level2">
-<h2 class="anchored" data-anchor-id="identifying-key-entities-in-the-datasets">Identifying Key Entities in the Datasets</h2>
-<p>The top 12 entities for person, location and organization are displayed in table 3. We used <a href="https://www.johnsnowlabs.com/named-entity-recognition-ner-with-bert-in-spark-nlp/">BERT </a> pretrained <b> Named Entity Recognition (NER) </b> models to accomplish this. Initially, when feeding the pre trained model with our pre-processed data, we found that Russia and Ukraine didn’t feature as one of the top entities. Upon re-running the model pipeline with unprocessed data, the results were more familiar.</p>
-<p>Given the density of topics demonstrated by the previous section’s analysis, the focus of the entities on the conflict should not come as a surprise. Using NER, we saw that just as the topics were heavily saturated with the Russia-Ukraine Conflict, the results for most frequently mentioned entities demonstrated this as well.</p>
-<p>In table 3.4, we can clearly see the prevalence of Putin, Biden, and Zelensky; but these persons are not the only noteworthy results. We also can see British political figures, Boris Johnson and Liz Truss, taking a prominent role in the results. Considering the domain table from our EDA, British news coverage made up some of the most popular sources for posts. This could be the reason for the British political figures being highlighted by the NER model.</p>
-<p>When examining the locations results, we saw Ukraine and Russia occur with much greater frequency than the other states, followed by the United States, which appeared twice, and China to a lesser extent.</p>
-<p>Lastly our organization based model appeared to return the most mixed results. The top three results were organizations that could easily indicate stories related to the Russia-Ukraine Conflict, but after this the results become less than ideal. Ukrainian cities, Russia, Covid, and Elon Musk were included in the results. This could be seen as a short coming of the models, but also testifies to the prevalence of the conflict in the subreddits submissions. It should also be noted that different n-grams and misspellings resulted in less refined results, and, as stated, the organization results were rather mixed. Table 3.4 displays the entities in the <b>decreasing order of occurence</b>.</p>
-<p><b> Table 3.4 : Top Entities in Submissions </b></p>
-<p><a id="sentiment"> </a></p>
-</section>
-<section id="assessing-sentiments-on-war-related-comments-and-submissions" class="level2">
-<h2 class="anchored" data-anchor-id="assessing-sentiments-on-war-related-comments-and-submissions">Assessing Sentiments on War Related Comments and Submissions</h2>
-<p>Based on our previous analysis in the EDA, it has been determined that the live threads in our subreddit were predisposed towards the Russia-Ukraine Conflict. The dominance of said conflict in the submissions was further supported by topic modeling results. We expected that such a topic would lead itself towards strong sentiments and were affirmed in that expectation through employing pre-trained sentiment models as shown in table 3.5 below.</p>
-<p><b> Table 3.5 : Sentiment Analysis Results From Live Thread Comments </b></p>
-<p>Although the Vivek analyzer categorized more comments as neutral, overall users appeared to have stronger sentiments, generally of a negative sort. This negative pattern was demonstrated to an equal extent by both the IMDB and Twitter models, without significant difference.</p>
-<p>Further sentiment analysis was done on submissions related to the Russia-Ukraine Conflict and their related comments, excluding the above analyzed live threads. The models appear to have similar trends, but it should be noted that that for the Twitter and IMDB models the submission titles, those of the articles being shared, were significantly more negative than the comments. Overall the title results for each model indicated 25.22% more overall negative sentiment than the related comment sentiment results, all of which can be seen in table 3.6 below.</p>
-<p><b> Table 3.6 : Sentiment Analysis of War-Related Submissions and Comments </b></p>
-<p>The stark difference in results between the Vivek Model and the Twitter and IMDB models is more apparent here. We assumed that titles would have demonstrated more neutral sentiment, as the Vivek model demonstrated; but assuming that the results IMDB and Twitter models are more reliable, marketing tactics may be the culprit for the perceived negativity. Given how article titles have increasingly become the method of user interaction in social media, drawing attention with inflammatory language can be a tactic for increasing user interest. This perceived negativity might also be explained by the dominance of Western Media outlets in this subreddit, that was seen in the EDA analysis.</p>
-<p>We attempted a lexicon based approach, but due to logistical issues we instead went forward with pretrained models <i> sentimentdl_use_twitter</i>, <i>sentimentdl_use_imdb</i> and <i> VivekSentimentAnalyzer </i>. In the future, we believe that training our own sentiment analyzer could improve the results.</p>
+<section id="assessing-sentiments-on-comments" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-sentiments-on-comments">Assessing Sentiments on Comments</h2>
+<p>To gain further insights into Reddit users’ attitudes toward different topics’ news, we employ sentiment analysis. VADER (Valence Aware Dictionary and sEntiment Reasoner) is utilized for this purpose. VADER is a rule-based sentiment analysis tool that evaluates the sentiment intensity of text. It operates by utilizing a pre-existing lexicon of words and linguistic rules to generate compound sentiment scores ranging from -1 to 1. Positive scores indicate positive sentiment, negative scores indicate negative sentiment, and scores around 0 denote neutrality.</p>
+<p>To implement sentiment analysis using VADER, we leverage the SentimentIntensityAnalyzer class from the vaderSentiment library. We define a function called vader_sentiment, which accepts text input, computes its VADER score using the polarity_scores method of the analyzer, and returns the compound score.</p>
+<h3 class="anchored">
+Figure 3.3 : Sentiment Intensity Frequency Across Vader Score Ranges
+</h3>
+<div id="54991a45" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>                            <div id="5cc86a27-f926-4ab2-b2df-67244a6c2b65" class="plotly-graph-div" style="height:400px; width:900px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("5cc86a27-f926-4ab2-b2df-67244a6c2b65")) {                    Plotly.newPlot(                        "5cc86a27-f926-4ab2-b2df-67244a6c2b65",                        [{"hovertemplate":"binned=%{x}<br>count=%{y}<extra></extra>","legendgroup":"","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"","orientation":"v","showlegend":false,"x":["[-1.0~-0.9]","[-0.9~-0.8]","[-0.8~-0.7]","[-0.7~-0.6]","[-0.6~-0.5]","[-0.5~-0.4]","[-0.4~-0.3]","[-0.3~-0.2]","[-0.2~-0.1]","[-0.1~0.0]"],"xaxis":"x","y":[138231,97334,73982,52322,63342,39018,36022,50474,22992,18361],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Vader Score Intervals"},"type":"category","tickangle":0,"showgrid":false},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Total Count"},"showgrid":true,"gridwidth":1,"gridcolor":"LightGrey"},"legend":{"tracegroupgap":0},"plot_bgcolor":"white","showlegend":false,"width":900,"height":400},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('5cc86a27-f926-4ab2-b2df-67244a6c2b65');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>The plot shows a declining trend from the interval [-1.0~-0.9] starting at just over 140,000, dropping sharply until the [0.8~-0.7] interval, then more gradually declining through the [0.7~-0.6] and [0.6~-0.5] intervals. There is a slight increase in frequency at the [0.5~-0.4] interval.</p>
+<p>This distribution suggests that the most common sentiment scores in the analyzed dataset are strongly negative, as indicated by the higher counts in the negative score ranges. The presence of a minor increase in the last interval might suggest a small concentration of sentiments in that particular range as well.</p>
+<h3 class="anchored">
+Figure 3.4 : Comparative Sentiment Distribution in Different News and Entertainment Sectors
+</h3>
+<div id="e890f6af" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>                            <div id="61e97f27-1862-43ad-9bed-a87c5b6e8016" class="plotly-graph-div" style="height:600px; width:1200px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("61e97f27-1862-43ad-9bed-a87c5b6e8016")) {                    Plotly.newPlot(                        "61e97f27-1862-43ad-9bed-a87c5b6e8016",                        [{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"us politics","textinfo":"percent+label","values":[19239,29264],"type":"pie","domain":{"x":[0.0,0.2125],"y":[0.625,1.0]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"economics/russia&ukraine","textinfo":"percent+label","values":[35744,55833],"type":"pie","domain":{"x":[0.2625,0.475],"y":[0.625,1.0]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"crime/protest","textinfo":"percent+label","values":[48657,63201],"type":"pie","domain":{"x":[0.525,0.7375],"y":[0.625,1.0]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"global politics","textinfo":"percent+label","values":[20609,32805],"type":"pie","domain":{"x":[0.7875,1.0],"y":[0.625,1.0]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"presidental news","textinfo":"percent+label","values":[21466,31371],"type":"pie","domain":{"x":[0.0,0.2125],"y":[0.0,0.375]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"tv shows","textinfo":"percent+label","values":[10391,14469],"type":"pie","domain":{"x":[0.2625,0.475],"y":[0.0,0.375]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"covid/russia&ukraine","textinfo":"percent+label","values":[49112,85289],"type":"pie","domain":{"x":[0.525,0.7375],"y":[0.0,0.375]},"textposition":"inside"},{"labels":["Below -0.8","Above -0.8"],"marker":{"colors":["rgba(255, 99, 132, 0.8)","rgba(54, 162, 235, 0.8)"]},"name":"supreme court/law","textinfo":"percent+label","values":[30347,44281],"type":"pie","domain":{"x":[0.7875,1.0],"y":[0.0,0.375]},"textposition":"inside"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"annotations":[{"font":{"size":16},"showarrow":false,"text":"us politics","x":0.10625,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"economics/russia&ukraine","x":0.36875,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"crime/protest","x":0.6312500000000001,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"global politics","x":0.89375,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"presidental news","x":0.10625,"xanchor":"center","xref":"paper","y":0.375,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"tv shows","x":0.36875,"xanchor":"center","xref":"paper","y":0.375,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"covid/russia&ukraine","x":0.6312500000000001,"xanchor":"center","xref":"paper","y":0.375,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"supreme court/law","x":0.89375,"xanchor":"center","xref":"paper","y":0.375,"yanchor":"bottom","yref":"paper"}],"title":{"text":""},"legend":{"orientation":"h","x":0.3,"y":-0.1},"font":{"size":12,"color":"navy"},"margin":{"t":20,"b":20,"l":0,"r":0},"height":600,"width":1200,"showlegend":true},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('61e97f27-1862-43ad-9bed-a87c5b6e8016');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>In Figure 3.4, we presents a set of four pie charts titled “Figure 3.4: Vader Score Distribution,” which illustrate the distribution of sentiment scores within four different categories: US politics, economics/Russia&amp;Ukraine, presidential news, and TV shows. Each pie chart is divided into two segments based on a threshold value of -0.8 on the Vader sentiment scale.</p>
+<p>US Politics: 60.3% of the sentiment scores are above -0.8, suggesting a more positive sentiment, while 39.7% are below -0.8, indicating a more negative sentiment. Economics/Russia&amp;Ukraine: 61% of scores are above -0.8, and 39% are below -0.8, also showing a predominance of more positive sentiment. Presidential News: 59.4% of the scores are above -0.8, while 40.6% are below -0.8. TV Shows: 58.2% are above -0.8, and 41.8% are below -0.8. The color coding is consistent across all charts, with blue representing scores above -0.8 and pink representing scores below -0.8. In all categories, the majority of sentiments are above -0.8, indicating a leaning towards more positive or neutral sentiments overall. The similarity in the distribution across different categories suggests a possible pattern in the sentiment of the content analyzed, with none of the categories showing an overwhelming negative sentiment.</p>
 
 
 </section>

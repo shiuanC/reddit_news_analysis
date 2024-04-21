@@ -16,9 +16,9 @@ website:
       - section: "Exploratory Data Analysis"
         contents:
           - eda.qmd
-      # - section: "III. Natural Language Processing"
-      #   contents:
-      #     - nlp.qmd
+      - section: "III. Natural Language Processing"
+        contents:
+          - nlp.qmd
       # - section: "IV. Machine Learning"
       #   contents:
       #     - ml.qmd

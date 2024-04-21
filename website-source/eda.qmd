@@ -86,8 +86,22 @@ In this analysis, we investigate the disparity in the number of posts across dif
 # Reading the CSV files into Pandas DataFrames
 comments_per_year_df = pd.read_csv('../data/csv/comments_per_year.csv')
 submissions_per_year_df = pd.read_csv('../data/csv/submissions_per_year.csv')
-print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False))
+# print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False, justify="right"))
 
+# Convert DataFrame to markdown with default left alignment
+markdown_table = submissions_per_year_df.to_markdown(index=False)
+
+# Split each row by newline character and align each cell to the right
+right_aligned_rows = [
+    ' | '.join([f"{cell:>20}" for cell in row.split(" | ")])
+    for row in markdown_table.split('\n')
+]
+
+# Join the rows back together
+right_aligned_table = '\n'.join(right_aligned_rows)
+
+# Print or use the right-aligned table as needed
+print(right_aligned_table)
 ```
 
 <b> Table 2.1: Submissions Per Year </b> 
@@ -97,7 +111,7 @@ print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = Fa
 #| echo: false
 #| warning: false 
 
-comments_per_year_df['count'] = comments_per_year_df['count'].apply(str)
+comments_per_year_df['count'] = comments_per_year_df['count'].apply(lambda x: f"{x:,}")
 print(comments_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False))
 
 ```
@@ -153,7 +167,7 @@ top_worldnews_authors = pd.read_csv('../data/csv/top_worldnews_authors.csv')
 top_worldnews_authors = top_worldnews_authors.iloc[1: , :]
 
 
-print(top_news_authors.to_markdown(tablefmt = "fancy_outline", index = False))
+print(top_news_authors.to_markdown(tablefmt = "fancy_outline", index = False,  ))
 
 ```
 <b> Table 2.4: Top 10 Active User in News Subreddit </b> 
@@ -163,7 +177,7 @@ print(top_news_authors.to_markdown(tablefmt = "fancy_outline", index = False))
 #| echo: false
 #| warning: false
 
-print(top_worldnews_authors.to_markdown(tablefmt = "fancy_outline", index = False))
+print(top_worldnews_authors.to_markdown(tablefmt = "fancy_outline", index = False,  ))
 
 ```
 <b> Table 2.5:  Top 10 Active User in World News Subreddit </b> 
@@ -210,13 +224,13 @@ top100_source_df['score rank'] = top100_source_df['karma_score'].rank(method='ma
 top100_source_df['frequency rank'] = top100_source_df['frequency'].rank(method='max', ascending=False).astype(int)
 
 # Convert 'frequency' and 'karma_score' to strings
-top100_source_df['frequency'] = top100_source_df['frequency'].apply(str)
-top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(str)
+top100_source_df['frequency'] = top100_source_df['frequency'].apply(lambda x: f"{x:,}")
+top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(lambda x: f"{x:,}")
 
 # Selecting the top result to display
 top_frequency = top100_source_df.head(10)[["source", "frequency", "karma_score", "score rank"]]
 
-print(top_frequency.to_markdown(tablefmt = "fancy_outline", index = False))
+print(top_frequency.to_markdown(tablefmt = "github", index = False))
 
 ```
 <b> Table 2.5: Top 10 Sources by Frequency </b> 
@@ -228,14 +242,14 @@ Table 2.5 lists the top 10 sources by the frequency of posts. Reuters takes the 
 #| echo: false
 #| warning: false
 #| 
-top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(int)
+top100_source_df['karma_score'] = top100_source_df['karma_score'].str.replace(',', '').apply(int)
 
 top100_source_df.sort_values(by='karma_score', ascending=False, inplace=True)
 top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(lambda x: f"{x:,}")
 
 top_score = top100_source_df.head(10)[["source", "frequency", "karma_score", "frequency rank"]]
 
-print(top_score.to_markdown(tablefmt = "fancy_outline", index = False))
+print(top_score.to_markdown(tablefmt = "github", index = False, ))
 
 ```
 <b> Table 2.6: Top 10 Sources by Karma score </b> 
