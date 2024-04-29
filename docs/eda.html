@@ -280,7 +280,7 @@ In the <b> Comments </b> dataset :<br>
 <section id="analyzing-weekly-activity-trends" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-weekly-activity-trends">Analyzing Weekly Activity Trends</h2>
 <p>In this section, we delve into understanding the patterns of user engagement on Reddit. We begin by examining the distribution of activity across different days of the week, extracted from the DateTime variable. By grouping the data based on these days, we quantify the frequency of user interactions, both in terms of comments and submissions. The insights derived from this analysis are visually represented through a bar graph in Figure 2.1 and Figure 2.2.</p>
-<div id="a74364d3" class="cell" data-execution_count="2">
+<div id="fc92e701" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <figure class="figure">
@@ -290,7 +290,7 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Figure 2.1: Number of submissions per day of the week from 2021-2023 </b> <br><br> As shown in Figure 2.1, the trend for submissions exhibits a significant dip during the weekends. This suggests that users are less likely to initiate new threads or topics on Saturday and Sunday.A potential factor contributing to this weekend slump could be the downtime in news cycles, as journalists and news outlets typically slow down on these days.Interestingly, Thursday is the busiest day for submissions, contrary to the intuitive expectation that Monday would start the week with a surge.</p>
-<div id="f3cfedb1" class="cell" data-execution_count="3">
+<div id="b34806e2" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <figure class="figure">
@@ -305,7 +305,7 @@ In the <b> Comments </b> dataset :<br>
 <section id="analyzing-post-frequency-by-year" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-post-frequency-by-year">Analyzing Post Frequency by Year</h2>
 <p>In this analysis, we investigate the disparity in the number of posts across different years. Utilizing the DateTime variable, we extract the year component to group the data accordingly. The findings are presented in two separate tables: Table 2.1 for submissions and Table 2.2 for comments.</p>
-<div id="2bf4309f" class="cell" data-execution_count="4">
+<div id="8856d314" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒════════╤═════════╕
 │   year │   count │
@@ -317,7 +317,7 @@ In the <b> Comments </b> dataset :<br>
 </div>
 </div>
 <p><b> Table 2.1: Submissions Per Year </b> <br><br></p>
-<div id="d57ac493" class="cell" data-execution_count="5">
+<div id="c8158042" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒════════╤══════════╕
 │   year │    count │
@@ -331,7 +331,7 @@ In the <b> Comments </b> dataset :<br>
 <p><b> Table 2.2: Comments Per Year </b> <br><br> The analysis of post frequency by year reveals intriguing trends. While there is a notable decline in submissions from 2021 to 2023, the number of comments exhibits a contrasting pattern, with a significant increase observed from 2021 to 2022 followed by a decline in 2023. This divergence suggests a potential shift in user behavior towards increased engagement with existing content rather than generating new posts. Further investigation into the underlying factors influencing this trend could provide valuable insights into evolving user preferences and platform dynamics.</p>
 <p><a id="EDA3_FakeNews"> </a> ## Assessing Percentage of Comments with Fake News Indicators</p>
 <p>To evaluate the prevalence of fake news indicators in comments, we employed regex to detect phrases such as “fake news,” “bullshit,” or “propaganda.” Subsequently, a fake news indicator column was created to denote the presence of these phrases in comments. Grouping the data by this indicator column, we tallied the counts and visualized the findings in a chart. Among the total comments analyzed, 407,621 were flagged as containing fake news indicators, while the majority, comprising 49,562,279 comments, were deemed free from such indicators. This signifies that approximately 0.8% of comments were identified as potentially containing fake news elements. Further exploration into the context and implications of these comments could offer valuable insights into the dissemination of misinformation within online communities.</p>
-<div id="c0544956" class="cell" data-execution_count="6">
+<div id="0fc000d2" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <figure class="figure">
@@ -347,7 +347,7 @@ In the <b> Comments </b> dataset :<br>
 <h2 class="anchored" data-anchor-id="analyzing-user-activity">Analyzing User Activity</h2>
 <p>As we delve into the dynamics of user interactions within the news-centric communities on Reddit, we encounter some intriguing patterns. The subreddit under examination boasts 31.5 million subscribers. However, a closer inspection reveals that in the past year, approximately 27,000 unique users have made submissions, and around 1.2 million have commented.</p>
 <p>A minute fraction of these users contribute the bulk of the submissions, which is delineated in Figure 2.4. This chart illustrates a comparison of posting frequency among the top 10 users in both the News and World News subreddits. The disparity is stark; the top-ranked user alone is responsible for more than 60,000 submissions in the News subreddit, significantly overshadowing the rest.</p>
-<div id="e26e1e09" class="cell" data-execution_count="7">
+<div id="d1720e82" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <figure class="figure">

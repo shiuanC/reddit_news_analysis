@@ -248,7 +248,7 @@ Create a features vector containing the terms columns and topic column
 Use features vector in the logistic regression model
 </li>
 <p><br> <b> Table 4.1 : Articles with Misinformation Counts </b></p>
-<div id="d7ef41a2" class="cell" data-execution_count="2">
+<div id="d2836b39" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒══════════════════════╤═════════╕
 │ label                │   count │
@@ -260,7 +260,7 @@ Use features vector in the logistic regression model
 </div>
 <p>Table 4.1 shows the original data frame with uneven classes. Since articles with misinformation comments were underrepresented, we decided to undersample the articles with no misinformation comments, resulting in the ratio shown in the next table.</p>
 <p><b> Table 4.2 : Undersampling Counts </b></p>
-<div id="4c23c7ec" class="cell" data-execution_count="3">
+<div id="bc7b5e81" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒══════════════════════╤═════════╕
 │ label                │   count │
@@ -273,7 +273,7 @@ Use features vector in the logistic regression model
 <p>Table 4.2 shows the sample from the entire dataset when undersampling the articles with no comments claiming misinformation. Here, we can see that the classes are almost equa, allowing us to proceed with the logistic regression. <br></p>
 <p>The model had an accuracy of about 56% on the test data and 54% on the training dataset. The confusion matrix is shown below.</p>
 <p><b> Table 4.3 : Confusion Matrix </b></p>
-<div id="7028d965" class="cell" data-execution_count="4">
+<div id="8436fc16" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <figure class="figure">
@@ -283,7 +283,7 @@ Use features vector in the logistic regression model
 </div>
 </div>
 <p><b> Table 4.4 : Logistic Regression Table </b></p>
-<div id="772e7e01" class="cell" data-execution_count="5">
+<div id="228e6c9f" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>╒═══════════════════╤══════════════╤═══════════════╤══════════════════════════════════╤═════════════════════════════════════╤══════════════╤═════════════════════════════════════╕
 │ topic             │   true label │   false label │   incorrectly labeled as misinfo │   incorrectly labeled as no misinfo │   true ratio │   incorrectly labeled misinfo ratio │
