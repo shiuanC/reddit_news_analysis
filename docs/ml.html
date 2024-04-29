@@ -81,9 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Reddit News Analysis
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ml.html">IV. Machine Learning</a></li><li class="breadcrumb-item"><a href="./ml.html">Machine Learning Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,6 +157,23 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">IV. Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ml.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Machine Learning Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -170,16 +185,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
-  <li><a href="#supervised-sentiment-learning" id="toc-supervised-sentiment-learning" class="nav-link" data-scroll-target="#supervised-sentiment-learning">Supervised Sentiment Learning</a></li>
-  <li><a href="#predicting-controversiality" id="toc-predicting-controversiality" class="nav-link" data-scroll-target="#predicting-controversiality">Predicting Controversiality</a></li>
-  <li><a href="#further-analysis-predicting-karma-scores" id="toc-further-analysis-predicting-karma-scores" class="nav-link" data-scroll-target="#further-analysis-predicting-karma-scores">Further Analysis (Predicting Karma Scores)</a></li>
+  <li><a href="#misinformation-article-prediction" id="toc-misinformation-article-prediction" class="nav-link" data-scroll-target="#misinformation-article-prediction">Misinformation article Prediction</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ml.html">IV. Machine Learning</a></li><li class="breadcrumb-item"><a href="./ml.html">Machine Learning Analysis</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Machine Learning Analysis</h1>
 </div>
@@ -200,34 +213,96 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="executive-summary" class="level2">
 <h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
-<p>For our Machine Learning (ML) Analysis we accomplished two separate tasks, one predicting comment sentiment and the second predicting comment controversy. We saw that an SVM model using cross validation was best at predicting comment sentiment, leading in all grading metrics we checked. This sentiment prediction model was saved following the results, with its training. For the models predicting comment controversy, we saw high overall accuracy, but that seemed to have been a result of class imbalance. We describe where the large imbalance between controversial and noncontroversial comments may have come from, and how it may have affected our results. <br></p>
-<p>Additionally we attempted to implement a model outside of our business goals to see whether we would be able to predict karma scores. While we saw promising results for the first two, our karma scores models faced several issues and had what we considered ‘pitiful’ results, due to its low accuracy. We have chosen instead to include it in the further analysis section below.</p>
-<p><a id="super_sentiment"> </a></p>
+<p>For our Machine Learning (ML) we had two goals: to predict what articles would be percieved as misindotmation and to examine the network analysis between topics. We used logistic regression to predict if an article would be percieved as misinformation. We used the top 10 words in each topic as dummy variables to assist in our prediction. Though this did not lead to high accuracy, there were some interesting findings which we will detail below. <br></p>
+<p><a id="Prediction"> </a></p>
 </section>
-<section id="supervised-sentiment-learning" class="level2">
-<h2 class="anchored" data-anchor-id="supervised-sentiment-learning">Supervised Sentiment Learning</h2>
-<p>For training a sentiment classifier, we needed sentiment labels on part of our dataset. To generate these labels, we used the <a href="https://vadersentiment.readthedocs.io/en/latest/" target="_blank">vaderSentiment</a> python package and tweaked the cluster bootstrap script to install the packages on the driver nodes. A portion of the comments dataset (20%) was labelled using this Vader-Sentiment lexicon. These comments were then used to train a sentiment classifier using supervised learning models namely Logistic Regression, Multinomial Naive Bayes and Support Vector Machines (SVM). After applying 5-fold cross-validation and tuning hyperparameters, we obtained evaluation metrics for the three models as displayed below in table 1.</p>
-<p><b> Table 4.1 : Evaluation Metrics for Supervised Sentiment Models </b></p>
-<p>From table 4.1, it is evident that Support Vector Machines performed the best. This model was then saved and used to label the remaining 80% of the comments dataset. Figure 1 portrays the distribution of sentiments across the comments dataset.</p>
-<p>This model classifies more comments as neutral as compared to the pre-trained models deployed in the Natural Language Processing analysis section. This is reflected in figure 2 where the sentiment distribution of live thread comments is presented.</p>
-<p>Vader-Sentiment lexicon is optimized to work with tweets. Despite this, we observe no similarity with the pre-trained twitter model and the Vader-Sentiment model.</p>
-<p><a id="controversiality"> </a></p>
-</section>
-<section id="predicting-controversiality" class="level2">
-<h2 class="anchored" data-anchor-id="predicting-controversiality">Predicting Controversiality</h2>
-<p>To accomplish this goal, we converted the text data to TF-IDF weighted vectors of the terms and used them as the input for a variety of models. Testing Logistic Regression, LinearSVC, and NaiveBayes models we sought to predict the controversiality in our comments, the results of which are listed below.</p>
-<p><b> Figure 4.3 : ROC Curves for Different Models </b></p>
-<p>Although the ROC curves would indicate that logistic regression was the best performing model, that may be a result of the class imbalance in controversiality. During our preprocessing steps we removed comments that were listed as ‘removed’ or ‘deleted’. We suspect that such comments removal likely affected the predictive capacity of our data set, compounding on the already existing class balance issues.</p>
-<p><b> Table 4.2 : Evaluation Metrics for Controversiality Prediction Models </b></p>
-<p>In this table we see that both Logistic Regression and Linear SVC have seemingly perfect recall scores, a result of them almost entirely ignoring comments with <i>controversiality </i> labeled as 1. This appears to confirm our supposition that the underlying class imbalance in our dataset has led to biased models. We believe that this could be further improved in future analysis through the institution of oversampling or undersampling methods or training models such as Complement Naive Bayes that account for class imbalances.</p>
-<p><a id="future_analysis"> </a></p>
-</section>
-<section id="further-analysis-predicting-karma-scores" class="level2">
-<h2 class="anchored" data-anchor-id="further-analysis-predicting-karma-scores">Further Analysis (Predicting Karma Scores)</h2>
-<p>We also aimed at constructing a regression model to predict the <i>score</i> column in our comments dataset. For this purpose, we used a multitude of predictors such as <i>sentiment_label</i> (obtained from previously trained sentiment classifier), <i>gilded</i>, and <i>distinguished</i> to name a few. Our initial implementation of Linear Regression and Decision Tree models produced sub-optimal (R-squared value of 7%) results. We plan to further work on this task by tuning hyperparameters, assessing scaling requirements and incorporating additional predictors to obtain a well-performing regression model.</p>
+<section id="misinformation-article-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="misinformation-article-prediction">Misinformation article Prediction</h2>
+We used the following steps in our Logistic Regression model:
+<ol>
+<li>
+Group by article ID and get count of comments with misinformation indicators
+</li>
+<li>
+Any article with one or more misinformation indicators will be a perceived misinformation article
+</li>
+<li>
+Merge this dataframe with a dataframe containing the id, topic and title of the article
+</li>
+<li>
+Delete duplicates since the previous data frame was each row as a comment under article
+</li>
+<li>
+Add dummy columns for top words in articles
+</li>
+<li>
+Convert label and topic columns to numerical representation
+</li>
+<li>
+Create a vector for the topics column
+</li>
+<li>
+Create a features vector containing the terms columns and topic column
+</li>
+<li>
+Use features vector in the logistic regression model
+</li>
+<p><br> <b> Table 4.1 : Articles with Misinformation Counts </b></p>
+<div id="d7ef41a2" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒══════════════════════╤═════════╕
+│ label                │   count │
+╞══════════════════════╪═════════╡
+│ no perceived misinfo │  367441 │
+│ perceived misinfo    │   76555 │
+╘══════════════════════╧═════════╛</code></pre>
+</div>
+</div>
+<p>Table 4.1 shows the original data frame with uneven classes. Since articles with misinformation comments were underrepresented, we decided to undersample the articles with no misinformation comments, resulting in the ratio shown in the next table.</p>
+<p><b> Table 4.2 : Undersampling Counts </b></p>
+<div id="4c23c7ec" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒══════════════════════╤═════════╕
+│ label                │   count │
+╞══════════════════════╪═════════╡
+│ no perceived misinfo │   91922 │
+│ perceived misinfo    │   76555 │
+╘══════════════════════╧═════════╛</code></pre>
+</div>
+</div>
+<p>Table 4.2 shows the sample from the entire dataset when undersampling the articles with no comments claiming misinformation. Here, we can see that the classes are almost equa, allowing us to proceed with the logistic regression. <br></p>
+<p>The model had an accuracy of about 56% on the test data and 54% on the training dataset. The confusion matrix is shown below.</p>
+<p><b> Table 4.3 : Confusion Matrix </b></p>
+<div id="7028d965" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<figure class="figure">
+<p><img src="ml_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b> Table 4.4 : Logistic Regression Table </b></p>
+<div id="772e7e01" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>╒═══════════════════╤══════════════╤═══════════════╤══════════════════════════════════╤═════════════════════════════════════╤══════════════╤═════════════════════════════════════╕
+│ topic             │   true label │   false label │   incorrectly labeled as misinfo │   incorrectly labeled as no misinfo │   true ratio │   incorrectly labeled misinfo ratio │
+╞═══════════════════╪══════════════╪═══════════════╪══════════════════════════════════╪═════════════════════════════════════╪══════════════╪═════════════════════════════════════╡
+│ emerging tech     │        10128 │          7238 │                             1237 │                                6001 │     0.583209 │                            0.829096 │
+│ social media      │         8416 │          6519 │                             2918 │                                3601 │     0.563509 │                            0.552385 │
+│ current events    │         8745 │          6909 │                             3118 │                                3791 │     0.558643 │                            0.548705 │
+│ covid             │         7345 │          4668 │                              599 │                                4069 │     0.611421 │                            0.87168  │
+│ russia&amp;ukraine    │        25208 │         19796 │                             4751 │                               15045 │     0.560128 │                            0.760002 │
+│ demographic info  │         3962 │          2823 │                              269 │                                2554 │     0.583935 │                            0.904711 │
+│ tv shows          │         3719 │          2196 │                              108 │                                2088 │     0.62874  │                            0.95082  │
+│ foriegn relations │         9750 │          7322 │                             1615 │                                5707 │     0.571111 │                            0.779432 │
+╘═══════════════════╧══════════════╧═══════════════╧══════════════════════════════════╧═════════════════════════════════════╧══════════════╧═════════════════════════════════════╛</code></pre>
+</div>
+</div>
+<p>Overall, the model was not too accurate. The table below shows analysis by topic. We can see that the model was slightly more accurate at predicting perceived misinformation in COVID news and TV shows. It was slightly less accurate at predicting misinformation in current events. The final column shows the ratio of articles incorrectly labeled as containing no misinformation comments over the total number of falsely predicted articles. It basically shows the ratio of false negatives over false positives and false negatives. We can see the ratio is significantly higher for the topics: tv shows, demographic information, and covid. Foreign events and social media have the smallest ratio at about .55.</p>
 
 
-</section>
+</ol></section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -640,19 +715,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Content {{&lt; fa brands creative-commons &gt;}} 2023 by Team 6 <br> All content licensed under a {{&lt; fa brands creative-commons &gt;}} {{&lt; fa brands creative-commons-by &gt;}} {{&lt; fa brands creative-commons-nc &gt;}} <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>Made with <a href="https://code.visualstudio.com/">VSCode</a> and <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-ppol567-project/ppol-567-final-project-team-6.git">View the Code source at GitHub</a></p>
-</div>
-  </div>
-</footer>
 
 
 

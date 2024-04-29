@@ -9,20 +9,86 @@ import plotly.express as px
 import ipywidgets as widgets
 import IPython
 
+from IPython.display import display, Markdown
+from IPython.display import Image
 ```
 
 ## Executive Summary 
-For our Machine Learning (ML) Analysis we accomplished two separate tasks, one predicting comment sentiment and the second predicting comment controversy. We saw that an SVM model using cross validation was best at predicting comment sentiment, leading in all grading metrics we checked. This sentiment prediction model was saved following the results, with its training. For the models predicting comment controversy, we saw high overall accuracy, but that seemed to have been a result of class imbalance. We describe where the large imbalance between controversial and noncontroversial comments may have come from, and how it may have affected our results. <br>
+For our Machine Learning (ML) we had two goals: to predict what articles would be percieved as misindotmation and to examine the network analysis between topics. We used logistic regression to predict if an article would be percieved as misinformation. We used the top 10 words in each topic as dummy variables to assist in our prediction. Though this did not lead to high accuracy, there were some interesting findings which we will detail below. <br>
 
-Additionally we attempted to implement a model outside of our business goals to see whether we would be able to predict karma scores. While we saw promising results for the first two, our karma scores models faced several issues and had what we considered 'pitiful' results, due to its low accuracy. We have chosen instead to include it in the further analysis section below.
 
-<a id = "super_sentiment"> </a> 
+<a id = "Prediction"> </a> 
 
-## Supervised Sentiment Learning 
+## Misinformation article Prediction
+
+We used the following steps in our Logistic Regression model: 
+<ol>
+ <li>Group by article ID and get count of comments with misinformation indicators</li>
+ <li>Any article with one or more misinformation indicators will be a perceived misinformation article</li>
+ <li>Merge this dataframe with a dataframe containing the id, topic and title of the article</li>
+ <li>Delete duplicates since the previous data frame was each row as a comment under article</li>
+ <li>Add dummy columns for top words in articles </li>
+ <li>Convert label and topic columns to numerical representation</li>
+ <li>Create a vector for the topics column</li>
+ <li>Create a features vector containing the terms columns and topic column</li>
+ <li>Use features vector in the logistic regression model</li>
  
-For training a sentiment classifier, we needed sentiment labels on part of our dataset. To generate these labels, we used the <a href = "https://vadersentiment.readthedocs.io/en/latest/" target = _blank>vaderSentiment</a> python package and tweaked the cluster bootstrap script to install the packages on the driver nodes. A portion of the comments dataset (20%) was labelled using this Vader-Sentiment lexicon. These comments were then used to train a sentiment classifier using supervised learning models namely Logistic Regression, Multinomial Naive Bayes and Support Vector Machines (SVM). After applying 5-fold cross-validation and tuning hyperparameters, we obtained evaluation metrics for the three models as displayed below in table 1. 
+<br>
+<b> Table 4.1 : Articles with Misinformation Counts </b> 
 
-<b> Table 4.1 : Evaluation Metrics for Supervised Sentiment Models </b> 
+```{python}
+#| echo: false
+#| warning: false
+articles_classified = pd.read_csv('../data/csv/articles_classified.csv')
+print(articles_classified.to_markdown(tablefmt = "fancy_outline", index = False))
+
+
+```
+
+Table 4.1 shows the original data frame with uneven classes. Since articles with misinformation comments were underrepresented, we decided to undersample the articles with no misinformation comments, resulting in the ratio shown in the next table.
+
+<b> Table 4.2 : Undersampling Counts </b> 
+```{python}
+#| echo: false
+#| warning: false
+sample_misinfo_count = pd.read_csv('../data/csv/sample_misinfo_count.csv')
+print(sample_misinfo_count.to_markdown(tablefmt = "fancy_outline", index = False))
+
+```
+
+Table 4.2 shows the sample from the entire dataset when undersampling the articles with no comments claiming misinformation. Here, we can see that the classes are almost equa, allowing us to proceed with the logistic regression. <br>
+
+The model had an accuracy of about 56% on the test data and 54% on the training dataset. The confusion matrix is shown below.
+
+<b> Table 4.3 : Confusion Matrix </b> 
+```{python}
+#| echo: false
+#| warning: false
+Image(filename="../data/plots/confusion.png", unconfined=True)
+
+```
+
+<b> Table 4.4 : Logistic Regression Table </b> 
+```{python}
+#| echo: false
+#| warning: false
+ml_analysis_table = pd.read_csv('../data/csv/ml_analysis_table.csv')
+print(ml_analysis_table.to_markdown(tablefmt = "fancy_outline", index = False))
+
+```
+
+Overall, the model was not too accurate. The table below shows analysis by topic. We can see that the model was slightly more accurate at predicting perceived misinformation in COVID news and TV shows. It was slightly less accurate at predicting misinformation in current events. The final column shows the ratio of articles incorrectly labeled as containing no misinformation comments over the total number of falsely predicted articles. It basically shows the ratio of false negatives over false positives and false negatives. We can see the ratio is significantly higher for the topics: tv shows, demographic information, and covid. Foreign events and social media have the smallest ratio at about .55. 
+
+
+```{python}
+#| echo: false
+#| warning: false
+
+
+```
+
+
+ 
 
 ```{python}
 #| echo: false
@@ -32,62 +98,6 @@ For training a sentiment classifier, we needed sentiment labels on part of our d
 
 ```
 
-From table 4.1, it is evident that Support Vector Machines performed the best. This model was then saved and used to label the remaining 80% of the comments dataset. Figure 1 portrays the distribution of sentiments across the comments dataset. 
 
-
-```{python}
-#| echo: false
-#| warning: false
-
-
-```
-
-This model classifies more comments as neutral as compared to the pre-trained models deployed in the Natural Language Processing analysis section. This is reflected in figure 2 where the sentiment distribution of live thread comments is presented. 
-
-```{python}
-#| echo: false
-#| warning: false
-
-
-```
-
-Vader-Sentiment lexicon is optimized to work with tweets. Despite this, we observe no similarity with the pre-trained twitter model and the Vader-Sentiment model. 
-
-<a id = "controversiality"> </a> 
-
-## Predicting Controversiality
-
-To accomplish this goal, we converted the text data to TF-IDF weighted vectors of the terms and used them as the input for a variety of models. Testing Logistic Regression, LinearSVC, and NaiveBayes models we sought to predict the controversiality in our comments, the results of which are listed below.
-
-<b> Figure 4.3 : ROC Curves for Different Models </b>
-
-```{python}
-#| echo: false
-#| warning: false
-
-
-```
-
-Although the ROC curves would indicate that logistic regression was the best performing model, that may be a result of the class imbalance in controversiality. During our preprocessing steps we removed comments that were listed as 'removed' or 'deleted'. We suspect that such comments removal likely affected the predictive capacity of our data set, compounding on the already existing class balance issues.
-
-<b> Table 4.2 : Evaluation Metrics for Controversiality Prediction Models </b> 
-
-```{python}
-#| echo: false
-#| warning: false
-
-
-
-
-
-```
-
-In this table we see that both Logistic Regression and Linear SVC have seemingly perfect recall scores, a result of them almost entirely ignoring comments with <i>controversiality </i> labeled as 1. This appears to confirm our supposition that the underlying class imbalance in our dataset has led to biased models. We believe that this could be further improved in future analysis through the institution of oversampling or undersampling methods or training models such as Complement Naive Bayes that account for class imbalances.
-
-<a id = "future_analysis"> </a> 
-
-## Further Analysis (Predicting Karma Scores)
-
-We also aimed at constructing a regression model to predict the <i>score</i> column in our comments dataset. For this purpose, we used a multitude of predictors such as <i>sentiment_label</i> (obtained from previously trained sentiment classifier), <i>gilded</i>, and <i>distinguished</i> to name a few. Our initial implementation of Linear Regression and Decision Tree models produced sub-optimal (R-squared value of 7%) results. We plan to further work on this task by tuning hyperparameters, assessing scaling requirements and incorporating additional predictors to obtain a well-performing regression model.    
 
 

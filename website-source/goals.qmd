@@ -6,19 +6,18 @@
 <b> Technical proposal: </b> To find this, we will extract the day from the DateTime variable. We will then group by the new day variable and count the group by data. We will create a bar graph of the counts to visualize the findings. This will be conducted for both comments and submissions.</div> </div>
 <br> 
 <br>
-
 <div class = "goals_format">
-<b> <a href = "eda.qmd#EDA2_DifferencePosts" class = "eda_goal_link">Business Goal - 2 :</a></b> Determine the frequency of fake news identifiers.<br>
-<div class = "tech_format">
-<b>Technical proposal :</b> We will extract the year from the DateTime variable. Using this, we will group by year and count the grouped data. We will visualize our findings in a table that includes comments and submissions. </div> </div> 
-<br>
-<br>
-<div class = "goals_format">
-<b> <a href = "eda.qmd#EDA3_FakeNews" class = "eda_goal_link">Business Goal - 3 :</a></b> Determine which fake news identifier is used the most.
+<b> <a href = "eda.qmd#EDA2_FakeNews" class = "eda_goal_link">Business Goal - 2 :</a></b> Determine which fake news identifier is used the most.
 <br> 
 <div class = "tech_format">
 <b>Technical Proposal :</b> First, we will utilize regex to match on different fake news identifiers like bullshit, propaganda, or fake news. Using this, we will create a fake news indicator column that shows if the phrase was present in the comment. Then, we will group by the indicator column and count the groups. We will visualize our findings in a table.</div> </div>
 <br> 
+<br>
+<div class = "goals_format">
+<b> <a href = "eda.qmd#EDA3_DifferencePosts" class = "eda_goal_link">Business Goal - 3 :</a></b> Determine the difference in the number of posts by year.<br>
+<div class = "tech_format">
+<b>Technical proposal :</b> We will extract the year from the DateTime variable. Using this, we will group by year and count the grouped data. We will visualize our findings in a table that includes comments and submissions. </div> </div> 
+<br>
 <br>
 <div class = "goals_format">
 <b><a href = "eda.qmd#EDA4: Active Users" class = "eda_goal_link">Business Goal - 4 :</a></b> Who are those most active accounts in these news subreddits?
@@ -37,8 +36,10 @@
 
 ## Natural Language Processing Goals 
 <div class = "nlp_goals_format">
-<b><a href = "" class = "nlp_goal_link">Business Goal - 6 :</a></b> Determine the news topics that are interacted with the most.
-<br><!--<b><a href = "nlp.qmd#topic_modeling" class = "nlp_goal_link">Business Goal - 6 :</a></b> -->
+<!--<b><a href = "nlp.qmd#topic_modeling" class = "nlp_goal_link">Business Goal - 6 :</a></b> -->
+<b><a href = "" class = "nlp_goal_link">Business Goal - 6 :</a></b> 
+Determine the news topics that are interacted with the most.
+<br>
 Among all types of news, which category do people concern about the most? Is it related to war, disaster,  food crisis or something else?
 <br>
 <div class = "nlp_tech_format">
@@ -49,6 +50,7 @@ Among all types of news, which category do people concern about the most? Is it 
 <div class = "nlp_goals_format">
 <b><a href = "" class = "nlp_goal_link">Business Goal - 7 :</a></b> 
 <!--<b><a href = "nlp.qmd#ner" class = "nlp_goal_link">Business Goal - 7 :</a></b>  -->
+
 Determine what topics are perceived as fake news.
 <br>
 <div class = "nlp_tech_format">
@@ -61,6 +63,7 @@ Determine what topics are perceived as fake news.
 <div class = "nlp_goals_format">
 <b><a href = "" class = "nlp_goal_link">Business Goal - 8 :</a></b>
 <!--<b><a href = "nlp.qmd#sentiment" class = "nlp_goal_link">Business Goal - 8 :</a></b> -->
+
 Find this difference in perceived misinformation from 2021 (post-election year) to 2023 (pre-election year).
 <br>
 <div class = "nlp_tech_format">
@@ -72,6 +75,7 @@ Find this difference in perceived misinformation from 2021 (post-election year) 
 <div class = "ml_goals_format">
 <b><a href = "" class = "ml_goal_link">Business Goal - 9 :</a></b>
 <!--<b><a href = "ml.qmd#super_sentiment" class = "ml_goal_link">Business Goal - 9 :</a></b> -->
+
 Which articles might be perceived as misinformation, or labeled by users as fake news?
 <br>
 <div class = "ml_tech_format">
@@ -82,6 +86,7 @@ Which articles might be perceived as misinformation, or labeled by users as fake
 <div class = "ml_goals_format">
 <b><a href = "ml.qmd#controversiality" class = "ml_goal_link">Business Goal - 10 :</a></b> 
 <!--<b><a href = "ml.qmd#controversiality" class = "ml_goal_link">Business Goal - 10 :</a></b> -->
+
 Among political topics, is there any correlation? Are certain topics mentioned together more frequently than others?<br>
 <div class = "ml_tech_format">
 <b>Technical Proposal :</b> We will conduct a network analysis to explore the relationships between different political topics. This analysis will help us understand the connections and interactions among various political themes, providing insights into how they are interconnected or influence each other within the broader political landscape.</div></div>
