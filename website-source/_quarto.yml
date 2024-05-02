@@ -10,10 +10,10 @@ website:
     contents:
       - section: "I. Overview"
         contents:
-          # - summary.qmd
+          - summary.qmd
           - goals.qmd
           
-      - section: "Exploratory Data Analysis"
+      - section: "II. Exploratory Data Analysis"
         contents:
           - eda.qmd
       - section: "III. Natural Language Processing"
@@ -22,10 +22,10 @@ website:
       - section: "IV. Machine Learning"
         contents:
           - ml.qmd
-      # - section: "V. Results"
-      #   contents:
-      #     - results.qmd
-      #     - appendix.qmd     
+      - section: "V. Results"
+        contents:
+          - results.qmd
+          - appendix.qmd     
 
 
 

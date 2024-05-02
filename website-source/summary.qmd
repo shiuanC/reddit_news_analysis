@@ -11,33 +11,121 @@ import pandas as pd
 import numpy as np
 import IPython
 import ipyplot
+from IPython.display import display, Markdown, Image
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 ```
 
 ## Background 
 
+In the past four years, it seems like misinformation claims have skyrocketed in the United States. With major events like national elections and the COVID-19 pandemic, it seems like people have become increasingly susceptible to false narratives and misinformation. This trend poses significant challenges to public discourse and individual decision-making, making it imperative to study and understand the mechanisms and impacts of misinformation. Our project focuses on analyzing misinformation claims on Reddit, one of the largest and most influential social media platforms. By concentrating our analysis on the "news" and "worldnews" subreddits from 2021 to 2023, we aim to uncover patterns and trends that characterize the spread and reception of misinformation during this period.
 
 ```{python}
 #| echo: false
 #| warning: false 
 
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
+fpath = '../data/plots'
+# Load images
+img1 = (f'{fpath}/news_subreddit.png')
+img2 = (f'{fpath}/worldnews_subreddit.png')
+
+Image(filename=img1, unconfined=True)
 ```
-
-
+<b> Figure 1.1: News Sub-Reddit</b>
 
 ```{python}
 #| echo: false
 #| warning: false 
 
+Image(filename=img2, unconfined=True)
+```
+<b> Figure 1.2: World News Sub-Reddit</b>
+
+Submissions in r/worldnews and r/news typically include the article's title along with a link, encouraging users to review the source material before returning to Reddit to discuss the news story. This format fosters an environment where diverse viewpoints and insights can be shared, thereby enriching the discussion and enhancing user engagement. The interactive nature of these subreddits not only serves as a platform for news dissemination but also as a forum for vibrant community interactions, making them ideal for observing trends in information sharing and misinformation.
+
+To enrich our analysis, we incorporated additional data from the <a href="https://health.google.com/covid-19/open-data/raw-data">Google COVID-19 Vaccination Data</a>. TWe use its epidemic data including vaccine data, confirmed cases, and more to draw correlations between real-world events and trends in online conversations. This integration allows us to create a comprehensive timeline that aligns significant health events with spikes in user activity and sentiment. By juxtaposing these datasets, we aim to understand better how global events influence public opinion and information dissemination on digital platforms.
 
 
-#Plotly graph objects graph
+```{python}
+#| echo: false
+#| warning: false 
+monthly_counts = pd.read_csv("../data/csv/monthly_counts.csv")
 
+# Convert year_week to datetime assuming the week starts on Monday
+monthly_counts['date'] = pd.to_datetime(monthly_counts['year_month'] + '/1', format='%Y/%m/%d')
 
+# Sort DataFrame by the new datetime column
+monthly_counts.sort_values('date', inplace=True)
+
+# line chart
+fig = px.line(monthly_counts, x='date', y='count', markers=True, title='')
+fig.update_layout(
+    xaxis_title='Month',
+    yaxis_title='Comment Count (M)',
+    plot_bgcolor='white',  # Sets background color to white
+    showlegend=False,
+    width=900,  # Width of the figure in pixels
+    height=400,
+    xaxis=dict(
+        tickmode='array',
+        tickvals=monthly_counts['date'][::3],  # Adjust stride based on your data range
+        ticktext=[date.strftime('%Y-%m') for date in monthly_counts['date'][::3]]
+    )
+)
+fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGrey')
+fig.update_xaxes(showgrid=False)  # Hide vertical grid lines
+
+fig.show()
 
 ```
+<b> Figure 1.3: Monthly Log Frequecy of Comments in News and World News Sub-reddits from 2021 - 2023</b>
+
+```{python}
+#| echo: false
+#| warning: false 
+monthly_post_counts = pd.read_csv("../data/csv/monthly_post_counts.csv")
+
+# Convert year_week to datetime assuming the week starts on Monday
+monthly_post_counts['date'] = pd.to_datetime(monthly_post_counts['year_month'] + '/1', format='%Y/%m/%d')
+
+# Sort DataFrame by the new datetime column
+monthly_post_counts.sort_values('date', inplace=True)
+
+# line chart
+fig = px.line(monthly_post_counts, x='date', y='count', markers=True, title='')
+fig.update_layout(
+    xaxis_title='Month',
+    yaxis_title='Post Count (K)',
+    plot_bgcolor='white',  # Sets background color to white
+    showlegend=False,
+    width=900,  # Width of the figure in pixels
+    height=400,
+    xaxis=dict(
+        tickmode='array',
+        tickvals=monthly_post_counts['date'][::3],  # Adjust stride based on your data range
+        ticktext=[date.strftime('%Y-%m') for date in monthly_post_counts['date'][::3]]
+    )
+)
+fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGrey')
+fig.update_xaxes(showgrid=False)  # Hide vertical grid lines
+
+fig.show()
+
+```
+<b> Figure 1.4: Monthly Log Frequecy of Posts in News and World News Sub-reddits from 2021 - 2023</b>
 
 
+Furthermore, this cross-referenced data approach provides a unique perspective on the direct and indirect effects of global crises on digital media consumption and user behavior. Our goal is to use this analysis to identify patterns that could help predict and mitigate the spread of misinformation in future scenarios, thereby contributing to more informed and resilient online communities.
+
+This project was executed using Amazon Web Services (AWS) with Spark to manage the data efficiently. Our analytical approach involved a blend of models, notably using pretrained models from JohnSnowLabs and custom models developed using VaderSentiment analysis. All project code and documentation are accessible via the GitHub link provided on the banner at the bottom of each page.
+
+By delving deep into the dynamics of subreddit discussions and utilizing advanced data-processing capabilities, we endeavor to pave the way for more sophisticated methods of identifying and combating misinformation. This research not only sheds light on the patterns of news consumption but also offers a blueprint for enhancing the efficacy of digital platforms as tools for truthful communication.
 <a id = "about_team"> </a>
 
 ## About the Team 
@@ -46,25 +134,31 @@ import ipyplot
 #| echo: false
 #| warning: false
 
-import ipywidgets as widgets
 import IPython.display as display
 from IPython.display import HTML
-## Read images from file (because this is binary, maybe you can find how to use ByteIO) but this is more easy
-# img1 = open('../data/plots/Photos/Lucienne.jpg', 'rb').read()
-# img2 = open('../data/plots/Photos/Sonali.jpg', 'rb').read()
-# img3 = open('../data/plots/Photos/Peijin.jpg', 'rb').read()
-# ## Create image widgets. You can use layout of ipywidgets only with widgets.
-# ## Set image variable, image format and dimension.
-# wi1 = widgets.Image(value=img1, format='jpg', width=200, height=200)
-# wi2 = widgets.Image(value=img2, format='jpg', width=200, height=200)
-# wi3 = widgets.Image(value=img3, format='jpg', width=200, height=200)
-# ## Side by side thanks to HBox widgets
-# sidebyside = widgets.HBox([wi1, wi2, wi3])
-# ## Finally, show.
-# display.display(sidebyside)
-# HTML('<style> .widget-text { width: auto; } </style>')
 
+# HTML content to align images with links
+html_content = """
+<div style='text-align: center;'>
+    <div style='display: inline-block; margin: 10px;'>
+        <img src='./../data/plots/photos/Sierra.png' alt='Sierra Sikorski' width='200' height='200'>
+        <br>
 
+        <a href='https://www.linkedin.com/in/sierra-sikorski/' target='_blank'>Sierra Sikorski</a>
+    </div>
+    <div style='display: inline-block; margin: 10px;'>
+        <img src='../data/plots/photos/Sharon.png' alt='Sharon Chuang' width='200' height='200'>
+        <br>
+        <a href='https://www.linkedin.com/in/shiawshiuan-sharon-chuang/' target='_blank'>Sharon Chuang</a>
+    </div>
+    <div style='display: inline-block; margin: 10px;'>
+        <img src='../data/plots/photos/Jenny.png' alt='Jenny Gong' width='200' height='200'>
+        <br>
+        <a href='https://www.linkedin.com/in/jenny-gong-datascientist/' target='_blank'>Jenny Gong</a>
+    </div>
+</div>
+"""
+
+# Display the HTML content
+display.display(HTML(html_content))
 ```
-
-<p><a href = "https://www.linkedin.com/in/lucienne-lavanya-julian-898923150/" target = _blank>Lucienne L. Julian</a> &emsp;&emsp;&emsp;&ensp; <a href = "https://www.linkedin.com/in/sonali-subbu-rathinam-74b878229/" target = _blank>Sonali Subbu Rathinam</a> &emsp;&emsp;<a href = "https://www.linkedin.com/in/peijin-li-pl724georgetown/" target = _blank>Peijin Li</a> 

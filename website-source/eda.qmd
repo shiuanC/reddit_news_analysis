@@ -11,40 +11,40 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from IPython.display import display, Markdown
-from IPython.display import Image
+from IPython.display import display, Markdown, Image
 
 ```
  
 ## Preprocessing and Data Dictionary 
 
-We assessed the basic specifications of the dataset, removed duplicates and anomalies and dropped undesired columns to finally get <b>170,144</b> submissions and <b>18,548,934</b> comments in the respective datasets. The variables of interest after preprocessing the datasets are listed below: 
+
 
 In the <b> Submissions </b> dataset :  
 <ul> 
-    <li> <b>author</b> : The user who created the post. </li>
-    <li> <b>created_utc</b> : The time the submission or comment was posted. Was used in the time series analysis section of our project. </li>
-    <li> <b>domain</b> : The news site posted in the submission. </li> 
-    <li> <b>id </b>: The unique identifier of each post. </li> 
-    <li> <b>num_comments</b> : The number of comments under each submission. This may not capture the exact picture as it is dependent on the day the data was retrieved. </li> 
-    <li> <b>url </b>: The url associated with the post. Most of the submissions contain this url to the news article. </li> 
-    <li> <b>score </b>: The Karma score awarded to each post </li> 
+    <li> <b>Author</b> : Denotes who posted the submission. </li>
+    <li> <b>Created_utc</b> : Displays the date and time a submission was posted. Time is in coordinated universal time.
+ </li>
+    <li><b> ID </b>: The unique identifier of each Submission. </li> 
+    <li> <b>Source</b> : Contains the source extracted form news' URL. </li> 
+    <li> <b>Score </b>: The Karma score awarded to each post </li> 
+    <li> <b>Subreddit </b>: This shows which subreddit the submission was posted to. </li> 
+   
 </ul>
 
 In the <b> Comments </b> dataset :  
 <ul> 
-    <li> <b>author</b> : The user who posted the comment. </li>
-    <li> <b>created_utc </b>: The time the submission or comment was posted. Was used in the time series analysis section of our project. </li>
+    <li> <b>Author</b> : The user who posted the comment. </li>
+    <li> <b>Created_utc</b> : Displays the date and time the comment was posted. Time is in coordinated universal time
+ </li>
     <li> <b>body</b> : The text in the comment. </li> 
-    <li><b> id </b>: The unique identifier of each comment. </li> 
-    <li> <b>link_id</b> : The id of the submission under which the comment exists. </li> 
-    <li> <b>controversiality</b> : Whether a comment was classified as 'controversial'. </li> 
-    <li><b> gilded </b>: Whether the comments have been gilded or awarded. </li> 
-    <li><b> distinguished </b>: Whether the comments have been distinguished as moderator. </li> 
-    <li><b> score</b> : The Karma score awarded to each post </li> 
+    <li><b> ID </b>: The unique identifier of each comment. </li> 
+    <li><b> Score</b> :  Contains the karma score (number of up and down votes) a submission gets. </li> 
 </ul>   
 
-During this process, several dummy variables were created to aid in our analysis. A <i>foreign key</i> like variable called <b>submission_id</b> was also created in the comments dataset, that linked any comment to the submission it was made under.  
+We created a misinformation classifier from the body variable to show if the comment contained a misinformation phrase like “fake news” or “propaganda.” We also used the created_utc variable to get the year and day of the week a submission or comment was made.
+
+<b>External data: We plan on using vaccination data from Google linked below.</b> 
+<a href="https://health.google.com/covid-19/open-data/raw-data">Google COVID-19 Vaccination Data</a>
 
 <a id = "EDA1_DailyEngagement"> </a>
 
@@ -56,7 +56,24 @@ In this section, we delve into understanding the patterns of user engagement on 
 #| echo: false
 #| warning: false 
 
-Image(filename="../data/plots/submissions_day.png")
+# Image(filename="../data/plots/submissions_day.png", unconfined=True)
+day_of_week = pd.read_csv('../data/csv/comments_day.csv')
+submissions_day = pd.read_csv('../data/csv/submissions_day.csv')
+days = day_of_week.merge(submissions_day, on = 'day').sort_values(by= 'day').reset_index(drop=True)
+day_replacement = {1: 'Sunday', 2:'Monday', 3: 'Tuesday', 4: 'Wednesday', 5: 'Thursday', 6: 'Friday', 7: 'Saturday'}
+days = days.replace(day_replacement)
+days = days.rename({'count_x':'comments count', 'count_y': 'submissions count'}, axis = 1)
+
+
+px.line(
+    data_frame = days,
+    x = "day",
+    y = "submissions count",
+  #  opacity = 0.9,
+    orientation = "v",
+ #   barmode = 'group'
+)
+
 ```
 <b> Figure 2.1: Number of submissions per day of the week from 2021-2023  </b> 
 <br><br>
@@ -66,7 +83,16 @@ As shown in Figure 2.1, the trend for submissions exhibits a significant dip dur
 #| echo: false
 #| warning: false 
 
-Image(filename="../data/plots/day_of_week.png")
+# Image(filename="../data/plots/day_of_week.png", unconfined=True)
+
+px.line(
+    data_frame = days,
+    x = "day",
+    y = "comments count",
+  #  opacity = 0.9,
+    orientation = "v",
+ #   barmode = 'group'
+)
 ```
 <b> Figure 2.2: Number of comments per day of the week from 2021-2023  </b> 
 <br>
@@ -86,8 +112,10 @@ In this analysis, we investigate the disparity in the number of posts across dif
 # Reading the CSV files into Pandas DataFrames
 comments_per_year_df = pd.read_csv('../data/csv/comments_per_year.csv')
 submissions_per_year_df = pd.read_csv('../data/csv/submissions_per_year.csv')
-print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False))
+# print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False, justify="right"))
 
+submissions_per_year_df['count'] = submissions_per_year_df['count'].apply(lambda x: f"{x:,}")
+print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False))
 ```
 
 <b> Table 2.1: Submissions Per Year </b> 
@@ -97,7 +125,7 @@ print(submissions_per_year_df.to_markdown(tablefmt = "fancy_outline", index = Fa
 #| echo: false
 #| warning: false 
 
-comments_per_year_df['count'] = comments_per_year_df['count'].apply(str)
+comments_per_year_df['count'] = comments_per_year_df['count'].apply(lambda x: f"{x:,}")
 print(comments_per_year_df.to_markdown(tablefmt = "fancy_outline", index = False))
 
 ```
@@ -107,15 +135,21 @@ The analysis of post frequency by year reveals intriguing trends. While there is
 
 
 <a id = "EDA3_FakeNews"> </a>
+
 ## Assessing Percentage of Comments with Fake News Indicators
 
-To evaluate the prevalence of fake news indicators in comments, we employed regex to detect phrases such as "fake news," "bullshit," or "propaganda." Subsequently, a fake news indicator column was created to denote the presence of these phrases in comments. Grouping the data by this indicator column, we tallied the counts and visualized the findings in a chart. Among the total comments analyzed, 407,621 were flagged as containing fake news indicators, while the majority, comprising 49,562,279 comments, were deemed free from such indicators. This signifies that approximately 0.8% of comments were identified as potentially containing fake news elements. Further exploration into the context and implications of these comments could offer valuable insights into the dissemination of misinformation within online communities. 
+To evaluate the prevalence of fake news indicators in comments, we employed regex to detect phrases such as "fake news," "bullshit," or "propaganda." Subsequently, a fake news indicator column was created to denote the presence of these phrases in comments. Grouping the data by this indicator column, we tallied the counts and visualized the findings in a chart. Among the total comments analyzed, <b>407,621 </b> were flagged as containing fake news indicators, while the majority, comprising <b>49,562,279</b> comments, were deemed free from such indicators. This signifies that approximately 0.8% of comments were identified as potentially containing fake news elements. Further exploration into the context and implications of these comments could offer valuable insights into the dissemination of misinformation within online communities. 
 
 ```{python}
 #| echo: false
 #| warning: false 
 
-Image(filename="../data/plots/misinformation.png")
+# Image(filename="../data/plots/misinformation.png")
+
+misinfo = pd.read_csv('../data/csv/misinformation.csv')
+fig = px.pie(misinfo, values='count', names='misinfo_class')
+fig.show()
+
 ```
 <b> Figure 2.3: Comments containing Misinformation Indicators from 2021-2023  </b> 
 <br><br>
@@ -128,8 +162,6 @@ Image(filename="../data/plots/misinformation.png")
 
 As we delve into the dynamics of user interactions within the news-centric communities on Reddit, we encounter some intriguing patterns. The subreddit under examination boasts 31.5 million subscribers. However, a closer inspection reveals that in the past year, approximately 27,000 unique users have made submissions, and around 1.2 million have commented.
 
-A minute fraction of these users contribute the bulk of the submissions, which is delineated in Figure 2.4. This chart illustrates a comparison of posting frequency among the top 10 users in both the News and World News subreddits. The disparity is stark; the top-ranked user alone is responsible for more than 60,000 submissions in the News subreddit, significantly overshadowing the rest.
-
 
 ```{python}
 #| echo: false
@@ -141,62 +173,109 @@ Image(filename="../data/plots/top_users_comparison.png")
 ```
 <b> Figure 2.4: Top 10 Users Post Comparison for News and World News Subreddits </b> 
 <br><br>
-It was observed from the table above, that the most popular news sites on the subreddit over the past year were generally from western countries. This could potentially explain the high consumption of news related to the war within the subreddit despite the presence of Russian media sources as well. 
-
-Live thread submissions were found and it was determined that all the live thread submissions pertained to the war. This provided an opportunity to evaluate the comments of the live thread against regular submissions that also dealt with the Conflict as shown in the table below.
-
-<b> Table 2.3 : Comparison of Live Thread Comments and Regular Comments on War </b> 
 
 ```{python}
 #| echo: false
-#| warning: false 
+#| warning: false
 
+
+top_news_authors = pd.read_csv('../data/csv/top_news_authors.csv')
+top_news_authors = top_news_authors.iloc[1: , :]
+top_worldnews_authors = pd.read_csv('../data/csv/top_worldnews_authors.csv')
+
+top_worldnews_authors = top_worldnews_authors.iloc[1: , :]
+
+
+print(top_news_authors.to_markdown(tablefmt = "fancy_outline", index = False,  ))
 
 ```
+<b> Table 2.4: Top 10 Active User in News Subreddit </b> 
+<br><br>
 
-The table above captures the percentage of comments that were controversial, gilded and distinguished for the live thread and for other submissions dealing with the war. It was observed that more controversiality was present in regular submissions as compared to live threads, possible due to larger number of normal posts.
+```{python}
+#| echo: false
+#| warning: false
+
+print(top_worldnews_authors.to_markdown(tablefmt = "fancy_outline", index = False,  ))
+
+```
+<b> Table 2.5:  Top 10 Active User in World News Subreddit </b> 
+<br><br>
+The analysis of the two tables indicates a notable prevalence of [deleted] accounts among the top 10 active users in both the "news" and "worldnews" subreddits. Additionally, it reveals a significant disparity in posting frequency between the two categories. Specifically, the top 10 users in the "news" subreddit demonstrate considerably higher posting rates, with counts exceeding 9,000, compared to the "worldnews" subreddit where the counts remain above 2,000. This discrepancy suggests a potential discrepancy in user engagement and interest levels between the two thematic categories, highlighting the diverse participation patterns within the Reddit community across different topics.
 
 
 <a id = "EDA5: News Sources"> </a>
 
-## Most Common Words
+## Source Analysis
 
-Progressing with our analysis, we also looked at which were the most commonly used words or phrases in the comments of the top 3 news stories. To evaluate this we generated word clouds as shown below.
+In this extensive analysis, we aim to understand the influence of various news sources within the Reddit ecosystem. To achieve this, we extract the domain information from each submission's URL and aggregate the data to evaluate two main metrics: the frequency of posts from each news source and the cumulative karma scores these posts have received.
 
-<h3> Figure 2.6 : Word Cloud Of Comments From Top 3 News Stories </h3> 
+This dual-faceted approach enables us to not only see which news sources are most frequently posted but also which ones resonate the most with the Reddit community, as reflected by their karma scores. The results are encapsulated in two distinct tables.
+
 
 ```{python}
 #| echo: false
 #| warning: false
 
-import ipywidgets as widgets
-import IPython.display as display
-from IPython.display import HTML
 ## Read images from file 
-
+# data/plots/frequency_wordcloud.png
+Image(filename="../data/plots/frequency_wordcloud.png")
 
 ```
-
-These word clouds revealed that the Russia-Ukraine Conflict , and political leaders of these countries were the most repeated words. We also found terms relating to Queen Elizabeth II’s demise and the British royal family to be quite repetitive. 
-
-
-
-## Comparison with Other Sources 
-
-As a final task, we sought to compare the information present in the subreddit’s submissions about the events pertaining to Russia and Ukraine, with the events data from Armed Conflict Location & Event Data Project (ACLED). ACLED collects real-time data on locations, dates, actors, fatalities and types of all reported political violence and protest events around the world, from various international and regional news sources. The ACLED data for Ukraine and Russia were aggregated to obtain daily counts of event types in the following categories:
-<ul>
-<li><b>Armed Clashes</b></li>
-<li><b>Shelling/Artillery/Missile Attacks</b></li>
-<li><b>Remote Explosives/Landmines/IED</b></li>
-<li><b>Disrupted Weapons Use</b></li>
-</ul>
-The submissions titles were analyzed using regex to find terms related to aforementioned event types to obtain daily counts for these events. The cosine similarity between ACLED counts and counts obtained from submissions for each event type were found as shown below in table 2.4. Our results indicate that reddit data is not quite similar to ACLED data. One possible reason for low similarity might be that our data has been filtered to English, and ACLED uses its own translation methodology and produces regional level news related to the conflict as well.  
-
-<b> Table 2.4 : Cosine Similarity Scores for ACLED and Submissions Dataset on Different War Events </b> 
+<b> Figure 2.: Top 10 Users Post Comparison for News and World News Subreddits </b> 
+<br><br>
+To visually represent the frequency of posts by these news sources, we created a word cloud, as shown in the uploaded image. This illustration vividly displays the prominence of certain names, with 'Reuters' and 'BBCWorld' appearing more prominently, indicating a higher frequency of posts from these sources compared to others like 'rajacreator' or 'tellygupshup'.
 
 ```{python}
 #| echo: false
 #| warning: false
 
 
+top100_source_df = pd.read_csv('../data/csv/top100_source.csv')
+
+top100_source_df.sort_values(by='frequency', ascending=False, inplace=True)
+
+# Renaming the 'total_score' column to 'karma_score'
+top100_source_df.rename(columns={'total_score': 'karma_score'}, inplace=True)
+
+# Adding a 'rank' column based on the sorted karma_score
+top100_source_df['score rank'] = top100_source_df['karma_score'].rank(method='max', ascending=False).astype(int)
+top100_source_df['frequency rank'] = top100_source_df['frequency'].rank(method='max', ascending=False).astype(int)
+
+# Convert 'frequency' and 'karma_score' to strings
+top100_source_df['frequency'] = top100_source_df['frequency'].apply(lambda x: f"{x:,}")
+top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(lambda x: f"{x:,}")
+
+# Selecting the top result to display
+top_frequency = top100_source_df.head(10)[["source", "frequency", "karma_score", "score rank"]]
+
+print(top_frequency.to_markdown(tablefmt = "github", index = False))
+
 ```
+<b> Table 2.5: Top 10 Sources by Frequency </b> 
+<br><br>
+
+Table 2.5 lists the top 10 sources by the frequency of posts. Reuters takes the lead in the number of posts, with a significant presence on the platform. However, when we consider the karma scores, the same source shows a dramatic contrast in its two entries, one with a high karma score and another much lower, indicating perhaps a discrepancy in the content's reception or the presence of multiple accounts associated with the source.
+
+```{python}
+#| echo: false
+#| warning: false
+#| 
+top100_source_df['karma_score'] = top100_source_df['karma_score'].str.replace(',', '').apply(int)
+
+top100_source_df.sort_values(by='karma_score', ascending=False, inplace=True)
+top100_source_df['karma_score'] = top100_source_df['karma_score'].apply(lambda x: f"{x:,}")
+
+top_score = top100_source_df.head(10)[["source", "frequency", "karma_score", "frequency rank"]]
+
+print(top_score.to_markdown(tablefmt = "github", index = False, ))
+
+```
+<b> Table 2.6: Top 10 Sources by Karma score </b> 
+<br><br>
+Table 2.6, on the other hand, ranks the top 10 sources by the karma score. This table reveals that while Reuters may not have the highest posting frequency among the top sources, it garners the highest cumulative karma, suggesting a strong engagement from the Reddit community with the content provided by this source.
+<br><br>
+These analyses not only highlight the most active news sources but also offer insights into the quality of engagement that different sources inspire among Redditors. Such data is invaluable for understanding the landscape of news consumption and dissemination on one of the world's largest social platforms.
+
+
+

@@ -1,5 +1,9 @@
+View our website in https://shiuanc.github.io/reddit_news_analysis/ml.html 
+
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/dSSMMcuU)
 # PPOL 5206 Project
+
+**!!!!find the updated NLP part website in https://shiuanc.github.io/reddit_news_analysis/nlp.html !!!!** 
 
 ***The link one this page currently refer to the DSAN-6000 course, these will be updated but the contents will be more or less the same, it is OK to refer to these links for now***.
 

@@ -96,7 +96,7 @@ fig.show()
 Looking at Figure 3.1, almost half of the submissions relate to COVID-19, Russia/Ukraine, and crime/protest. Surprisingly, US politics is one of the smallest topic categories. This could be because many US news stories were more relevant to other categories like crime/ protest or presidential news.
 
 
-<h3> Figure 3.2 : Misinformation Counts by Topic </h3>
+
 
 ```{python}
 #| echo: false
@@ -105,6 +105,7 @@ topic_misinfo_true = pd.read_csv('../data/csv/topic_misinfo_true_count.csv')
 fig = px.bar(topic_misinfo_true, x='topic', y='count')
 fig.show()
 ```
+<b> Figure 3.2 : Misinformation Counts by Topic </b>
 
 <br>
 Looking at Figure 3.2, the two largest misinformation comment counts are COVID/Russia and Ukraine war and crime/protest. Both topics have about 90,000 misinformation comments. These are also the two largest categories, as we can see in Figure 3.4. The Supreme Court and Law topic has about 60,000 comments on misinformation. The TV show topic has the least amount od misinformation comments with almost 15,000. 
@@ -117,7 +118,6 @@ To gain further insights into Reddit users' attitudes toward different topics' n
 
 To implement sentiment analysis using VADER, we leverage the SentimentIntensityAnalyzer class from the vaderSentiment library. We define a function called vader_sentiment, which accepts text input, computes its VADER score using the polarity_scores method of the analyzer, and returns the compound score.
 
-<h3> Figure 3.3 : Sentiment Intensity Frequency Across Vader Score Ranges </h3>
 
 ```{python}
 #| echo: false
@@ -152,11 +152,11 @@ fig.update_xaxes(showgrid=False)  # Hide vertical grid lines
 fig.show()
 
 ```
+<b> Figure 3.3 : Sentiment Intensity Frequency Across Vader Score Ranges </b> 
+
 The plot shows a declining trend from the interval [-1.0~-0.9] starting at just over 140,000, dropping sharply until the [0.8~-0.7] interval, then more gradually declining through the [0.7~-0.6] and [0.6~-0.5] intervals. There is a slight increase in frequency at the [0.5~-0.4] interval.
 
 This distribution suggests that the most common sentiment scores in the analyzed dataset are strongly negative, as indicated by the higher counts in the negative score ranges. The presence of a minor increase in the last interval might suggest a small concentration of sentiments in that particular range as well.
-
-<h3> Figure 3.4 : Comparative Sentiment Distribution in Different News and Entertainment Sectors </h3>
 
 ```{python}
 #| echo: false
@@ -213,6 +213,7 @@ fig.update_traces(textposition='inside')
 # Show the figure
 fig.show()
 ```
+<b> Figure 3.4 : Comparative Sentiment Distribution in Different News and Entertainment Sectors </b>
 
 In Figure 3.4, we presents a set of four pie charts titled "Figure 3.4: Vader Score Distribution," which illustrate the distribution of sentiment scores within four different categories: US politics, economics/Russia&Ukraine, presidential news, and TV shows. Each pie chart is divided into two segments based on a threshold value of -0.8 on the Vader sentiment scale.
 
