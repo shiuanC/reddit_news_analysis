@@ -209,16 +209,14 @@ We streamlined the data preparation process for machine learning using a `Pipeli
 
 
 
- <b> Figure 4.2 : Confusion Matrix </b> 
-
 ```{python}
 #| echo: false
 #| warning: false
-Image(filename="../data/plots/confusion.png", unconfined=True)
-
-
+Image(filename="../data/plots/pca_news_title.png", unconfined=True)
 
 ```
+
+<b> Figure 4.2 : PCA of Clustering Results Based on News Titles </b> 
 
 - Diversity and Overlap: The visualization shows both diversity and overlap among clusters. Clusters 1, 3, and 4 show more specific grouping characteristics that might correspond to unique news themes or linguistic styles, while Cluster 0 and 2 indicate broader or more common themes.
 - Principal Components as Features: The PCA components are likely capturing underlying patterns in the usage of language across different news titles, which could be reflective of topic prevalence, sentiment, stylistic elements, or other latent features.

@@ -24,8 +24,7 @@ website:
           - ml.qmd
       - section: "V. Results"
         contents:
-          - results.qmd
-          - appendix.qmd     
+          - results.qmd 
 
 
 

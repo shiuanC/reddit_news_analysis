@@ -130,35 +130,35 @@ By delving deep into the dynamics of subreddit discussions and utilizing advance
 
 ## About the Team 
 
+
 ```{python}
 #| echo: false
 #| warning: false
 
+import ipywidgets as widgets
 import IPython.display as display
 from IPython.display import HTML
+## Read images from file (because this is binary, maybe you can find how to use ByteIO) but this is more easy
+img1 = open('../data/plots/Photos/Sharon.png', 'rb').read()
+img2 = open('../data/plots/Photos/Sierra.png', 'rb').read()
+img3 = open('../data/plots/Photos/Jenny.png', 'rb').read()
+## Create image widgets. You can use layout of ipywidgets only with widgets.
+## Set image variable, image format and dimension.
+wi1 = widgets.Image(value=img1, format='png', width=250, height=250)
+wi2 = widgets.Image(value=img2, format='png', width=250, height=250)
+wi3 = widgets.Image(value=img3, format='png', width=250, height=250)
+## Side by side thanks to HBox widgets
+sidebyside = widgets.HBox([wi1, wi2, wi3])
+## Finally, show.
+display.display(sidebyside)
+HTML('<style> .widget-text { width: auto; } </style>')
 
-# HTML content to align images with links
-html_content = """
-<div style='text-align: center;'>
-    <div style='display: inline-block; margin: 10px;'>
-        <img src='./../data/plots/photos/Sierra.png' alt='Sierra Sikorski' width='200' height='200'>
-        <br>
 
-        <a href='https://www.linkedin.com/in/sierra-sikorski/' target='_blank'>Sierra Sikorski</a>
-    </div>
-    <div style='display: inline-block; margin: 10px;'>
-        <img src='../data/plots/photos/Sharon.png' alt='Sharon Chuang' width='200' height='200'>
-        <br>
-        <a href='https://www.linkedin.com/in/shiawshiuan-sharon-chuang/' target='_blank'>Sharon Chuang</a>
-    </div>
-    <div style='display: inline-block; margin: 10px;'>
-        <img src='../data/plots/photos/Jenny.png' alt='Jenny Gong' width='200' height='200'>
-        <br>
-        <a href='https://www.linkedin.com/in/jenny-gong-datascientist/' target='_blank'>Jenny Gong</a>
-    </div>
-</div>
-"""
-
-# Display the HTML content
-display.display(HTML(html_content))
 ```
+<!-- <p><a href = "https://www.linkedin.com/in/shiawshiuan-sharon-chuang/" target = _blank>Sharon Chuang</a> &emsp;&emsp;&emsp;&ensp; &emsp;&ensp;&emsp;&ensp;<a href = "https://www.linkedin.com/in/sierra-sikorski/" target = _blank>Sierra Sikorski</a> &emsp;&emsp;<a href = "https://www.linkedin.com/in/jenny-gong-datascientist/" target = _blank>Jenny Gong</a>  -->
+
+<p>
+  <a href="https://www.linkedin.com/in/shiawshiuan-sharon-chuang/" target="_blank" style="margin-left: 50px; margin-right: 100px;">Sharon Chuang</a>
+  <a href="https://www.linkedin.com/in/sierra-sikorski/" target="_blank" style="margin-left: 50px; margin-right: 100px;">Sierra Sikorski</a>
+  <a href="https://www.linkedin.com/in/jenny-gong-datascientist/" target="_blank"style="margin-left: 50px; margin-right: 100px;">Jenny Gong</a>
+</p>
