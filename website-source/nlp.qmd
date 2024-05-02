@@ -40,50 +40,51 @@ These preprocessing steps prepare the data for topic modeling using LDA and the 
  
 We employed topic modeling through <b>Latent Dirichlet Allocation (LDA)</b> on the cleaned titles of our submissions dataset and obtained 8 topic groups, which covered various aspects of current affairs:
 <ol>
-  <li>economics/russia&ukraine
+  <li>russia&ukraine
     <ul>
-      <li><b>Top words</b>: age, ukraine, new, height, indian, amp, crypto, russian, worth, wiki</li>
+      <li><b>Top words</b>: ukraine, russian, russia, war, us, putin, minister, eu, media, new</li>
     </ul>
   </li>
-  <li>presidential news
+  <li>social media
     <ul>
-      <li><b>Top words</b>: free, crack, u.s., key, biden, download, first, president, new, say</li>
+      <li><b>Top words</b>: video, new, twitter, youtube, covid, elon, musk, news, hong kong</li>
     </ul>
   </li>
-  <li>supreme court/law
+  <li>current events
     <ul>
-      <li><b>Top words</b>: court, first, u.s., new, covid-19, covid, supreme, queen, cases</li>
-    </ul>
-  </li>
-  <li>global politics
-    <ul>
-      <li><b>Top words</b>: market, global, eu, china, industry, new, u.s., report, amp</li>
-    </ul>
-  </li>
-  <li>us politics
-    <ul>
-      <li><b>Top words</b>: best, u.s., biden, hong, president, review, 2022, trump</li>
-    </ul>
-  </li>
-  <li>covid/russia&ukraine
-    <ul>
-      <li><b>Top words</b>: news, covid, covid-19, new, russia, russian, day, ukraine, china</li>
-    </ul>
-  </li>
-  <li>crime/protest
-    <ul>
-      <li><b>Top words</b>: police, us, man, arrested, death, protests, trump, officer, years, murder</li>
+      <li><b>Top words</b>: police, man, shooting, capitol, school, trump, black, us, house, woman</li>
     </ul>
   </li>
   <li>tv shows
     <ul>
-      <li><b>Top words</b>: episode, splitsvilla, mtv, show, full, getting, june</li>
+      <li><b>Top words</b>: episode, mtv, splitsvilla, live, th, show, full, getting, june, free</li>
     </ul>
   </li>
+  <li>covid
+    <ul>
+      <li><b>Top words</b>: covid, world, us, queen, cases, global, pandemic, new, India, day</li>
+    </ul>
+  </li>
+  <li>foreign relations
+    <ul>
+      <li><b>Top words</b>: biden, us, president, china, climate, un, court, iran, new, korea</li>
+    </ul>
+  </li>
+  <li>emerging tech
+    <ul>
+      <li><b>Top words</b>: crypto, covid, people, us, keep, bitcoin, variant, new, cut, international</li>
+    </ul>
+  </li>
+  <li>demographic info
+    <ul>
+      <li><b>Top words</b>: age, family, worth, height, net, indian, biography, wiki, actor, market</li>
+    </ul>
+  </li>
+
 </ol>
 
 
-<h3> Figure 3.1 : LDA Topic Visualization based on Title </h3>
+
 
 ```{python}
 #| echo: false
@@ -92,10 +93,9 @@ topics = pd.read_csv('../data/csv/topic_counts.csv')
 fig = px.pie(topics, values='count', names='topic')
 fig.show()
 ```
+<b> Figure 3.1 : LDA Topic Visualization based on Title </b>
 
-Looking at Figure 3.1, almost half of the submissions relate to COVID-19, Russia/Ukraine, and crime/protest. Surprisingly, US politics is one of the smallest topic categories. This could be because many US news stories were more relevant to other categories like crime/ protest or presidential news.
-
-
+Looking at Figure 3.1, almost half of the submissions relate to Russia/Ukraine, current events and foreign relations. Surprisingly, covid news is one of the smallest topic categories. This could be because many covid articles were more relevant to other categories like social media or emerging tech.
 
 
 ```{python}
@@ -106,9 +106,7 @@ fig = px.bar(topic_misinfo_true, x='topic', y='count')
 fig.show()
 ```
 <b> Figure 3.2 : Misinformation Counts by Topic </b>
-
-<br>
-Looking at Figure 3.2, the two largest misinformation comment counts are COVID/Russia and Ukraine war and crime/protest. Both topics have about 90,000 misinformation comments. These are also the two largest categories, as we can see in Figure 3.4. The Supreme Court and Law topic has about 60,000 comments on misinformation. The TV show topic has the least amount od misinformation comments with almost 15,000. 
+Looking at Figure 3.2, the largest misinformation count is the Russia Ukraine topic. It has over 120,000, while the second largest topic, current events, has 56,000. TV shows has the least with 16K. 
 
 
 <a id = "ner"> </a>

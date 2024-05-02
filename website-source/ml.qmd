@@ -36,7 +36,7 @@ We used the following steps in our Logistic Regression model:
  <li>Create a vector for the topics column</li>
  <li>Create a features vector containing the terms columns and topic column</li>
  <li>Use features vector in the logistic regression model</li>
- 
+</ol>
 <br>
 
 ```{python}
@@ -44,8 +44,6 @@ We used the following steps in our Logistic Regression model:
 #| warning: false
 articles_classified = pd.read_csv('../data/csv/articles_classified.csv')
 print(articles_classified.to_markdown(tablefmt = "fancy_outline", index = False))
-
-
 ```
 <b> Table 4.1 : Articles with Misinformation Counts </b> 
 
@@ -114,9 +112,6 @@ plt.show()
 <b> Figure 4.3 : Articles with Misinformation Counts </b> 
 
 
-
-
-
 ```{python}
 #| echo: false
 #| warning: false
@@ -144,13 +139,18 @@ fig.show()
 
 Overall, the model was not too accurate. The table below shows analysis by topic. We can see that the model was slightly more accurate at predicting perceived misinformation in COVID news and TV shows. It was slightly less accurate at predicting misinformation in current events. The final column shows the ratio of articles incorrectly labeled as containing no misinformation comments over the total number of falsely predicted articles. It basically shows the ratio of false negatives over false positives and false negatives. We can see the ratio is significantly higher for the topics: tv shows, demographic information, and covid. Foreign events and social media have the smallest ratio at about .55. 
 
-## Relation with the Covid Data
-The data we used here is from
-<b>External data: We plan on using vaccination data from Google linked below.</b> 
+## Relation between Misinformation and Covid
 
+In this section of our study, we delve into the relationship between COVID-19 dynamics, such as confirmed cases and vaccination rates, and the prevalence of misinformation within news-related subreddits. Our objective is to determine if significant intersections exist between the progression of the pandemic and the spread of misinformation online.
+
+To achieve this, we first analyze the correlation between two sets of data: COVID-19 statistics and counts of misinformation instances. This analysis will help us understand the degree to which these variables move in tandem, if at all. Following the correlation study, we employ linear regression techniques to assess how effectively pandemic-related data can predict the volume of misinformation. This model will allow us to evaluate the predictive power of COVID-19 variables on misinformation trends.
 <a href="https://health.google.com/covid-19/open-data/raw-data">Google COVID-19 Vaccination Data</a>
 
-The column we used in her
+
+**Data Preparetion**
+
+To conduct a time-series analysis on COVID-19 and Reddit data, we first clean and standardize the date formats to ensure consistency. We then group both datasets by year, week, and month to analyze trends over specific time intervals. Relevant metrics such as case counts for COVID-19 and post counts for Reddit are aggregated accordingly. Finally, we merge the datasets based on their time groupings, preparing them for detailed correlation analysis and regression modeling. This process ensures our data is well-aligned and reliable for examining the relationship between pandemic trends and misinformation on Reddit.
+
 
 ```{python}
 #| echo: false
@@ -164,12 +164,14 @@ monthly_covid = pd.read_csv("../data/csv/monthly_covid.csv")
 monthly_covid['date'] = pd.to_datetime(monthly_covid['year'].astype(str) + '-' + monthly_covid['month'].astype(str))
 monthly_covid.drop(['year', 'month'], axis=1, inplace=True)
 monthly_covid.replace({0: None, pd.NA: None}, inplace=True)
+monthly_covid.columns = [col.replace('sum_new_', '') for col in monthly_covid.columns]
+
 
 # Initialize the plot
 fig = go.Figure()
-
+vis_cols = ['confirmed', 'persons_vaccinated']
 # Add line for each column except 'date'
-for column in monthly_covid.columns:
+for column in vis_cols:
     if column != 'date':
         # Add a trace for each column
         fig.add_trace(go.Scatter(x=monthly_covid['date'], y=monthly_covid[column], mode='lines+markers', name=column))
@@ -187,7 +189,34 @@ fig.show()
 
 ```
 
-<b> Figure 4.4 : Articles with Misinformation Counts </b> 
+<b> Figure 4.5 : Articles with Misinformation Counts </b> 
+
+This line graph displays the monthly trends of confirmed COVID-19 cases alongside the number of people vaccinated against the virus from January 2020 to January 2023. The red line represents confirmed cases, peaking sharply around mid-2021, indicating significant waves of the pandemic. In contrast, the blue line illustrates the vaccination rates, which show a gradual increase as vaccines become available and then start to plateau as more of the population becomes vaccinated. This visual representation helps identify periods where increased cases might correlate with changes in misinformation spread on platforms such as Reddit.
+
+```{python}
+#| echo: false
+#| warning: false
+
+Image(filename="../data/plots/correlation.png", unconfined=True)
+
+```
+
+<b> Figure 4.6 : Correlation Matrix of Reddit and COVID Data </b> 
+
+The correlation matrix provides a detailed look at how different variables relate to each other. Notably, there is a very high correlation (almost 1.0) between the counts of comments and misinformation, suggesting that misinformation topics tend to generate significant discussion or engagement on Reddit. Lesser, yet positive correlations exist between misinformation counts and confirmed COVID-19 cases, indicating a potential increase in misinformation during higher transmission periods. Negative correlations between post counts and confirmed cases suggest that higher infection rates might not necessarily lead to an increase in the number of posts, possibly due to overwhelmed users or changing public interest over time. The matrix also shows strong correlations between different vaccination metrics and how these relate to public discourse on Reddit, hinting at the impact of vaccination campaigns on misinformation dynamics.
+
+
+
+
+|  Mean Squared Error           | R² Score            |
+|--------------------|----------------|
+|13161475.249450391  |    0.132      |
+
+**Table 4.5 Linear Regression**
+
+The evaluation of the linear regression model revealed a Mean Squared Error (MSE) of 13,161,475.249 and an R² Score of 0.1317. These metrics indicate a significant deviation of the model’s predictions from the actual data, with only about 13% of the variance in misinformation counts explained by the model. This suggests that the selected features, primarily COVID-19 statistics like confirmed cases and vaccination rates, provide limited insights into the spread of misinformation.
+
+The investigation into the relationship between COVID-19 dynamics and the prevalence of misinformation on Reddit reveals complex interactions influenced by pandemic progression. Despite our rigorous data preparation and analysis, including correlation studies and regression modeling, the predictive power of COVID-19 statistics on misinformation trends remains limited. The linear regression model showed a significant Mean Squared Error (MSE) of 13,161,475.249 and a low R² Score of 0.1317, indicating that only 13% of the variance in misinformation counts could be explained through COVID-19 variables such as confirmed cases and vaccination rates. This underscores the need for integrating more comprehensive data and possibly more sophisticated analytical techniques to enhance the accuracy and effectiveness of predictions related to misinformation spread during health crises.
 
 
 
@@ -199,6 +228,7 @@ We streamlined the data preparation process for machine learning using a `Pipeli
 ### Choose clustering methods
  Choose several clustering algorithms to compare. Common choices include `K-means`, `Hierarchical clustering`, `DBSCAN`, `Gaussian Mixture Models (GMM`), and `spectral clustering`. Each method has its strengths and weaknesses.
 <b> Table 4.4 : Comparison of Clustering Methods </b> 
+
 | Clustering Method | Suitability for Data Types | Pros | Cons |
 |--------------------|----------------------------|------|------|
 | K-means | Numerical data, well-separated clusters, clusters with similar sizes | - Simple and easy to implement<br>- Scales well to large datasets<br>- Works well with spherical clusters | - Assumes clusters are spherical and equally sized<br>- Sensitive to outliers<br>- Requires predefined number of clusters |
